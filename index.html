@@ -2,7 +2,8 @@
 <html lang="hi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#008069">
 <title>Jaipuri Luhar Samaj</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta property="og:title" content="जयपुरी लुहार समाज">
@@ -12,32 +13,37 @@
 <style>
 /* Layout: one phone-first column — language switch, type tiles, form sections, card preview, one send button */
 :root {
-  --bg: #f2f4ef;
+  --bg: #efe7dc;
   --card: #ffffff;
-  --fg: #1b2420;
-  --muted: #5d6a63;
-  --line: #d4dcd6;
-  --accent: #0f7a4a;
+  --fg: #111b21;
+  --muted: #667781;
+  --line: #d9dee1;
+  --accent: #008069;
   --accent-ink: #ffffff;
   --marigold: #a77b16;
-  --tile-on: #fff6dd;
-  --bubble: #dcf8c6;
-  --bubble-ink: #1b2420;
-  --error: #b3261e;
+  --tile-on: #e6f6ee;
+  --bubble: #d9fdd3;
+  --bubble-ink: #111b21;
+  --error: #c62828;
+  --header: #008069;
+  --header-ink: #ffffff;
+  --input: #f0f2f5;
+  --chip: #ffffff;
+  --chip-ink: #54656f;
+  --notice: #ffeecd;
+  --notice-ink: #54471e;
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(84,101,111,0.14)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20a13 13 0 1 0 11 20a10 10 0 1 1 -11 -20z'/%3E%3Cpath d='M108 26l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z'/%3E%3Ccircle cx='76' cy='80' r='7'/%3E%3Cpath d='M18 112c7-9 16-9 23 0'/%3E%3Cpath d='M104 104h18M113 95v18'/%3E%3Cpath d='M62 36l7 7M69 36l-7 7'/%3E%3Cpath d='M128 66a8 8 0 1 0 7 12a6 6 0 1 1 -7 -12z'/%3E%3Ccircle cx='132' cy='136' r='2'/%3E%3Ccircle cx='58' cy='136' r='2'/%3E%3Ccircle cx='12' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  --send-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 20.4 21 12 3.4 3.6 3.4 10.1 15 12 3.4 13.9z'/%3E%3C/svg%3E");
   --font: "Mukta", "Nirmala UI", "Noto Sans Devanagari", system-ui, sans-serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #101513; --card: #19201d; --fg: #e6ece8; --muted: #9eaba4; --line: #2d3833;
-    --accent: #2bb673; --accent-ink: #07140d; --marigold: #e8b23a; --tile-on: #2e2812;
-    --bubble: #1f4a33; --bubble-ink: #e6ece8; --error: #f2958c;
+    --bg: #0b141a; --card: #202c33; --fg: #e9edef; --muted: #8696a0; --line: #2a3942; --accent: #00a884; --accent-ink: #0b141a; --marigold: #e8b23a; --tile-on: #10352a; --bubble: #005c4b; --bubble-ink: #e9edef; --error: #f2958c; --header: #202c33; --header-ink: #e9edef; --input: #2a3942; --chip: #182229; --chip-ink: #8696a0; --notice: #182229; --notice-ink: #ffd279; --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(233,237,239,0.05)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20a13 13 0 1 0 11 20a10 10 0 1 1 -11 -20z'/%3E%3Cpath d='M108 26l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z'/%3E%3Ccircle cx='76' cy='80' r='7'/%3E%3Cpath d='M18 112c7-9 16-9 23 0'/%3E%3Cpath d='M104 104h18M113 95v18'/%3E%3Cpath d='M62 36l7 7M69 36l-7 7'/%3E%3Cpath d='M128 66a8 8 0 1 0 7 12a6 6 0 1 1 -7 -12z'/%3E%3Ccircle cx='132' cy='136' r='2'/%3E%3Ccircle cx='58' cy='136' r='2'/%3E%3Ccircle cx='12' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #101513; --card: #19201d; --fg: #e6ece8; --muted: #9eaba4; --line: #2d3833;
-  --accent: #2bb673; --accent-ink: #07140d; --marigold: #e8b23a; --tile-on: #2e2812;
-  --bubble: #1f4a33; --bubble-ink: #e6ece8; --error: #f2958c;
+  --bg: #0b141a; --card: #202c33; --fg: #e9edef; --muted: #8696a0; --line: #2a3942; --accent: #00a884; --accent-ink: #0b141a; --marigold: #e8b23a; --tile-on: #10352a; --bubble: #005c4b; --bubble-ink: #e9edef; --error: #f2958c; --header: #202c33; --header-ink: #e9edef; --input: #2a3942; --chip: #182229; --chip-ink: #8696a0; --notice: #182229; --notice-ink: #ffd279; --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(233,237,239,0.05)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20a13 13 0 1 0 11 20a10 10 0 1 1 -11 -20z'/%3E%3Cpath d='M108 26l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z'/%3E%3Ccircle cx='76' cy='80' r='7'/%3E%3Cpath d='M18 112c7-9 16-9 23 0'/%3E%3Cpath d='M104 104h18M113 95v18'/%3E%3Cpath d='M62 36l7 7M69 36l-7 7'/%3E%3Cpath d='M128 66a8 8 0 1 0 7 12a6 6 0 1 1 -7 -12z'/%3E%3Ccircle cx='132' cy='136' r='2'/%3E%3Ccircle cx='58' cy='136' r='2'/%3E%3Ccircle cx='12' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
   color-scheme: dark;
 }
 [hidden] { display: none !important; }
@@ -57,62 +63,7 @@ h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wra
 .lang button, .seg button { font: inherit; font-size: 0.95rem; font-weight: 600; border: 0; background: transparent; color: var(--fg); padding: 6px 14px; cursor: pointer; }
 .lang button[aria-pressed="true"], .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
 .seg { display: grid; grid-template-columns: 1fr 1fr; border-radius: 12px; }
-.link-open { color: var(--accent); font-weight: 600; text-align: center; }
 
-/* ---------- Web card page (opened from the WhatsApp link) ---------- */
-/* Fixed cream-and-gold look in both themes, like a printed notice. */
-.memo-page { display: grid; gap: 16px; max-width: 540px; margin: 0 auto; }
-.memo {
-  position: relative; overflow: hidden; border-radius: 22px;
-  background: linear-gradient(180deg, #fbf8f1 0%, #f1e9db 100%);
-  color: #1f2937; box-shadow: 0 12px 40px rgba(70, 52, 20, 0.22);
-}
-.memo-inner {
-  position: relative; z-index: 1; margin: 12px; padding: 26px 20px 30px;
-  border: 1.5px solid #b08d4f; border-radius: 16px;
-  display: grid; gap: 8px; justify-items: center; text-align: center;
-  font-family: "Noto Serif Devanagari", "Nirmala UI", serif;
-}
-.memo-deco { position: absolute; z-index: 0; pointer-events: none; }
-.memo-deco.tl { top: -6px; left: -8px; width: 128px; }
-.memo-deco.br { bottom: -6px; right: -6px; width: 110px; }
-.memo-deco.bl { bottom: -4px; left: -4px; width: 90px; opacity: 0.85; }
-.memo .crescent { width: 54px; height: 54px; }
-.memo .ar { font-family: "Amiri", "Traditional Arabic", serif; font-size: 1.55rem; font-weight: 700; direction: rtl; margin: 0; line-height: 1.5; }
-.memo .dua { color: #5f5a50; font-size: 0.92rem; margin: -6px 0 0; }
-.memo .divider { display: flex; align-items: center; gap: 8px; width: 60%; color: #b08d4f; margin: 4px 0; }
-.memo .divider::before, .memo .divider::after { content: ""; flex: 1; height: 1px; background: #b08d4f; }
-.memo .divider span { width: 9px; height: 9px; background: #b08d4f; transform: rotate(45deg); }
-.memo .kicker { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; margin: 6px 0 0; display: flex; align-items: center; gap: 12px; width: 100%; }
-.memo .kicker::before, .memo .kicker::after { content: ""; flex: 1; height: 1px; background: #c9ad78; }
-.memo .vname { font-size: clamp(2rem, 9vw, 2.8rem); font-weight: 700; margin: 0; line-height: 1.2; text-wrap: balance; color: #1b2433; }
-.memo .urf { color: #5f5a50; margin: -4px 0 0; font-size: 1.05rem; }
-.memo .meta { color: #4b4a45; margin: 0; font-size: 1rem; }
-.memo .para { margin: 6px 0 0; font-size: 1.05rem; line-height: 1.75; max-width: 34em; }
-.memo .addr { color: #5f5a50; margin: 0; font-size: 0.95rem; }
-.memo .box {
-  width: 100%; box-sizing: border-box; margin-top: 10px; padding: 16px 8px 14px;
-  background: rgba(222, 202, 160, 0.28); border: 1px solid #d8c296; border-radius: 16px;
-  display: grid; gap: 12px;
-}
-.memo .box h2 { margin: 0; font-size: 1.15rem; font-weight: 700; color: #1f2937; }
-.memo .box h2::before, .memo .box h2::after { content: " ★ "; color: #b08d4f; font-size: 0.8rem; }
-.memo .box-cols { display: grid; grid-template-columns: repeat(3, 1fr); }
-.memo .box-col { display: grid; justify-items: center; align-content: start; gap: 4px; padding: 0 6px; min-width: 0; }
-.memo .box-col + .box-col { border-left: 1px solid #d8c296; }
-.memo .box-col svg { width: 28px; height: 28px; fill: none; stroke: #8a6a32; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.memo .box-col .lbl { color: #8a6a32; font-weight: 700; font-size: 0.9rem; }
-.memo .box-col .val { font-size: 0.92rem; line-height: 1.45; overflow-wrap: anywhere; }
-.memo .box-bottom { margin: 0 10px; padding-top: 10px; border-top: 1px solid #d8c296; font-size: 0.95rem; }
-.memo .extra { margin: 0; font-size: 1rem; line-height: 1.6; }
-.memo .box + .extra { margin-top: 10px; }
-.memo .extra b { color: #8a6a32; }
-.memo .closing { margin: 14px 0 0; font-size: 1.08rem; }
-.memo .by-title { color: #8a6a32; font-weight: 700; margin: 4px 0 0; }
-.memo .by-line { margin: 0; color: #4b4a45; }
-.memo .by-line a { color: #4b4a45; }
-.memo .group { color: #6b675f; font-size: 0.85rem; margin: 10px 0 0; }
-.memo-error { text-align: center; font-weight: 600; color: var(--error); }
 .seg button { line-height: 1.2; }
 .bubble .q { display: block; border-left: 4px solid #8a9a92; padding-left: 10px; margin: 2px 0; }
 .bubble.wa { white-space: normal; font-size: 0.95rem; line-height: 1.5; overflow-x: auto; }
@@ -172,33 +123,95 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
 details summary { cursor: pointer; font-weight: 600; color: var(--accent); }
 details .bubble { margin-top: 10px; }
 @media (max-width: 380px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------- WhatsApp-style look ---------- */
+body {
+  padding-left: 0; padding-right: 0; padding-block: 0 48px;
+  background-color: var(--bg); background-image: var(--pattern); background-size: 150px 150px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--header); }
+.appbar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: var(--header); color: var(--header-ink); box-shadow: 0 1px 3px rgba(11, 20, 26, 0.2); }
+.appbar-inner {
+  max-width: 600px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding-block: 10px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.avatar { flex: none; width: 44px; height: 44px; border-radius: 50%; background: #f7efe0; display: grid; place-items: center; }
+.avatar svg { width: 30px; height: 30px; }
+.appbar-text { flex: 1; min-width: 0; }
+.appbar h1 { font-size: 1.15rem; font-weight: 800; color: var(--header-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.appbar .sub { color: var(--header-ink); opacity: 0.85; margin: 0; font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.appbar .lang { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); flex: none; }
+.appbar .lang button { color: var(--header-ink); padding: 4px 10px; font-size: 0.85rem; }
+.appbar .lang button[aria-pressed="true"] { background: var(--header-ink); color: var(--header); }
+.wrap {
+  gap: 14px; padding-block: 16px 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.stack { gap: 14px; }
+.step {
+  display: table; margin: 2px auto 10px; padding: 5px 12px; border-radius: 8px;
+  background: var(--chip); color: var(--chip-ink); box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0; text-transform: none;
+}
+.card { border: 0; border-radius: 12px; padding: 16px; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); }
+.card h2 { color: var(--accent); font-size: 1rem; }
+input, textarea, select { background: var(--input); border: 1px solid transparent; border-radius: 10px; }
+.tile { border: 0; border-radius: 14px; padding: 12px 4px 10px; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); gap: 6px; }
+.tile .ic { width: 46px; height: 46px; border-radius: 50%; background: var(--input); display: grid; place-items: center; font-size: 1.35rem; }
+.tile[aria-pressed="true"] { background: var(--tile-on); outline: 2px solid var(--accent); outline-offset: -2px; }
+.tile[aria-pressed="true"] .ic { background: var(--card); }
+.seg { border: 0; background: var(--input); padding: 4px; gap: 4px; border-radius: 12px; }
+.seg button { border-radius: 9px; padding: 10px 8px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--accent); box-shadow: 0 1px 2px rgba(11, 20, 26, 0.18); }
+.example-bar {
+  background: var(--notice); color: var(--notice-ink); border: 0; border-radius: 10px;
+  box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); font-size: 0.92rem; font-weight: 500; justify-content: center; text-align: center;
+}
+.note.guide { background: var(--notice); color: var(--notice-ink); border: 0; }
+.bubble, .card-preview {
+  position: relative; background: var(--bubble); color: var(--bubble-ink);
+  border-radius: 10px 0 10px 10px; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); margin-right: 8px;
+}
+.bubble::after, .card-preview::after {
+  content: ""; position: absolute; top: 0; right: -8px; width: 0; height: 0;
+  border-top: 10px solid var(--bubble); border-right: 8px solid transparent;
+}
+.card-preview { padding: 4px; justify-self: end; width: min(100%, 420px); box-sizing: border-box; }
+.card-preview canvas { border-radius: 8px; box-shadow: none; max-width: 100%; }
+.bubble .meta { display: block; text-align: right; font-size: 0.72rem; color: var(--muted); margin-top: 6px; font-family: system-ui, sans-serif; }
+.bubble .meta .ticks { color: #53bdeb; letter-spacing: -3px; margin-left: 2px; }
+details summary { color: var(--accent); }
+.card { grid-template-columns: minmax(0, 1fr); }
+details { min-width: 0; }
+.bubble.wa { max-width: 100%; box-sizing: border-box; }
+.btn-primary { border-radius: 28px; gap: 10px; box-shadow: 0 2px 6px rgba(0, 128, 105, 0.3); }
+.btn-primary::after {
+  content: ""; flex: none; width: 22px; height: 22px; background: currentColor;
+  -webkit-mask: var(--send-icon) center / contain no-repeat; mask: var(--send-icon) center / contain no-repeat;
+}
 </style>
 </head>
 <body>
 
-<div class="memo-page" id="viewPage" hidden>
-  <article class="memo">
-    <div class="memo-deco tl" id="decoTopLeft"></div>
-    <div class="memo-deco bl" id="decoBottomLeft"></div>
-    <div class="memo-deco br" id="decoBottomRight"></div>
-    <div class="memo-inner" id="memoInner"></div>
-  </article>
-  <p class="memo-error" id="viewError" hidden></p>
-  <a class="btn btn-primary" id="viewForward" href="https://wa.me/" target="_blank" rel="noopener"></a>
-  <a class="btn btn-ghost" id="viewNew" href="./"></a>
-</div>
-
-<div class="wrap" id="formPage">
-  <div class="top">
-    <div>
+<header class="appbar">
+  <div class="appbar-inner">
+    <div class="avatar" aria-hidden="true">
+      <svg viewBox="0 0 60 60"><defs><mask id="avatarMoon"><rect width="60" height="60" fill="#fff"/><circle cx="37" cy="24" r="19" fill="#000"/></mask></defs>
+        <circle cx="28" cy="30" r="22" fill="#b08d4f" mask="url(#avatarMoon)"/>
+        <polygon fill="#b08d4f" points="43,19 45,25 51,25 46,29 48,35 43,31 38,35 40,29 35,25 41,25"/></svg>
+    </div>
+    <div class="appbar-text">
       <h1 id="tTitle"></h1>
       <p class="sub" id="tSub"></p>
     </div>
     <div class="lang" role="group" aria-label="Language">
-      <button type="button" id="langHi" aria-pressed="false">हिंदी</button>
-      <button type="button" id="langEn" aria-pressed="false">English</button>
+      <button type="button" id="langHi" aria-pressed="false">हिं</button>
+      <button type="button" id="langEn" aria-pressed="false">EN</button>
     </div>
   </div>
+</header>
+
+<div class="wrap" id="formPage">
 
   <div class="example-bar" id="inAppHint" hidden></div>
 
@@ -380,10 +393,8 @@ details .bubble { margin-top: 10px; }
         <div class="field">
           <span style="font-weight:600" data-t="sendModeLabel"></span>
           <div class="seg" role="group">
-            <button type="button" id="modeCard" aria-pressed="true" data-t="modeCard"></button>
-            <button type="button" id="modeStyled" aria-pressed="false" data-t="modeStyled"></button>
-            <button type="button" id="modeText" aria-pressed="false" data-t="modeText"></button>
-            <button type="button" id="modeLink" aria-pressed="false" data-t="modeLink"></button>
+            <button type="button" id="modeCard" aria-pressed="false" data-t="modeCard"></button>
+            <button type="button" id="modeStyled" aria-pressed="true" data-t="modeStyled"></button>
           </div>
         </div>
         <div class="card-preview" id="cardPreview"><canvas id="cardCanvas" width="1080" height="1620" aria-label="Card preview"></canvas></div>
@@ -391,7 +402,6 @@ details .bubble { margin-top: 10px; }
           <summary data-t="viewText"></summary>
           <div class="bubble" id="deathText"></div>
         </details>
-        <a class="link-open" id="linkOpen" href="./" target="_blank" rel="noopener" data-t="openLink" hidden></a>
         <div class="err" id="deathErr" hidden></div>
         <button class="btn btn-primary" type="button" id="sendDeath" data-t="sendBtn"></button>
         <div class="note" id="deathNote"></div>
@@ -399,7 +409,7 @@ details .bubble { margin-top: 10px; }
     </section>
   </div>
 
-  <p class="note" style="text-align:center">Version 13 · Jaipuri Luhar Samaj</p>
+  <p class="note" style="text-align:center">Version 14 · WhatsApp look</p>
 
   <!-- ===================== OTHER ANNOUNCEMENTS ===================== -->
   <div id="genericSection" class="stack" hidden>
@@ -602,14 +612,7 @@ var DT = {
     stepSend: "देखें और भेजें",
     sendModeLabel: "क्या भेजना है?",
     modeCard: "कार्ड (फ़ोटो)",
-    modeText: "सादा मैसेज",
     modeStyled: "कार्ड जैसा मैसेज",
-    modeLink: "लिंक (वेब कार्ड)",
-    openLink: "लिंक खोलकर देखें ↗",
-    seeDetails: "पूरी जानकारी देखें:",
-    viewForward: "WhatsApp पर आगे भेजें",
-    viewNew: "नई सूचना भेजें",
-    viewError: "यह लिंक अधूरा है या खुल नहीं सका। WhatsApp से पूरा लिंक दोबारा खोलें।",
     viewText: "लिखा हुआ मैसेज देखें",
     sendBtn: "WhatsApp पर भेजें",
     missing: "कृपया ये जानकारी भरें: ",
@@ -674,14 +677,7 @@ var DT = {
     stepSend: "Check and send",
     sendModeLabel: "What do you want to send?",
     modeCard: "Card (image)",
-    modeText: "Plain message",
     modeStyled: "Card-style message",
-    modeLink: "Link (web card)",
-    openLink: "Open the link ↗",
-    seeDetails: "See full details:",
-    viewForward: "Forward on WhatsApp",
-    viewNew: "Send a new notice",
-    viewError: "This link is incomplete or could not be opened. Please open the full link from WhatsApp again.",
     viewText: "View the written message",
     sendBtn: "Send on WhatsApp",
     missing: "Please fill: ",
@@ -703,7 +699,7 @@ function dt(key) {
 
 // Dropdown choices: value -> text in both languages
 var KIND_OPTIONS = [
-  ["inteqal", "खबर इंतक़ाल (तदफ़ीन के साथ)", "Death news (with burial details)"],
+  ["inteqal", "खबर इंतक़ाल (तदफ़ीन के साथ)", "Khabar Inteqal (with burial details)"],
   ["ziyarat", "सिर्फ़ जियारत की सूचना", "Ziyarat notice only"],
   ["fateha", "सिर्फ़ फातेहा की सूचना", "Fateha notice only"]
 ];
@@ -840,7 +836,7 @@ var WORDS = {
     rahimahu: "रहिमहुल्लाह", rahimaha: "रहिमहल्लाह"
   },
   en: {
-    title: { inteqal: "Khabar-e-Inteqal", ziyarat: "Ziyarat", fateha: "Fateha" },
+    title: { inteqal: "Khabar Inteqal", ziyarat: "Ziyarat", fateha: "Fateha" },
     marhoom: "Marhoom", marhooma: "Marhooma",
     urf: "alias", age: "Age", years: "years",
     tadfin: "Tadfeen (Burial)", ziyarat: "Ziyarat", fateha: "Fateha", jawai: "Jawai", pihar: "Pihar", by: "By",
@@ -919,56 +915,6 @@ function eventSentence(data, kind, boldName) {
 function cityLine(data) {
   return joinFilled([data.city, data.state], ", ");
 }
-
-// ---------------- WhatsApp text in the samaj style ----------------
-function buildDeathText(data) {
-  var lines = [];
-  lines.push("⚫⚫⚫⚫⚫⚫⚫");
-  lines.push("*⚫ " + word("title")[data.kind] + " ⚫*");
-  lines.push("_*إِنَّا لِلَّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ*_");
-  lines.push("_*" + word("duaFull") + "*_");
-  lines.push("");
-  if (cityLine(data)) { lines.push("*" + cityLine(data) + "*"); }
-  if (data.date) { lines.push(dateWithDay(data.date)); }
-  if (data.address) { lines.push("*" + word("address") + ":* " + data.address); }
-  lines.push("");
-
-  if (data.kind === "inteqal") {
-    lines.push(inteqalSentence(data, true));
-    lines.push("");
-    lines.push("*⚫ " + word("tadfin") + " ⚫*");
-    lines.push(eventTiming(data.tadfinDate, data.tadfinWhen, data.tadfinTime));
-    if (data.janaza) { lines.push("*" + word("janaza") + ":* " + data.janaza); }
-    if (data.qabristan) { lines.push(qabristanText(data)); }
-    if (data.addZiyarat) {
-      lines.push("");
-      lines.push("*⚫ " + word("ziyarat") + " ⚫*");
-      lines.push(joinFilled([eventTiming(data.ziyaratDate, data.ziyaratWhen, data.ziyaratTime), data.ziyaratPlace], " — "));
-    }
-    if (data.addFateha) {
-      lines.push("");
-      lines.push("*⚫ " + word("fateha") + " ⚫*");
-      lines.push(joinFilled([eventTiming(data.fatehaDate, data.fatehaWhen, data.fatehaTime), data.fatehaPlace], " — "));
-    }
-    if (data.jawai) { lines.push(""); lines.push("*⚫ " + word("jawai") + " ⚫*"); lines.push(data.jawai); }
-    if (data.pihar) { lines.push(""); lines.push("*⚫ " + word("pihar") + " ⚫*"); lines.push(data.pihar); }
-  } else {
-    lines.push(eventSentence(data, data.kind, true));
-  }
-
-  if (data.by.length > 0) {
-    lines.push("");
-    lines.push("*⚫ " + word("by") + " ⚫*");
-    for (var i = 0; i < data.by.length; i++) { lines.push(data.by[i]); }
-  }
-  if (data.groupLine) {
-    lines.push("➖➖➖➖➖➖➖");
-    lines.push("_" + data.groupLine + "_");
-    lines.push("➖➖➖➖➖➖➖");
-  }
-  return lines.join("\n");
-}
-
 
 // ---------------- Card-style WhatsApp text (no image) ----------------
 // WhatsApp text cannot have colours or side borders, so the "card" look is made
@@ -1111,323 +1057,16 @@ function showWhatsAppPreview(box, message) {
   var parts = message.split("\n");
   var html = "";
   for (var i = 0; i < parts.length; i++) { html = html + whatsAppLineToHtml(parts[i]); }
+  var now = new Date();
+  var clock = String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
+  html = html + '<span class="meta">' + clock + ' <span class="ticks">✓✓</span></span>';
   box.innerHTML = html;
 }
 
 function messageForMode(data) {
-  if (sendMode === "styled") { return buildStyledText(data); }
-  if (sendMode === "link") { return linkMessage(data, linkForData(data)); }
-  return buildDeathText(data);
+  return buildStyledText(data);
 }
 
-
-// =====================================================================
-// WEB CARD LINK — the notice is packed into the link itself (?c=...),
-// so no server is needed. Opening the link shows a styled HTML card.
-// =====================================================================
-
-var DATA_TEXT_KEYS = ["name", "urf", "age", "family", "cause", "city", "state", "address",
-  "tadfinWhen", "janaza", "qabristan", "ziyaratWhen", "ziyaratPlace",
-  "fatehaWhen", "fatehaPlace", "jawai", "pihar", "groupLine"];
-var DATA_DATE_KEYS = ["date", "tadfinDate", "ziyaratDate", "fatehaDate"];
-var DATA_TIME_KEYS = ["tadfinTime", "ziyaratTime", "fatehaTime"];
-var DATA_FLAG_KEYS = ["female", "addZiyarat", "addFateha"];
-
-var latestLinkUrl = "";
-var latestLinkKey = "";
-
-function baseUrl() {
-  return location.href.split("#")[0].split("?")[0];
-}
-
-function bytesToBase64Url(bytes) {
-  var binary = "";
-  for (var i = 0; i < bytes.length; i++) { binary = binary + String.fromCharCode(bytes[i]); }
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
-
-function base64UrlToBytes(text) {
-  var base64 = text.replace(/-/g, "+").replace(/_/g, "/");
-  while (base64.length % 4 !== 0) { base64 = base64 + "="; }
-  var binary = atob(base64);
-  var bytes = new Uint8Array(binary.length);
-  for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
-  return bytes;
-}
-
-// Keep only filled values, plus the language, so the link stays short.
-function compactJson(data) {
-  var compact = { lang: currentLang, kind: data.kind };
-  var key;
-  for (key in data) {
-    var value = data[key];
-    if (key === "kind" || value === "" || value === false) { continue; }
-    if (Array.isArray(value) && value.length === 0) { continue; }
-    compact[key] = value;
-  }
-  return JSON.stringify(compact);
-}
-
-// "b" + plain base64 (works everywhere, used right away)
-function packDataNow(json) {
-  return "b" + bytesToBase64Url(new TextEncoder().encode(json));
-}
-
-// "z" + compressed base64 (shorter link, needs a modern browser)
-function packDataCompressed(json) {
-  if (!window.CompressionStream) { return Promise.resolve(packDataNow(json)); }
-  var stream = new Blob([new TextEncoder().encode(json)]).stream().pipeThrough(new CompressionStream("deflate-raw"));
-  return new Response(stream).arrayBuffer().then(function (buffer) {
-    return "z" + bytesToBase64Url(new Uint8Array(buffer));
-  });
-}
-
-function unpackData(packed) {
-  var kind = packed.charAt(0);
-  var bytes = base64UrlToBytes(packed.substring(1));
-  if (kind === "b") {
-    return Promise.resolve(JSON.parse(new TextDecoder().decode(bytes)));
-  }
-  if (kind === "z" && window.DecompressionStream) {
-    var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
-    return new Response(stream).text().then(function (json) { return JSON.parse(json); });
-  }
-  return Promise.reject(new Error("Unsupported link"));
-}
-
-// Data from a link is untrusted: keep only known fields with the right shape.
-function cleanSharedData(raw) {
-  var data = { kind: "inteqal", lang: "hi", by: [] };
-  if (raw.kind === "ziyarat" || raw.kind === "fateha") { data.kind = raw.kind; }
-  if (raw.lang === "en") { data.lang = "en"; }
-  var i;
-  for (i = 0; i < DATA_TEXT_KEYS.length; i++) {
-    var textValue = raw[DATA_TEXT_KEYS[i]];
-    data[DATA_TEXT_KEYS[i]] = (typeof textValue === "string" || typeof textValue === "number") ? String(textValue).slice(0, 300) : "";
-  }
-  for (i = 0; i < DATA_DATE_KEYS.length; i++) {
-    var dateValue = raw[DATA_DATE_KEYS[i]];
-    data[DATA_DATE_KEYS[i]] = (typeof dateValue === "string" && /^\d{4}-\d{2}-\d{2}$/.test(dateValue)) ? dateValue : "";
-  }
-  for (i = 0; i < DATA_TIME_KEYS.length; i++) {
-    var timeValue = raw[DATA_TIME_KEYS[i]];
-    data[DATA_TIME_KEYS[i]] = (typeof timeValue === "string" && /^\d{2}:\d{2}$/.test(timeValue)) ? timeValue : "";
-  }
-  for (i = 0; i < DATA_FLAG_KEYS.length; i++) {
-    data[DATA_FLAG_KEYS[i]] = raw[DATA_FLAG_KEYS[i]] === true;
-  }
-  if (Array.isArray(raw.by)) {
-    for (i = 0; i < raw.by.length && i < 10; i++) {
-      if (typeof raw.by[i] === "string") { data.by.push(raw.by[i].slice(0, 200)); }
-    }
-  }
-  return data;
-}
-
-function linkForData(data) {
-  var json = compactJson(data);
-  if (json === latestLinkKey && latestLinkUrl) { return latestLinkUrl; }
-  return baseUrl() + "?c=" + packDataNow(json);
-}
-
-// Builds the shorter (compressed) link in the background after each change.
-function refreshLink(data) {
-  var json = compactJson(data);
-  packDataCompressed(json).then(function (packed) {
-    if (compactJson(readDeathData()) !== json) { return; }
-    latestLinkKey = json;
-    latestLinkUrl = baseUrl() + "?c=" + packed;
-    showLinkPreview(data);
-  });
-}
-
-function linkMessage(data, url) {
-  var lines = [];
-  lines.push("⚫ *" + word("title")[data.kind] + "* ⚫");
-  lines.push("_" + word("duaFull") + "_");
-  lines.push("");
-  lines.push("*" + marhoomWord(data) + " " + fullName(data) + "*" + (data.city ? " — " + cityLine(data) : ""));
-  if (data.kind === "inteqal") {
-    var tadfin = eventTiming(data.tadfinDate, data.tadfinWhen, data.tadfinTime);
-    if (tadfin) { lines.push("🕌 " + word("tadfin") + ": " + tadfin); }
-  } else {
-    var isZiyarat = data.kind === "ziyarat";
-    var timing = eventTiming(isZiyarat ? data.ziyaratDate : data.fatehaDate,
-                             isZiyarat ? data.ziyaratWhen : data.fatehaWhen,
-                             isZiyarat ? data.ziyaratTime : data.fatehaTime);
-    if (timing) { lines.push("📿 " + eventName(data.kind) + ": " + timing); }
-  }
-  lines.push("");
-  lines.push("👇 " + dt("seeDetails"));
-  lines.push(url);
-  return lines.join("\n");
-}
-
-function showLinkPreview(data) {
-  if (sendMode !== "link") { return; }
-  var url = linkForData(data);
-  showWhatsAppPreview(getById("deathText"), linkMessage(data, url));
-  getById("linkOpen").href = url;
-}
-
-// ---------------- Web card page ----------------
-
-function makeSprigSvg() {
-  var petals = "";
-  for (var i = 0; i < 6; i++) {
-    var angle = i * 60 + 15;
-    petals = petals + '<ellipse cx="66" cy="50" rx="24" ry="8" transform="rotate(' + angle + ' 44 50)" fill="#ffffff" stroke="#d9d2c0" stroke-width="1"/>';
-  }
-  return '<svg viewBox="0 0 140 140" aria-hidden="true">' +
-    '<g fill="#7c9a68"><ellipse cx="70" cy="14" rx="40" ry="9" transform="rotate(-12 70 14)"/>' +
-    '<ellipse cx="14" cy="80" rx="40" ry="9" transform="rotate(-75 14 80)" fill="#56764a"/>' +
-    '<ellipse cx="90" cy="70" rx="30" ry="7" transform="rotate(30 90 70)"/>' +
-    '<ellipse cx="40" cy="104" rx="26" ry="6" transform="rotate(55 40 104)" fill="#56764a"/></g>' +
-    petals +
-    '<circle cx="44" cy="50" r="5" fill="#e9dfc6"/>' +
-    '<g fill="#ffffff" stroke="#e3dccb" stroke-width="0.8"><circle cx="104" cy="30" r="4"/><circle cx="114" cy="40" r="3.5"/><circle cx="98" cy="44" r="3"/><circle cx="20" cy="118" r="4"/><circle cx="32" cy="126" r="3"/></g>' +
-    '</svg>';
-}
-
-var SMALL_FLOWERS_SVG = '<svg viewBox="0 0 100 100" aria-hidden="true">' +
-  '<g fill="#7c9a68"><ellipse cx="30" cy="80" rx="30" ry="7" transform="rotate(-35 30 80)"/><ellipse cx="50" cy="94" rx="28" ry="6" transform="rotate(-8 50 94)" fill="#56764a"/></g>' +
-  '<g fill="#ffffff" stroke="#e3dccb" stroke-width="0.8"><circle cx="40" cy="50" r="4"/><circle cx="52" cy="58" r="3.5"/><circle cx="30" cy="62" r="3"/><circle cx="60" cy="44" r="3"/><circle cx="20" cy="46" r="3.5"/></g></svg>';
-
-var GOLD_LEAVES_SVG = '<svg viewBox="0 0 110 110" aria-hidden="true"><g fill="#c9a96a">' +
-  '<ellipse cx="80" cy="40" rx="38" ry="7" transform="rotate(-70 80 40)" opacity="0.85"/>' +
-  '<ellipse cx="60" cy="60" rx="38" ry="7" transform="rotate(-45 60 60)" opacity="0.75"/>' +
-  '<ellipse cx="45" cy="85" rx="36" ry="6" transform="rotate(-18 45 85)" opacity="0.7"/>' +
-  '<ellipse cx="95" cy="50" rx="30" ry="5" transform="rotate(-88 95 50)" opacity="0.6"/></g></svg>';
-
-var CRESCENT_SVG = '<svg class="crescent" viewBox="0 0 60 60" aria-hidden="true"><defs><mask id="moonCut">' +
-  '<rect width="60" height="60" fill="#fff"/><circle cx="37" cy="24" r="19" fill="#000"/></mask></defs>' +
-  '<circle cx="28" cy="30" r="22" fill="#b08d4f" mask="url(#moonCut)"/>' +
-  '<polygon fill="#b08d4f" points="43,19 45,25 51,25 46,29 48,35 43,31 38,35 40,29 35,25 41,25"/></svg>';
-
-var BOX_ICONS = {
-  calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
-  clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-  pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-12a7 7 0 0 1 14 0c0 5.7-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>',
-  mosque: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21h20M6 21v-9h12v9M6.5 12c0-3 2.8-4.5 5.5-7 2.7 2.5 5.5 4 5.5 7M12 5V2.5M10.5 21v-3.5a1.5 1.5 0 0 1 3 0V21M3 21V10M21 21V10"/></svg>'
-};
-
-function addText(parent, tag, className, text) {
-  if (!text) { return null; }
-  var element = document.createElement(tag);
-  if (className) { element.className = className; }
-  element.textContent = text;
-  parent.appendChild(element);
-  return element;
-}
-
-function addDivider(parent) {
-  var divider = document.createElement("div");
-  divider.className = "divider";
-  divider.appendChild(document.createElement("span"));
-  parent.appendChild(divider);
-}
-
-function renderWebCard(data) {
-  currentLang = data.lang;
-  document.documentElement.lang = currentLang;
-  document.title = word("title")[data.kind] + " — " + (data.name || "");
-
-  getById("decoTopLeft").innerHTML = makeSprigSvg();
-  getById("decoBottomLeft").innerHTML = SMALL_FLOWERS_SVG;
-  getById("decoBottomRight").innerHTML = GOLD_LEAVES_SVG;
-
-  var inner = getById("memoInner");
-  inner.innerHTML = CRESCENT_SVG;
-  addText(inner, "p", "ar", "إِنَّا لِلَّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ");
-  addText(inner, "p", "dua", word("duaFull"));
-  addDivider(inner);
-  addText(inner, "p", "kicker", word("title")[data.kind]);
-  addText(inner, "h1", "vname", data.name || "—");
-  if (data.urf) { addText(inner, "p", "urf", "(" + word("urf") + " " + data.urf + ")"); }
-  addDivider(inner);
-  addText(inner, "p", "meta", ageText(data));
-  addText(inner, "p", "meta", joinFilled([dateWithDay(data.date), cityLine(data)], "  ·  "));
-  addText(inner, "p", "para", cardParagraph(data));
-  if (data.address) { addText(inner, "p", "addr", word("address") + ": " + data.address); }
-
-  var boxData = detailsBoxFor(data);
-  var box = document.createElement("section");
-  box.className = "box";
-  addText(box, "h2", "", boxData.title);
-  var columns = document.createElement("div");
-  columns.className = "box-cols";
-  for (var c = 0; c < boxData.columns.length; c++) {
-    var column = document.createElement("div");
-    column.className = "box-col";
-    column.innerHTML = BOX_ICONS[boxData.columns[c].icon];
-    addText(column, "span", "lbl", boxData.columns[c].label);
-    addText(column, "span", "val", boxData.columns[c].value || "—");
-    columns.appendChild(column);
-  }
-  box.appendChild(columns);
-  addText(box, "p", "box-bottom", boxData.bottom);
-  inner.appendChild(box);
-
-  var extras = [];
-  if (data.kind === "inteqal") {
-    if (data.addZiyarat) { extras.push([word("ziyarat"), joinFilled([eventTiming(data.ziyaratDate, data.ziyaratWhen, data.ziyaratTime), data.ziyaratPlace], " — ")]); }
-    if (data.addFateha) { extras.push([word("fateha"), joinFilled([eventTiming(data.fatehaDate, data.fatehaWhen, data.fatehaTime), data.fatehaPlace], " — ")]); }
-    if (data.jawai) { extras.push([word("jawai"), data.jawai]); }
-    if (data.pihar) { extras.push([word("pihar"), data.pihar]); }
-  }
-  for (var e = 0; e < extras.length; e++) {
-    var extraLine = document.createElement("p");
-    extraLine.className = "extra";
-    var extraLabel = document.createElement("b");
-    extraLabel.textContent = extras[e][0] + ": ";
-    extraLine.appendChild(extraLabel);
-    extraLine.appendChild(document.createTextNode(extras[e][1] || "—"));
-    inner.appendChild(extraLine);
-  }
-
-  addText(inner, "p", "closing", closingText(data));
-  addDivider(inner);
-
-  if (data.by.length > 0) {
-    addText(inner, "p", "by-title", word("by"));
-    for (var b = 0; b < data.by.length; b++) {
-      var byLine = document.createElement("p");
-      byLine.className = "by-line";
-      var digits = data.by[b].replace(/\D/g, "");
-      if (digits.length >= 10) {
-        var phoneLink = document.createElement("a");
-        phoneLink.href = "tel:" + digits.slice(-10);
-        phoneLink.textContent = data.by[b];
-        byLine.appendChild(phoneLink);
-      } else {
-        byLine.textContent = data.by[b];
-      }
-      inner.appendChild(byLine);
-    }
-  }
-  addText(inner, "p", "group", data.groupLine);
-
-  getById("viewForward").textContent = dt("viewForward");
-  getById("viewForward").href = "https://wa.me/?text=" + encodeURIComponent(linkMessage(data, location.href));
-  getById("viewNew").textContent = dt("viewNew");
-  getById("viewNew").href = baseUrl();
-}
-
-function showWebCardIfLinked() {
-  var packed = new URLSearchParams(location.search).get("c");
-  if (!packed) { return false; }
-  getById("formPage").hidden = true;
-  getById("viewPage").hidden = false;
-  unpackData(packed).then(function (raw) {
-    renderWebCard(cleanSharedData(raw));
-  }, function () {
-    getById("viewError").textContent = dt("viewError");
-    getById("viewError").hidden = false;
-    getById("viewForward").hidden = true;
-    getById("viewNew").textContent = dt("viewNew");
-  });
-  return true;
-}
 
 // =====================================================================
 // KHABAR INTEQAL — card drawing (canvas)
@@ -1931,19 +1570,14 @@ function renderCard() {
 // KHABAR INTEQAL — page behaviour
 // =====================================================================
 
-var sendMode = "card";
+var sendMode = "styled";
 var renderPending = false;
 
 function updateDeath() {
   var data = readDeathData();
   var textBox = getById("deathText");
   textBox.classList.add("wa");
-  if (sendMode === "link") {
-    showLinkPreview(data);
-    refreshLink(data);
-  } else {
-    showWhatsAppPreview(textBox, messageForMode(data));
-  }
+  showWhatsAppPreview(textBox, messageForMode(data));
   getById("d_dayShow").textContent = data.date ? "(" + dayNameOf(data.date) + ")" : "";
   if (sendMode === "card" && !renderPending) {
     renderPending = true;
@@ -1983,12 +1617,9 @@ function showSendHelp() {
 function setSendMode(mode) {
   sendMode = mode;
   getById("modeCard").setAttribute("aria-pressed", mode === "card" ? "true" : "false");
-  getById("modeText").setAttribute("aria-pressed", mode === "text" ? "true" : "false");
   getById("modeStyled").setAttribute("aria-pressed", mode === "styled" ? "true" : "false");
-  getById("modeLink").setAttribute("aria-pressed", mode === "link" ? "true" : "false");
-  getById("linkOpen").hidden = mode !== "link";
   getById("cardPreview").hidden = mode !== "card";
-  getById("textDetails").open = mode !== "card";
+  getById("textDetails").open = mode === "styled";
   showSendHelp();
   updateDeath();
 }
@@ -2064,8 +1695,6 @@ function openWhatsApp(messageText) {
 function sendDeathNotice() {
   var data = checkDeathForm();
   if (!data) { return; }
-  var messageText = buildDeathText(data);
-
   if (sendMode !== "card") {
     openWhatsApp(messageForMode(data));
     setDeathNote(dt("helpText"));
@@ -2173,9 +1802,7 @@ function fillDeathExample() {
 
 getById("sendDeath").addEventListener("click", sendDeathNotice);
 getById("modeCard").addEventListener("click", function () { setSendMode("card"); });
-getById("modeText").addEventListener("click", function () { setSendMode("text"); });
 getById("modeStyled").addEventListener("click", function () { setSendMode("styled"); });
-getById("modeLink").addEventListener("click", function () { setSendMode("link"); });
 getById("clearDeath").addEventListener("click", clearDeathForm);
 getById("d_kind").addEventListener("change", applyDeathKind);
 getById("d_addZiyarat").addEventListener("change", applyDeathKind);
@@ -2476,7 +2103,7 @@ var UI = {
 };
 
 var TYPES = [
-  { id: "inteqal", icon: "⚫", name: { hi: "खबर इंतक़ाल", en: "Death news" }, special: true },
+  { id: "inteqal", icon: "⚫", name: { hi: "खबर इंतक़ाल", en: "Khabar Inteqal" }, special: true },
   {
     id: "marriage", icon: "💐",
     name: { hi: "शादी", en: "Marriage" },
@@ -2791,8 +2418,6 @@ getById("f_sender").addEventListener("input", updatePreview);
 // START
 // =====================================================================
 
-// A link from WhatsApp (?c=...) opens the web card instead of the form.
-showWebCardIfLinked();
 
 applyDeathLanguage();
 getById("d_group").value = DEFAULT_GROUP_LINE;
