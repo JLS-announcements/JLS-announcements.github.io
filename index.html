@@ -409,7 +409,7 @@ details { min-width: 0; }
     </section>
   </div>
 
-  <p class="note" style="text-align:center">Version 14 · WhatsApp look</p>
+  <p class="note" style="text-align:center">Version 15 · emoji fix</p>
 
   <!-- ===================== OTHER ANNOUNCEMENTS ===================== -->
   <div id="genericSection" class="stack" hidden>
@@ -432,7 +432,7 @@ details { min-width: 0; }
       <div class="card">
         <div class="bubble" id="preview"></div>
         <div class="err" id="errBox" hidden></div>
-        <a class="btn btn-primary" id="sendLink" href="https://wa.me/" target="_blank" rel="noopener"></a>
+        <a class="btn btn-primary" id="sendLink" href="https://api.whatsapp.com/send" target="_blank" rel="noopener"></a>
         <button class="btn btn-ghost" type="button" id="copyBtn" hidden></button>
         <div class="note" id="note"></div>
       </div>
@@ -620,7 +620,7 @@ var DT = {
     missTadfin: "तदफ़ीन की तारीख", missZiyarat: "जियारत की तारीख", missFateha: "फातेहा की तारीख",
     helpPhoneCard: "बटन दबाएं → WhatsApp चुनें → अपना ग्रुप चुनें → Send.",
     helpComputerCard: "बटन दबाने पर कार्ड कॉपी होगा और WhatsApp खुलेगा। ग्रुप चुनें → Ctrl+V दबाएं → Send.",
-    helpText: "बटन दबाने पर WhatsApp खुलेगा। ग्रुप चुनें → Send.",
+    helpText: "बटन दबाने पर WhatsApp खुलेगा। ग्रुप चुनें → Send.\nमैसेज कॉपी भी हो गया है — अगर emoji की जगह \uFFFD दिखे, तो बॉक्स खाली करके Ctrl+V दबाएं।",
     doneComputer: "✅ कार्ड कॉपी हो गया! अब WhatsApp में:\n1. अपना ग्रुप चुनें\n2. मैसेज वाले बॉक्स में क्लिक करके Ctrl+V दबाएं — कार्ड आ जाएगा\n3. Send दबाएं",
     doneComputerDownload: "कार्ड डाउनलोड हो गया। WhatsApp में ग्रुप चुनें, 📎 से कार्ड लगाएं और Send करें।",
     doneShared: "WhatsApp में ग्रुप में पहुँचा या नहीं, एक बार देख लें।",
@@ -685,7 +685,7 @@ var DT = {
     missTadfin: "Tadfeen date", missZiyarat: "Ziyarat date", missFateha: "Fateha date",
     helpPhoneCard: "Press the button → choose WhatsApp → choose your group → Send.",
     helpComputerCard: "The card will be copied and WhatsApp will open. Choose the group → press Ctrl+V → Send.",
-    helpText: "WhatsApp will open. Choose the group → Send.",
+    helpText: "WhatsApp will open. Choose the group → Send.\nThe message is also copied — if you see \uFFFD instead of emoji, clear the box and press Ctrl+V.",
     doneComputer: "✅ Card copied! Now in WhatsApp:\n1. Choose your group\n2. Click in the message box and press Ctrl+V — the card will appear\n3. Press Send",
     doneComputerDownload: "Card downloaded. In WhatsApp choose the group, attach the card with 📎 and Send.",
     doneShared: "Please check once that it reached the group in WhatsApp.",
@@ -1689,15 +1689,29 @@ function shortCaption(data) {
 }
 
 function openWhatsApp(messageText) {
-  window.open("https://wa.me/" + SEND_TO_NUMBER + "?text=" + encodeURIComponent(messageText), "_blank");
+  window.open(whatsAppLink(messageText), "_blank");
+}
+
+// The short wa.me link breaks emoji (they arrive as a question-mark box), so the full
+// api.whatsapp.com link is used. The message is also copied as a backup.
+function whatsAppLink(messageText) {
+  var link = "https://api.whatsapp.com/send?text=" + encodeURIComponent(messageText);
+  if (SEND_TO_NUMBER) { link = link + "&phone=" + SEND_TO_NUMBER; }
+  return link;
+}
+
+function copyAsBackup(messageText) {
+  copyText(messageText, function () {}, function () {});
 }
 
 function sendDeathNotice() {
   var data = checkDeathForm();
   if (!data) { return; }
   if (sendMode !== "card") {
-    openWhatsApp(messageForMode(data));
-    setDeathNote(dt("helpText"));
+    var message = messageForMode(data);
+    copyAsBackup(message);
+    openWhatsApp(message);
+    setDeathNote(dt("helpText"), true);
     return;
   }
 
@@ -2362,7 +2376,7 @@ function updatePreview() {
   var previewBox = getById("preview");
   previewBox.classList.add("wa");
   showWhatsAppPreview(previewBox, message);
-  getById("sendLink").href = "https://wa.me/" + SEND_TO_NUMBER + "?text=" + encodeURIComponent(message);
+  getById("sendLink").href = whatsAppLink(message);
 }
 
 function findMissingFields() {
@@ -2392,6 +2406,8 @@ getById("sendLink").addEventListener("click", function (event) {
     return;
   }
   hideError();
+  copyAsBackup(buildMessage());
+  getById("note").textContent = dt("helpText");
 });
 
 function selectPreview() {
