@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Samaj Announcement Form</title>
+<title>Jaipuri Luhar Samaj</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta property="og:title" content="समाज सूचना फॉर्म">
+<meta property="og:title" content="जयपुरी लुहार समाज">
 <meta property="og:description" content="खबर इंतक़ाल, जियारत, फातेहा, शादी और मीटिंग की सूचना भेजें">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&family=Noto+Serif+Devanagari:wght@400;600;700&family=Amiri:wght@400;700&display=swap">
@@ -56,7 +56,71 @@ h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wra
 .lang, .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--card); }
 .lang button, .seg button { font: inherit; font-size: 0.95rem; font-weight: 600; border: 0; background: transparent; color: var(--fg); padding: 6px 14px; cursor: pointer; }
 .lang button[aria-pressed="true"], .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
-.seg { display: grid; grid-template-columns: 1fr 1fr; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; border-radius: 12px; }
+.link-open { color: var(--accent); font-weight: 600; text-align: center; }
+
+/* ---------- Web card page (opened from the WhatsApp link) ---------- */
+/* Fixed cream-and-gold look in both themes, like a printed notice. */
+.memo-page { display: grid; gap: 16px; max-width: 540px; margin: 0 auto; }
+.memo {
+  position: relative; overflow: hidden; border-radius: 22px;
+  background: linear-gradient(180deg, #fbf8f1 0%, #f1e9db 100%);
+  color: #1f2937; box-shadow: 0 12px 40px rgba(70, 52, 20, 0.22);
+}
+.memo-inner {
+  position: relative; z-index: 1; margin: 12px; padding: 26px 20px 30px;
+  border: 1.5px solid #b08d4f; border-radius: 16px;
+  display: grid; gap: 8px; justify-items: center; text-align: center;
+  font-family: "Noto Serif Devanagari", "Nirmala UI", serif;
+}
+.memo-deco { position: absolute; z-index: 0; pointer-events: none; }
+.memo-deco.tl { top: -6px; left: -8px; width: 128px; }
+.memo-deco.br { bottom: -6px; right: -6px; width: 110px; }
+.memo-deco.bl { bottom: -4px; left: -4px; width: 90px; opacity: 0.85; }
+.memo .crescent { width: 54px; height: 54px; }
+.memo .ar { font-family: "Amiri", "Traditional Arabic", serif; font-size: 1.55rem; font-weight: 700; direction: rtl; margin: 0; line-height: 1.5; }
+.memo .dua { color: #5f5a50; font-size: 0.92rem; margin: -6px 0 0; }
+.memo .divider { display: flex; align-items: center; gap: 8px; width: 60%; color: #b08d4f; margin: 4px 0; }
+.memo .divider::before, .memo .divider::after { content: ""; flex: 1; height: 1px; background: #b08d4f; }
+.memo .divider span { width: 9px; height: 9px; background: #b08d4f; transform: rotate(45deg); }
+.memo .kicker { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em; margin: 6px 0 0; display: flex; align-items: center; gap: 12px; width: 100%; }
+.memo .kicker::before, .memo .kicker::after { content: ""; flex: 1; height: 1px; background: #c9ad78; }
+.memo .vname { font-size: clamp(2rem, 9vw, 2.8rem); font-weight: 700; margin: 0; line-height: 1.2; text-wrap: balance; color: #1b2433; }
+.memo .urf { color: #5f5a50; margin: -4px 0 0; font-size: 1.05rem; }
+.memo .meta { color: #4b4a45; margin: 0; font-size: 1rem; }
+.memo .para { margin: 6px 0 0; font-size: 1.05rem; line-height: 1.75; max-width: 34em; }
+.memo .addr { color: #5f5a50; margin: 0; font-size: 0.95rem; }
+.memo .box {
+  width: 100%; box-sizing: border-box; margin-top: 10px; padding: 16px 8px 14px;
+  background: rgba(222, 202, 160, 0.28); border: 1px solid #d8c296; border-radius: 16px;
+  display: grid; gap: 12px;
+}
+.memo .box h2 { margin: 0; font-size: 1.15rem; font-weight: 700; color: #1f2937; }
+.memo .box h2::before, .memo .box h2::after { content: " ★ "; color: #b08d4f; font-size: 0.8rem; }
+.memo .box-cols { display: grid; grid-template-columns: repeat(3, 1fr); }
+.memo .box-col { display: grid; justify-items: center; align-content: start; gap: 4px; padding: 0 6px; min-width: 0; }
+.memo .box-col + .box-col { border-left: 1px solid #d8c296; }
+.memo .box-col svg { width: 28px; height: 28px; fill: none; stroke: #8a6a32; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.memo .box-col .lbl { color: #8a6a32; font-weight: 700; font-size: 0.9rem; }
+.memo .box-col .val { font-size: 0.92rem; line-height: 1.45; overflow-wrap: anywhere; }
+.memo .box-bottom { margin: 0 10px; padding-top: 10px; border-top: 1px solid #d8c296; font-size: 0.95rem; }
+.memo .extra { margin: 0; font-size: 1rem; line-height: 1.6; }
+.memo .box + .extra { margin-top: 10px; }
+.memo .extra b { color: #8a6a32; }
+.memo .closing { margin: 14px 0 0; font-size: 1.08rem; }
+.memo .by-title { color: #8a6a32; font-weight: 700; margin: 4px 0 0; }
+.memo .by-line { margin: 0; color: #4b4a45; }
+.memo .by-line a { color: #4b4a45; }
+.memo .group { color: #6b675f; font-size: 0.85rem; margin: 10px 0 0; }
+.memo-error { text-align: center; font-weight: 600; color: var(--error); }
+.seg button { line-height: 1.2; }
+.bubble .q { display: block; border-left: 4px solid #8a9a92; padding-left: 10px; margin: 2px 0; }
+.bubble.wa { white-space: normal; font-size: 0.95rem; line-height: 1.5; overflow-x: auto; }
+.bubble.wa .ln { overflow-wrap: normal; white-space: pre; }
+.bubble.wa .q { overflow-wrap: anywhere; }
+.bubble.wa .ln { display: block; min-height: 1.4em; }
+.bubble .chip { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(0,0,0,0.08); border-radius: 5px; padding: 1px 6px; }
+.bubble .q { border-left-color: #25a35f; }
 .seg button { padding: 10px 12px; }
 .step { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marigold); margin-bottom: 8px; }
 .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -112,7 +176,19 @@ details .bubble { margin-top: 10px; }
 </head>
 <body>
 
-<div class="wrap">
+<div class="memo-page" id="viewPage" hidden>
+  <article class="memo">
+    <div class="memo-deco tl" id="decoTopLeft"></div>
+    <div class="memo-deco bl" id="decoBottomLeft"></div>
+    <div class="memo-deco br" id="decoBottomRight"></div>
+    <div class="memo-inner" id="memoInner"></div>
+  </article>
+  <p class="memo-error" id="viewError" hidden></p>
+  <a class="btn btn-primary" id="viewForward" href="https://wa.me/" target="_blank" rel="noopener"></a>
+  <a class="btn btn-ghost" id="viewNew" href="./"></a>
+</div>
+
+<div class="wrap" id="formPage">
   <div class="top">
     <div>
       <h1 id="tTitle"></h1>
@@ -123,6 +199,8 @@ details .bubble { margin-top: 10px; }
       <button type="button" id="langEn" aria-pressed="false">English</button>
     </div>
   </div>
+
+  <div class="example-bar" id="inAppHint" hidden></div>
 
   <section>
     <div class="step" id="tStep1"></div>
@@ -303,7 +381,9 @@ details .bubble { margin-top: 10px; }
           <span style="font-weight:600" data-t="sendModeLabel"></span>
           <div class="seg" role="group">
             <button type="button" id="modeCard" aria-pressed="true" data-t="modeCard"></button>
+            <button type="button" id="modeStyled" aria-pressed="false" data-t="modeStyled"></button>
             <button type="button" id="modeText" aria-pressed="false" data-t="modeText"></button>
+            <button type="button" id="modeLink" aria-pressed="false" data-t="modeLink"></button>
           </div>
         </div>
         <div class="card-preview" id="cardPreview"><canvas id="cardCanvas" width="1080" height="1620" aria-label="Card preview"></canvas></div>
@@ -311,6 +391,7 @@ details .bubble { margin-top: 10px; }
           <summary data-t="viewText"></summary>
           <div class="bubble" id="deathText"></div>
         </details>
+        <a class="link-open" id="linkOpen" href="./" target="_blank" rel="noopener" data-t="openLink" hidden></a>
         <div class="err" id="deathErr" hidden></div>
         <button class="btn btn-primary" type="button" id="sendDeath" data-t="sendBtn"></button>
         <div class="note" id="deathNote"></div>
@@ -318,7 +399,7 @@ details .bubble { margin-top: 10px; }
     </section>
   </div>
 
-  <p class="note" style="text-align:center">Version 8 · centred text fix</p>
+  <p class="note" style="text-align:center">Version 13 · Jaipuri Luhar Samaj</p>
 
   <!-- ===================== OTHER ANNOUNCEMENTS ===================== -->
   <div id="genericSection" class="stack" hidden>
@@ -456,6 +537,11 @@ function copyText(text, onDone, onFail) {
   }
 }
 
+// Android apps such as WhatsApp open links in their own built-in browser (a "WebView").
+function isInsideAppBrowser() {
+  return /; wv\)/.test(navigator.userAgent);
+}
+
 function isPhone() {
   return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
@@ -516,7 +602,14 @@ var DT = {
     stepSend: "देखें और भेजें",
     sendModeLabel: "क्या भेजना है?",
     modeCard: "कार्ड (फ़ोटो)",
-    modeText: "सिर्फ़ मैसेज",
+    modeText: "सादा मैसेज",
+    modeStyled: "कार्ड जैसा मैसेज",
+    modeLink: "लिंक (वेब कार्ड)",
+    openLink: "लिंक खोलकर देखें ↗",
+    seeDetails: "पूरी जानकारी देखें:",
+    viewForward: "WhatsApp पर आगे भेजें",
+    viewNew: "नई सूचना भेजें",
+    viewError: "यह लिंक अधूरा है या खुल नहीं सका। WhatsApp से पूरा लिंक दोबारा खोलें।",
     viewText: "लिखा हुआ मैसेज देखें",
     sendBtn: "WhatsApp पर भेजें",
     missing: "कृपया ये जानकारी भरें: ",
@@ -581,7 +674,14 @@ var DT = {
     stepSend: "Check and send",
     sendModeLabel: "What do you want to send?",
     modeCard: "Card (image)",
-    modeText: "Message only",
+    modeText: "Plain message",
+    modeStyled: "Card-style message",
+    modeLink: "Link (web card)",
+    openLink: "Open the link ↗",
+    seeDetails: "See full details:",
+    viewForward: "Forward on WhatsApp",
+    viewNew: "Send a new notice",
+    viewError: "This link is incomplete or could not be opened. Please open the full link from WhatsApp again.",
     viewText: "View the written message",
     sendBtn: "Send on WhatsApp",
     missing: "Please fill: ",
@@ -867,6 +967,466 @@ function buildDeathText(data) {
     lines.push("➖➖➖➖➖➖➖");
   }
   return lines.join("\n");
+}
+
+
+// ---------------- Card-style WhatsApp text (no image) ----------------
+// WhatsApp text cannot have colours or side borders, so the "card" look is made
+// with a framed heading, quote lines ("> " shows a bar on the left) and emoji icons.
+function label(hindiText, englishText) {
+  return currentLang === "en" ? englishText : hindiText;
+}
+
+// WhatsApp formatting used here (all of it works in normal chats and groups):
+//   *bold*   _italic_   `grey box`   "> " at line start = bar on the left
+// Background colours and side borders are not possible in WhatsApp text.
+
+var FRAME_TOP = "┏━━━━━━━━━━━━━━━━━━━┓";
+var FRAME_BOTTOM = "┗━━━━━━━━━━━━━━━━━━━┛";
+var FOOTER_LINE = "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄";
+
+// A value inside a light grey box.
+function chip(value) {
+  return "`" + String(value).replace(/`/g, "'").replace(/\s+/g, " ").trim() + "`";
+}
+
+// "> 📅 *Label*  `value`" — one row of the card. Empty values are skipped.
+function rowLine(icon, name, value) {
+  if (!value) { return ""; }
+  return "> " + icon + " *" + name + "*  " + chip(value);
+}
+
+// Row without the grey box, so phone numbers stay tappable.
+function plainRowLine(icon, name, value) {
+  if (!value) { return ""; }
+  return "> " + icon + " *" + name + "*  " + value;
+}
+
+function framedHeading(lines, headingText) {
+  lines.push(FRAME_TOP);
+  lines.push("      " + headingText);
+  lines.push(FRAME_BOTTOM);
+}
+
+function sectionHeading(icon, name) {
+  return "━━━ " + icon + " *" + name + "* ━━━";
+}
+
+function pushFilled(lines, items) {
+  for (var i = 0; i < items.length; i++) {
+    if (items[i]) { lines.push(items[i]); }
+  }
+}
+
+// One block of rows with a heading; skipped when every row is empty.
+function pushSection(lines, heading, rows) {
+  var filled = [];
+  pushFilled(filled, rows);
+  if (filled.length === 0) { return; }
+  lines.push("");
+  if (heading) { lines.push(heading); }
+  for (var i = 0; i < filled.length; i++) { lines.push(filled[i]); }
+}
+
+function buildStyledText(data) {
+  var lines = [];
+  framedHeading(lines, "🌙 *" + word("title")[data.kind] + "* 🌙");
+  lines.push("_إِنَّا لِلَّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ_");
+  lines.push("_" + word("duaFull") + "_");
+  lines.push("");
+  lines.push("🤍 *" + marhoomWord(data) + " " + (data.name || "—") + "*" + (data.urf ? " _(" + data.urf + ")_" : ""));
+
+  pushSection(lines, "", [
+    rowLine("👤", label("उम्र", "Age"), data.age ? data.age + " " + word("years") : ""),
+    rowLine("👨‍👩‍👦", label("खानदान", "Family"), data.kind === "inteqal" ? data.family : ""),
+    rowLine("📍", label("शहर", "City"), cityLine(data)),
+    rowLine("📅", label("तारीख", "Date"), dateWithDay(data.date)),
+    rowLine("🏠", label("पता", "Address"), data.address)
+  ]);
+
+  if (data.kind === "inteqal") {
+    pushSection(lines, sectionHeading("🕌", word("tadfin")), [
+      rowLine("📅", label("तारीख", "Date"), dateWithDay(data.tadfinDate)),
+      rowLine("🕐", label("वक़्त", "Time"), joinFilled([data.tadfinWhen, timeInWords(data.tadfinTime)], ", ")),
+      rowLine("🕌", word("janaza"), data.janaza),
+      rowLine("📍", label("क़ब्रस्तान", "Qabristan"), data.qabristan)
+    ]);
+    if (data.addZiyarat) {
+      pushSection(lines, sectionHeading("📿", word("ziyarat")), [
+        rowLine("📅", label("वक़्त", "Time"), eventTiming(data.ziyaratDate, data.ziyaratWhen, data.ziyaratTime)),
+        rowLine("📍", label("जगह", "Place"), data.ziyaratPlace)
+      ]);
+    }
+    if (data.addFateha) {
+      pushSection(lines, sectionHeading("🤲", word("fateha")), [
+        rowLine("📅", label("वक़्त", "Time"), eventTiming(data.fatehaDate, data.fatehaWhen, data.fatehaTime)),
+        rowLine("📍", label("जगह", "Place"), data.fatehaPlace)
+      ]);
+    }
+    pushSection(lines, "", [
+      rowLine("🏡", word("jawai"), data.jawai),
+      rowLine("🏡", word("pihar"), data.pihar)
+    ]);
+  } else {
+    var isZiyarat = data.kind === "ziyarat";
+    pushSection(lines, sectionHeading(isZiyarat ? "📿" : "🤲", eventName(data.kind)), [
+      rowLine("📅", label("वक़्त", "Time"), eventTiming(isZiyarat ? data.ziyaratDate : data.fatehaDate,
+                                                       isZiyarat ? data.ziyaratWhen : data.fatehaWhen,
+                                                       isZiyarat ? data.ziyaratTime : data.fatehaTime)),
+      rowLine("📍", label("जगह", "Place"), isZiyarat ? data.ziyaratPlace : data.fatehaPlace)
+    ]);
+  }
+
+  lines.push("");
+  lines.push("🤲 _" + closingText(data) + "_");
+  if (data.by.length > 0) {
+    lines.push("");
+    lines.push(sectionHeading("📞", word("by")));
+    for (var i = 0; i < data.by.length; i++) { lines.push("> " + data.by[i]); }
+  }
+  if (data.groupLine) {
+    lines.push(FOOTER_LINE);
+    lines.push("_" + data.groupLine + "_");
+  }
+  return lines.join("\n");
+}
+
+// Shows the message in the preview box the way WhatsApp will show it.
+function escapeHtml(text) {
+  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function whatsAppLineToHtml(line) {
+  var isQuote = line.indexOf("> ") === 0;
+  if (isQuote) { line = line.substring(2); }
+  var html = escapeHtml(line);
+  html = html.replace(/`([^`]+)`/g, '<code class="chip">$1</code>');
+  html = html.replace(/\*([^*]+)\*/g, "<b>$1</b>");
+  html = html.replace(/(^|\s)_([^_]+)_/g, "$1<i>$2</i>");
+  if (isQuote) { return '<span class="q">' + html + "</span>"; }
+  return '<span class="ln">' + html + "</span>";
+}
+
+function showWhatsAppPreview(box, message) {
+  var parts = message.split("\n");
+  var html = "";
+  for (var i = 0; i < parts.length; i++) { html = html + whatsAppLineToHtml(parts[i]); }
+  box.innerHTML = html;
+}
+
+function messageForMode(data) {
+  if (sendMode === "styled") { return buildStyledText(data); }
+  if (sendMode === "link") { return linkMessage(data, linkForData(data)); }
+  return buildDeathText(data);
+}
+
+
+// =====================================================================
+// WEB CARD LINK — the notice is packed into the link itself (?c=...),
+// so no server is needed. Opening the link shows a styled HTML card.
+// =====================================================================
+
+var DATA_TEXT_KEYS = ["name", "urf", "age", "family", "cause", "city", "state", "address",
+  "tadfinWhen", "janaza", "qabristan", "ziyaratWhen", "ziyaratPlace",
+  "fatehaWhen", "fatehaPlace", "jawai", "pihar", "groupLine"];
+var DATA_DATE_KEYS = ["date", "tadfinDate", "ziyaratDate", "fatehaDate"];
+var DATA_TIME_KEYS = ["tadfinTime", "ziyaratTime", "fatehaTime"];
+var DATA_FLAG_KEYS = ["female", "addZiyarat", "addFateha"];
+
+var latestLinkUrl = "";
+var latestLinkKey = "";
+
+function baseUrl() {
+  return location.href.split("#")[0].split("?")[0];
+}
+
+function bytesToBase64Url(bytes) {
+  var binary = "";
+  for (var i = 0; i < bytes.length; i++) { binary = binary + String.fromCharCode(bytes[i]); }
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function base64UrlToBytes(text) {
+  var base64 = text.replace(/-/g, "+").replace(/_/g, "/");
+  while (base64.length % 4 !== 0) { base64 = base64 + "="; }
+  var binary = atob(base64);
+  var bytes = new Uint8Array(binary.length);
+  for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
+  return bytes;
+}
+
+// Keep only filled values, plus the language, so the link stays short.
+function compactJson(data) {
+  var compact = { lang: currentLang, kind: data.kind };
+  var key;
+  for (key in data) {
+    var value = data[key];
+    if (key === "kind" || value === "" || value === false) { continue; }
+    if (Array.isArray(value) && value.length === 0) { continue; }
+    compact[key] = value;
+  }
+  return JSON.stringify(compact);
+}
+
+// "b" + plain base64 (works everywhere, used right away)
+function packDataNow(json) {
+  return "b" + bytesToBase64Url(new TextEncoder().encode(json));
+}
+
+// "z" + compressed base64 (shorter link, needs a modern browser)
+function packDataCompressed(json) {
+  if (!window.CompressionStream) { return Promise.resolve(packDataNow(json)); }
+  var stream = new Blob([new TextEncoder().encode(json)]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+  return new Response(stream).arrayBuffer().then(function (buffer) {
+    return "z" + bytesToBase64Url(new Uint8Array(buffer));
+  });
+}
+
+function unpackData(packed) {
+  var kind = packed.charAt(0);
+  var bytes = base64UrlToBytes(packed.substring(1));
+  if (kind === "b") {
+    return Promise.resolve(JSON.parse(new TextDecoder().decode(bytes)));
+  }
+  if (kind === "z" && window.DecompressionStream) {
+    var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("deflate-raw"));
+    return new Response(stream).text().then(function (json) { return JSON.parse(json); });
+  }
+  return Promise.reject(new Error("Unsupported link"));
+}
+
+// Data from a link is untrusted: keep only known fields with the right shape.
+function cleanSharedData(raw) {
+  var data = { kind: "inteqal", lang: "hi", by: [] };
+  if (raw.kind === "ziyarat" || raw.kind === "fateha") { data.kind = raw.kind; }
+  if (raw.lang === "en") { data.lang = "en"; }
+  var i;
+  for (i = 0; i < DATA_TEXT_KEYS.length; i++) {
+    var textValue = raw[DATA_TEXT_KEYS[i]];
+    data[DATA_TEXT_KEYS[i]] = (typeof textValue === "string" || typeof textValue === "number") ? String(textValue).slice(0, 300) : "";
+  }
+  for (i = 0; i < DATA_DATE_KEYS.length; i++) {
+    var dateValue = raw[DATA_DATE_KEYS[i]];
+    data[DATA_DATE_KEYS[i]] = (typeof dateValue === "string" && /^\d{4}-\d{2}-\d{2}$/.test(dateValue)) ? dateValue : "";
+  }
+  for (i = 0; i < DATA_TIME_KEYS.length; i++) {
+    var timeValue = raw[DATA_TIME_KEYS[i]];
+    data[DATA_TIME_KEYS[i]] = (typeof timeValue === "string" && /^\d{2}:\d{2}$/.test(timeValue)) ? timeValue : "";
+  }
+  for (i = 0; i < DATA_FLAG_KEYS.length; i++) {
+    data[DATA_FLAG_KEYS[i]] = raw[DATA_FLAG_KEYS[i]] === true;
+  }
+  if (Array.isArray(raw.by)) {
+    for (i = 0; i < raw.by.length && i < 10; i++) {
+      if (typeof raw.by[i] === "string") { data.by.push(raw.by[i].slice(0, 200)); }
+    }
+  }
+  return data;
+}
+
+function linkForData(data) {
+  var json = compactJson(data);
+  if (json === latestLinkKey && latestLinkUrl) { return latestLinkUrl; }
+  return baseUrl() + "?c=" + packDataNow(json);
+}
+
+// Builds the shorter (compressed) link in the background after each change.
+function refreshLink(data) {
+  var json = compactJson(data);
+  packDataCompressed(json).then(function (packed) {
+    if (compactJson(readDeathData()) !== json) { return; }
+    latestLinkKey = json;
+    latestLinkUrl = baseUrl() + "?c=" + packed;
+    showLinkPreview(data);
+  });
+}
+
+function linkMessage(data, url) {
+  var lines = [];
+  lines.push("⚫ *" + word("title")[data.kind] + "* ⚫");
+  lines.push("_" + word("duaFull") + "_");
+  lines.push("");
+  lines.push("*" + marhoomWord(data) + " " + fullName(data) + "*" + (data.city ? " — " + cityLine(data) : ""));
+  if (data.kind === "inteqal") {
+    var tadfin = eventTiming(data.tadfinDate, data.tadfinWhen, data.tadfinTime);
+    if (tadfin) { lines.push("🕌 " + word("tadfin") + ": " + tadfin); }
+  } else {
+    var isZiyarat = data.kind === "ziyarat";
+    var timing = eventTiming(isZiyarat ? data.ziyaratDate : data.fatehaDate,
+                             isZiyarat ? data.ziyaratWhen : data.fatehaWhen,
+                             isZiyarat ? data.ziyaratTime : data.fatehaTime);
+    if (timing) { lines.push("📿 " + eventName(data.kind) + ": " + timing); }
+  }
+  lines.push("");
+  lines.push("👇 " + dt("seeDetails"));
+  lines.push(url);
+  return lines.join("\n");
+}
+
+function showLinkPreview(data) {
+  if (sendMode !== "link") { return; }
+  var url = linkForData(data);
+  showWhatsAppPreview(getById("deathText"), linkMessage(data, url));
+  getById("linkOpen").href = url;
+}
+
+// ---------------- Web card page ----------------
+
+function makeSprigSvg() {
+  var petals = "";
+  for (var i = 0; i < 6; i++) {
+    var angle = i * 60 + 15;
+    petals = petals + '<ellipse cx="66" cy="50" rx="24" ry="8" transform="rotate(' + angle + ' 44 50)" fill="#ffffff" stroke="#d9d2c0" stroke-width="1"/>';
+  }
+  return '<svg viewBox="0 0 140 140" aria-hidden="true">' +
+    '<g fill="#7c9a68"><ellipse cx="70" cy="14" rx="40" ry="9" transform="rotate(-12 70 14)"/>' +
+    '<ellipse cx="14" cy="80" rx="40" ry="9" transform="rotate(-75 14 80)" fill="#56764a"/>' +
+    '<ellipse cx="90" cy="70" rx="30" ry="7" transform="rotate(30 90 70)"/>' +
+    '<ellipse cx="40" cy="104" rx="26" ry="6" transform="rotate(55 40 104)" fill="#56764a"/></g>' +
+    petals +
+    '<circle cx="44" cy="50" r="5" fill="#e9dfc6"/>' +
+    '<g fill="#ffffff" stroke="#e3dccb" stroke-width="0.8"><circle cx="104" cy="30" r="4"/><circle cx="114" cy="40" r="3.5"/><circle cx="98" cy="44" r="3"/><circle cx="20" cy="118" r="4"/><circle cx="32" cy="126" r="3"/></g>' +
+    '</svg>';
+}
+
+var SMALL_FLOWERS_SVG = '<svg viewBox="0 0 100 100" aria-hidden="true">' +
+  '<g fill="#7c9a68"><ellipse cx="30" cy="80" rx="30" ry="7" transform="rotate(-35 30 80)"/><ellipse cx="50" cy="94" rx="28" ry="6" transform="rotate(-8 50 94)" fill="#56764a"/></g>' +
+  '<g fill="#ffffff" stroke="#e3dccb" stroke-width="0.8"><circle cx="40" cy="50" r="4"/><circle cx="52" cy="58" r="3.5"/><circle cx="30" cy="62" r="3"/><circle cx="60" cy="44" r="3"/><circle cx="20" cy="46" r="3.5"/></g></svg>';
+
+var GOLD_LEAVES_SVG = '<svg viewBox="0 0 110 110" aria-hidden="true"><g fill="#c9a96a">' +
+  '<ellipse cx="80" cy="40" rx="38" ry="7" transform="rotate(-70 80 40)" opacity="0.85"/>' +
+  '<ellipse cx="60" cy="60" rx="38" ry="7" transform="rotate(-45 60 60)" opacity="0.75"/>' +
+  '<ellipse cx="45" cy="85" rx="36" ry="6" transform="rotate(-18 45 85)" opacity="0.7"/>' +
+  '<ellipse cx="95" cy="50" rx="30" ry="5" transform="rotate(-88 95 50)" opacity="0.6"/></g></svg>';
+
+var CRESCENT_SVG = '<svg class="crescent" viewBox="0 0 60 60" aria-hidden="true"><defs><mask id="moonCut">' +
+  '<rect width="60" height="60" fill="#fff"/><circle cx="37" cy="24" r="19" fill="#000"/></mask></defs>' +
+  '<circle cx="28" cy="30" r="22" fill="#b08d4f" mask="url(#moonCut)"/>' +
+  '<polygon fill="#b08d4f" points="43,19 45,25 51,25 46,29 48,35 43,31 38,35 40,29 35,25 41,25"/></svg>';
+
+var BOX_ICONS = {
+  calendar: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
+  clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  pin: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.3-7-12a7 7 0 0 1 14 0c0 5.7-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>',
+  mosque: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21h20M6 21v-9h12v9M6.5 12c0-3 2.8-4.5 5.5-7 2.7 2.5 5.5 4 5.5 7M12 5V2.5M10.5 21v-3.5a1.5 1.5 0 0 1 3 0V21M3 21V10M21 21V10"/></svg>'
+};
+
+function addText(parent, tag, className, text) {
+  if (!text) { return null; }
+  var element = document.createElement(tag);
+  if (className) { element.className = className; }
+  element.textContent = text;
+  parent.appendChild(element);
+  return element;
+}
+
+function addDivider(parent) {
+  var divider = document.createElement("div");
+  divider.className = "divider";
+  divider.appendChild(document.createElement("span"));
+  parent.appendChild(divider);
+}
+
+function renderWebCard(data) {
+  currentLang = data.lang;
+  document.documentElement.lang = currentLang;
+  document.title = word("title")[data.kind] + " — " + (data.name || "");
+
+  getById("decoTopLeft").innerHTML = makeSprigSvg();
+  getById("decoBottomLeft").innerHTML = SMALL_FLOWERS_SVG;
+  getById("decoBottomRight").innerHTML = GOLD_LEAVES_SVG;
+
+  var inner = getById("memoInner");
+  inner.innerHTML = CRESCENT_SVG;
+  addText(inner, "p", "ar", "إِنَّا لِلَّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ");
+  addText(inner, "p", "dua", word("duaFull"));
+  addDivider(inner);
+  addText(inner, "p", "kicker", word("title")[data.kind]);
+  addText(inner, "h1", "vname", data.name || "—");
+  if (data.urf) { addText(inner, "p", "urf", "(" + word("urf") + " " + data.urf + ")"); }
+  addDivider(inner);
+  addText(inner, "p", "meta", ageText(data));
+  addText(inner, "p", "meta", joinFilled([dateWithDay(data.date), cityLine(data)], "  ·  "));
+  addText(inner, "p", "para", cardParagraph(data));
+  if (data.address) { addText(inner, "p", "addr", word("address") + ": " + data.address); }
+
+  var boxData = detailsBoxFor(data);
+  var box = document.createElement("section");
+  box.className = "box";
+  addText(box, "h2", "", boxData.title);
+  var columns = document.createElement("div");
+  columns.className = "box-cols";
+  for (var c = 0; c < boxData.columns.length; c++) {
+    var column = document.createElement("div");
+    column.className = "box-col";
+    column.innerHTML = BOX_ICONS[boxData.columns[c].icon];
+    addText(column, "span", "lbl", boxData.columns[c].label);
+    addText(column, "span", "val", boxData.columns[c].value || "—");
+    columns.appendChild(column);
+  }
+  box.appendChild(columns);
+  addText(box, "p", "box-bottom", boxData.bottom);
+  inner.appendChild(box);
+
+  var extras = [];
+  if (data.kind === "inteqal") {
+    if (data.addZiyarat) { extras.push([word("ziyarat"), joinFilled([eventTiming(data.ziyaratDate, data.ziyaratWhen, data.ziyaratTime), data.ziyaratPlace], " — ")]); }
+    if (data.addFateha) { extras.push([word("fateha"), joinFilled([eventTiming(data.fatehaDate, data.fatehaWhen, data.fatehaTime), data.fatehaPlace], " — ")]); }
+    if (data.jawai) { extras.push([word("jawai"), data.jawai]); }
+    if (data.pihar) { extras.push([word("pihar"), data.pihar]); }
+  }
+  for (var e = 0; e < extras.length; e++) {
+    var extraLine = document.createElement("p");
+    extraLine.className = "extra";
+    var extraLabel = document.createElement("b");
+    extraLabel.textContent = extras[e][0] + ": ";
+    extraLine.appendChild(extraLabel);
+    extraLine.appendChild(document.createTextNode(extras[e][1] || "—"));
+    inner.appendChild(extraLine);
+  }
+
+  addText(inner, "p", "closing", closingText(data));
+  addDivider(inner);
+
+  if (data.by.length > 0) {
+    addText(inner, "p", "by-title", word("by"));
+    for (var b = 0; b < data.by.length; b++) {
+      var byLine = document.createElement("p");
+      byLine.className = "by-line";
+      var digits = data.by[b].replace(/\D/g, "");
+      if (digits.length >= 10) {
+        var phoneLink = document.createElement("a");
+        phoneLink.href = "tel:" + digits.slice(-10);
+        phoneLink.textContent = data.by[b];
+        byLine.appendChild(phoneLink);
+      } else {
+        byLine.textContent = data.by[b];
+      }
+      inner.appendChild(byLine);
+    }
+  }
+  addText(inner, "p", "group", data.groupLine);
+
+  getById("viewForward").textContent = dt("viewForward");
+  getById("viewForward").href = "https://wa.me/?text=" + encodeURIComponent(linkMessage(data, location.href));
+  getById("viewNew").textContent = dt("viewNew");
+  getById("viewNew").href = baseUrl();
+}
+
+function showWebCardIfLinked() {
+  var packed = new URLSearchParams(location.search).get("c");
+  if (!packed) { return false; }
+  getById("formPage").hidden = true;
+  getById("viewPage").hidden = false;
+  unpackData(packed).then(function (raw) {
+    renderWebCard(cleanSharedData(raw));
+  }, function () {
+    getById("viewError").textContent = dt("viewError");
+    getById("viewError").hidden = false;
+    getById("viewForward").hidden = true;
+    getById("viewNew").textContent = dt("viewNew");
+  });
+  return true;
 }
 
 // =====================================================================
@@ -1376,7 +1936,14 @@ var renderPending = false;
 
 function updateDeath() {
   var data = readDeathData();
-  getById("deathText").textContent = buildDeathText(data);
+  var textBox = getById("deathText");
+  textBox.classList.add("wa");
+  if (sendMode === "link") {
+    showLinkPreview(data);
+    refreshLink(data);
+  } else {
+    showWhatsAppPreview(textBox, messageForMode(data));
+  }
   getById("d_dayShow").textContent = data.date ? "(" + dayNameOf(data.date) + ")" : "";
   if (sendMode === "card" && !renderPending) {
     renderPending = true;
@@ -1409,7 +1976,7 @@ function applyDeathKind() {
 }
 
 function showSendHelp() {
-  if (sendMode === "text") { setDeathNote(dt("helpText")); return; }
+  if (sendMode !== "card") { setDeathNote(dt("helpText")); return; }
   setDeathNote(isPhone() ? dt("helpPhoneCard") : dt("helpComputerCard"));
 }
 
@@ -1417,8 +1984,11 @@ function setSendMode(mode) {
   sendMode = mode;
   getById("modeCard").setAttribute("aria-pressed", mode === "card" ? "true" : "false");
   getById("modeText").setAttribute("aria-pressed", mode === "text" ? "true" : "false");
+  getById("modeStyled").setAttribute("aria-pressed", mode === "styled" ? "true" : "false");
+  getById("modeLink").setAttribute("aria-pressed", mode === "link" ? "true" : "false");
+  getById("linkOpen").hidden = mode !== "link";
   getById("cardPreview").hidden = mode !== "card";
-  getById("textDetails").open = mode === "text";
+  getById("textDetails").open = mode !== "card";
   showSendHelp();
   updateDeath();
 }
@@ -1496,8 +2066,8 @@ function sendDeathNotice() {
   if (!data) { return; }
   var messageText = buildDeathText(data);
 
-  if (sendMode === "text") {
-    openWhatsApp(messageText);
+  if (sendMode !== "card") {
+    openWhatsApp(messageForMode(data));
     setDeathNote(dt("helpText"));
     return;
   }
@@ -1604,6 +2174,8 @@ function fillDeathExample() {
 getById("sendDeath").addEventListener("click", sendDeathNotice);
 getById("modeCard").addEventListener("click", function () { setSendMode("card"); });
 getById("modeText").addEventListener("click", function () { setSendMode("text"); });
+getById("modeStyled").addEventListener("click", function () { setSendMode("styled"); });
+getById("modeLink").addEventListener("click", function () { setSendMode("link"); });
 getById("clearDeath").addEventListener("click", clearDeathForm);
 getById("d_kind").addEventListener("change", applyDeathKind);
 getById("d_addZiyarat").addEventListener("change", applyDeathKind);
@@ -1862,8 +2434,9 @@ function drawLabelValue(ctx, label, value, y) {
 
 var UI = {
   hi: {
-    title: "समाज सूचना फॉर्म",
-    sub: "फॉर्म भरें और WhatsApp ग्रुप में भेजें",
+    title: "जयपुरी लुहार समाज",
+    sub: "सूचना फॉर्म · भरें और WhatsApp ग्रुप में भेजें",
+    inAppHint: "आप WhatsApp के अंदर वाले ब्राउज़र में हैं। कुछ काम न करे तो ऊपर ⋮ दबाकर \"Chrome में खोलें\" चुनें।",
     step1: "1. सूचना का प्रकार चुनें",
     step2: "2. जानकारी भरें",
     step3: "3. देखें और भेजें",
@@ -1881,8 +2454,9 @@ var UI = {
     sharedBy: "- भेजने वाले: "
   },
   en: {
-    title: "Samaj Announcement Form",
-    sub: "Fill the form and send it to the WhatsApp group",
+    title: "Jaipuri Luhar Samaj",
+    sub: "Announcement form · fill it and send it to the WhatsApp group",
+    inAppHint: "You are in the browser inside WhatsApp. If something does not work, tap ⋮ at the top and choose \"Open in Chrome\".",
     step1: "1. Choose announcement type",
     step2: "2. Fill the details",
     step3: "3. Check and send",
@@ -1988,6 +2562,8 @@ function drawStaticText() {
   document.documentElement.lang = currentLang;
   getById("tTitle").textContent = text("title");
   getById("tSub").textContent = text("sub");
+  getById("inAppHint").textContent = text("inAppHint");
+  getById("inAppHint").hidden = !isInsideAppBrowser();
   getById("tStep1").textContent = text("step1");
   getById("tStep2").textContent = text("step2");
   getById("tStep3").textContent = text("step3");
@@ -2117,35 +2693,48 @@ function introLine(type) {
   return "";
 }
 
+// Icon shown before each field in the WhatsApp message
+var FIELD_ICONS = {
+  groom: "🤵", bride: "👰", groomFamily: "👨‍👩‍👦", brideFamily: "👨‍👩‍👧", families: "👨‍👩‍👧‍👦",
+  parents: "👨‍👩‍👦", baby: "👶", date: "📅", time: "🕐", venue: "📍", contact: "📞",
+  subject: "📝", agenda: "📋", details: "📋", bloodGroup: "🩸", units: "💉",
+  patient: "🧑", hospital: "🏥"
+};
+
 function buildMessage() {
   if (currentType.special) { return ""; }
   var lines = [];
-  lines.push(currentType.header[currentLang]);
-  lines.push("");
+  framedHeading(lines, currentType.header[currentLang]);
   var intro = introLine(currentType);
-  if (intro) { lines.push(intro); lines.push(""); }
+  if (intro) { lines.push(""); lines.push("✨ " + intro); }
+
+  var rows = [];
   currentType.fields.forEach(function (field) {
     if (field.intro) { return; }
     var value = readValue(field.key);
     if (!value) { return; }
-    if (field.kind === "date") { value = formatDateSlash(value); }
-    if (field.kind === "long") {
-      lines.push("*" + field[currentLang] + ":*");
-      lines.push(value);
+    if (field.kind === "date") { value = dateWithDay(value); }
+    var icon = FIELD_ICONS[field.key] || "▫️";
+    if (field.kind === "tel") {
+      rows.push(plainRowLine(icon, field[currentLang], value));
     } else {
-      lines.push("*" + field[currentLang] + ":* " + value);
+      rows.push(rowLine(icon, field[currentLang], value));
     }
   });
+  pushSection(lines, "", rows);
+
   var extra = getById("f_extra").value.trim();
-  if (extra) { lines.push(""); lines.push(extra); }
+  if (extra) { lines.push(""); lines.push("💬 _" + extra.replace(/\n+/g, " ") + "_"); }
   var sender = getById("f_sender").value.trim();
-  if (sender) { lines.push(""); lines.push(text("sharedBy") + sender); }
+  if (sender) { lines.push(FOOTER_LINE); lines.push("_" + text("sharedBy") + sender + "_"); }
   return lines.join("\n");
 }
 
 function updatePreview() {
   var message = buildMessage();
-  getById("preview").textContent = message;
+  var previewBox = getById("preview");
+  previewBox.classList.add("wa");
+  showWhatsAppPreview(previewBox, message);
   getById("sendLink").href = "https://wa.me/" + SEND_TO_NUMBER + "?text=" + encodeURIComponent(message);
 }
 
@@ -2202,6 +2791,9 @@ getById("f_sender").addEventListener("input", updatePreview);
 // START
 // =====================================================================
 
+// A link from WhatsApp (?c=...) opens the web card instead of the form.
+showWebCardIfLinked();
+
 applyDeathLanguage();
 getById("d_group").value = DEFAULT_GROUP_LINE;
 getById("d_date").value = todayIso();
@@ -2213,6 +2805,9 @@ applyDeathLanguage();
 drawTiles();
 chooseType(TYPES[0]);
 applyDeathKind();
+
+// The card-style text message is the default; the image card stays available.
+setSendMode("styled");
 
 // Redraw the card once the Hindi and Arabic fonts have loaded.
 if (document.fonts && document.fonts.load) {
