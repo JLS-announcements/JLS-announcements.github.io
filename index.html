@@ -11,19 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&family=Noto+Serif+Devanagari:wght@400;600;700&family=Amiri:wght@400;700&display=swap">
 <style>
-/* ==================================================================== */
-/* STYLES — CONTENTS
-     1. Colours, light theme          7. Cards and form fields
-     2. Colours, dark theme           8. Buttons and notes
-     3. Page basics                   9. Card image preview
-     4. Headings and switches        10. WhatsApp look (overrides the base
-     5. Message preview bubble           styles above): app bar, spacing,
-     6. Step labels and tiles            tiles, bubbles, send button
-   The page is one phone-first column. */
-/* ==================================================================== */
-/* ================================================================== */
-/* 1.  COLOURS, LIGHT THEME — change colours here */
-/* ================================================================== */
+/* Layout: one phone-first column — language switch, type tiles, form sections, card preview, one send button */
 :root {
   --bg: #efe7dc;
   --card: #ffffff;
@@ -48,9 +36,6 @@
   --send-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 20.4 21 12 3.4 3.6 3.4 10.1 15 12 3.4 13.9z'/%3E%3C/svg%3E");
   --font: "Mukta", "Nirmala UI", "Noto Sans Devanagari", system-ui, sans-serif;
 }
-/* ================================================================== */
-/* 2.  COLOURS, DARK THEME — used when the phone is in dark mode */
-/* ================================================================== */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0b141a; --card: #202c33; --fg: #e9edef; --muted: #8696a0; --line: #2a3942; --accent: #00a884; --accent-ink: #0b141a; --marigold: #e8b23a; --tile-on: #10352a; --bubble: #005c4b; --bubble-ink: #e9edef; --error: #f2958c; --header: #202c33; --header-ink: #e9edef; --input: #2a3942; --chip: #182229; --chip-ink: #8696a0; --notice: #182229; --notice-ink: #ffd279; --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(233,237,239,0.05)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20a13 13 0 1 0 11 20a10 10 0 1 1 -11 -20z'/%3E%3Cpath d='M108 26l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z'/%3E%3Ccircle cx='76' cy='80' r='7'/%3E%3Cpath d='M18 112c7-9 16-9 23 0'/%3E%3Cpath d='M104 104h18M113 95v18'/%3E%3Cpath d='M62 36l7 7M69 36l-7 7'/%3E%3Cpath d='M128 66a8 8 0 1 0 7 12a6 6 0 1 1 -7 -12z'/%3E%3Ccircle cx='132' cy='136' r='2'/%3E%3Ccircle cx='58' cy='136' r='2'/%3E%3Ccircle cx='12' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
@@ -61,9 +46,6 @@
   --bg: #0b141a; --card: #202c33; --fg: #e9edef; --muted: #8696a0; --line: #2a3942; --accent: #00a884; --accent-ink: #0b141a; --marigold: #e8b23a; --tile-on: #10352a; --bubble: #005c4b; --bubble-ink: #e9edef; --error: #f2958c; --header: #202c33; --header-ink: #e9edef; --input: #2a3942; --chip: #182229; --chip-ink: #8696a0; --notice: #182229; --notice-ink: #ffd279; --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(233,237,239,0.05)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20a13 13 0 1 0 11 20a10 10 0 1 1 -11 -20z'/%3E%3Cpath d='M108 26l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z'/%3E%3Ccircle cx='76' cy='80' r='7'/%3E%3Cpath d='M18 112c7-9 16-9 23 0'/%3E%3Cpath d='M104 104h18M113 95v18'/%3E%3Cpath d='M62 36l7 7M69 36l-7 7'/%3E%3Cpath d='M128 66a8 8 0 1 0 7 12a6 6 0 1 1 -7 -12z'/%3E%3Ccircle cx='132' cy='136' r='2'/%3E%3Ccircle cx='58' cy='136' r='2'/%3E%3Ccircle cx='12' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
   color-scheme: dark;
 }
-/* ================================================================== */
-/* 3.  PAGE BASICS */
-/* ================================================================== */
 [hidden] { display: none !important; }
 body {
   margin: 0;
@@ -74,9 +56,7 @@ body {
 }
 .wrap { max-width: 600px; margin: 0 auto; display: grid; gap: 18px; }
 .stack { display: grid; gap: 18px; }
-/* ================================================================== */
-/* 4.  HEADINGS, LANGUAGE SWITCH, TWO-BUTTON SWITCH */
-/* ================================================================== */
+.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
 h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wrap: balance; }
 .sub { color: var(--muted); margin: 4px 0 0; font-size: 0.95rem; }
 .lang, .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--card); }
@@ -85,21 +65,14 @@ h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wra
 .seg { display: grid; grid-template-columns: 1fr 1fr; border-radius: 12px; }
 
 .seg button { line-height: 1.2; }
-
-/* ================================================================== */
-/* 5.  MESSAGE PREVIEW BUBBLE — quote bar on the left of each row */
-/* ================================================================== */
 .bubble .q { display: block; border-left: 4px solid #8a9a92; padding-left: 10px; margin: 2px 0; }
 .bubble.wa { white-space: normal; font-size: 0.95rem; line-height: 1.5; overflow-x: auto; }
 .bubble.wa .ln { overflow-wrap: normal; white-space: pre; }
 .bubble.wa .q { overflow-wrap: anywhere; }
 .bubble.wa .ln { display: block; min-height: 1.4em; }
+.bubble .chip { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(0,0,0,0.08); border-radius: 5px; padding: 1px 6px; }
 .bubble .q { border-left-color: #25a35f; }
 .seg button { padding: 10px 12px; }
-
-/* ================================================================== */
-/* 6.  STEP LABELS AND TYPE TILES */
-/* ================================================================== */
 .step { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marigold); margin-bottom: 8px; }
 .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .tile {
@@ -110,9 +83,6 @@ h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wra
 .tile .ic { font-size: 1.5rem; line-height: 1; }
 .tile[aria-pressed="true"] { border-color: var(--marigold); background: var(--tile-on); }
 .tile:focus-visible, .btn:focus-visible, .lang button:focus-visible, .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-/* ================================================================== */
-/* 7.  CARDS AND FORM FIELDS */
-/* ================================================================== */
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 14px; }
 .card h2 { font-size: 1.05rem; font-weight: 800; margin: 0; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -135,10 +105,6 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
   background: var(--bubble); color: var(--bubble-ink); border-radius: 12px 12px 12px 3px;
   padding: 12px 14px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.98rem; min-height: 60px;
 }
-
-/* ================================================================== */
-/* 8.  BUTTONS AND NOTES */
-/* ================================================================== */
 .btn {
   font: inherit; font-weight: 800; font-size: 1.1rem; border-radius: 12px; padding: 14px 18px;
   min-height: 56px; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center;
@@ -147,24 +113,18 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
 .btn-primary { background: var(--accent); color: var(--accent-ink); }
 .btn-ghost { background: transparent; color: var(--accent); }
 .btn-small { min-height: 40px; padding: 8px 14px; font-size: 0.95rem; width: auto; }
+.actions { display: grid; gap: 10px; }
 .note { color: var(--muted); font-size: 0.9rem; white-space: pre-line; }
 .note.guide { background: var(--tile-on); border: 1.5px solid var(--marigold); border-radius: 12px; padding: 14px 16px; color: var(--fg); font-size: 1.05rem; font-weight: 600; line-height: 1.6; }
 .example-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
   background: var(--tile-on); border: 1px solid var(--marigold); border-radius: 12px; padding: 10px 14px; font-weight: 600; }
-
-/* ================================================================== */
-/* 9.  CARD IMAGE PREVIEW */
-/* ================================================================== */
 .card-preview { display: grid; justify-items: center; }
 .card-preview canvas { width: 100%; max-width: 440px; height: auto; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
 details summary { cursor: pointer; font-weight: 600; color: var(--accent); }
 details .bubble { margin-top: 10px; }
 @media (max-width: 380px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
 
-/* ================================================================== */
-/* 10.  WHATSAPP LOOK — this part overrides the base styles above */
-/* ================================================================== */
-/* 10a. App bar at the top, page background */
+/* ---------- WhatsApp-style look ---------- */
 body {
   padding-left: 0; padding-right: 0; padding-block: 0 48px;
   background-color: var(--bg); background-image: var(--pattern); background-size: 150px 150px;
@@ -183,8 +143,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .appbar .lang { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); flex: none; }
 .appbar .lang button { color: var(--header-ink); padding: 4px 10px; font-size: 0.85rem; }
 .appbar .lang button[aria-pressed="true"] { background: var(--header-ink); color: var(--header); }
-
-/* 10b. Spacing, step labels, cards, fields, tiles */
 .wrap {
   gap: 14px; padding-block: 16px 0;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -210,8 +168,6 @@ input, textarea, select { background: var(--input); border: 1px solid transparen
   box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); font-size: 0.92rem; font-weight: 500; justify-content: center; text-align: center;
 }
 .note.guide { background: var(--notice); color: var(--notice-ink); border: 0; }
-
-/* 10c. Chat bubbles with the small tail, time and ticks */
 .bubble, .card-preview {
   position: relative; background: var(--bubble); color: var(--bubble-ink);
   border-radius: 10px 0 10px 10px; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); margin-right: 8px;
@@ -228,8 +184,6 @@ details summary { color: var(--accent); }
 .card { grid-template-columns: minmax(0, 1fr); }
 details { min-width: 0; }
 .bubble.wa { max-width: 100%; box-sizing: border-box; }
-
-/* 10d. Round send button with the paper-plane icon */
 .btn-primary { border-radius: 28px; gap: 10px; box-shadow: 0 2px 6px rgba(0, 128, 105, 0.3); }
 .btn-primary::after {
   content: ""; flex: none; width: 22px; height: 22px; background: currentColor;
@@ -455,7 +409,7 @@ details { min-width: 0; }
     </section>
   </div>
 
-  <p class="note" style="text-align:center">Version 16 · clean message, sections</p>
+  <p class="note" style="text-align:center">Version 15 · emoji fix</p>
 
   <!-- ===================== OTHER ANNOUNCEMENTS ===================== -->
   <div id="genericSection" class="stack" hidden>
@@ -488,33 +442,7 @@ details { min-width: 0; }
 
 <script>
 // =====================================================================
-// CONTENTS OF THIS SCRIPT
-//
-//   1.  Settings ................ the few values you may want to change
-//   2.  Common helpers .......... dates, times, copy, phone check
-//
-//   PART A — KHABAR INTEQAL (death notice: inteqal / ziyarat / fateha)
-//   A1  Screen text ............. Hindi + English labels, dropdown lists
-//   A2  Reading the form ........ collects what the person filled in
-//   A3  Words and sentences ..... marhoom, age, family, burial lines
-//   A4  WhatsApp text message ... the card-style message and its preview
-//   A5  Card image (1) .......... colours, fonts, text and drawing tools
-//   A6  Card image (2) .......... icons, details box, labels
-//   A7  Page behaviour .......... show/hide sections, checks, messages
-//   A8  Sending ................. WhatsApp link, share menu, copy card
-//   A9  Example data ............ filled in when FILL_EXAMPLE is true
-//   A10 Buttons and inputs ...... connects clicks to the functions above
-//
-//   PART B — OTHER ANNOUNCEMENTS (shaadi, sagai, birth, meeting, blood, other)
-//   B1  Texts, types and fields
-//   B2  Building the form and the message
-//
-//   PART C — START .............. runs when the page opens
-// =====================================================================
-
-// =====================================================================
-// 1.  SETTINGS
-// Only change the values in this section.
+// SETTINGS
 // =====================================================================
 
 // Leave empty: WhatsApp asks which chat/group to send to.
@@ -529,22 +457,11 @@ var DEFAULT_GROUP_LINE = "";
 // true = show an example announcement when the page opens.
 var FILL_EXAMPLE = false;
 
-// false = rows in the WhatsApp message have no small icon (only the main emoji
-// in the headings stay). Set true to show an icon in front of every row again.
-var SHOW_ROW_ICONS = false;
-
 // =====================================================================
-// 2.  COMMON HELPERS
-// Small tools used everywhere: language, dates, times, copy to clipboard.
+// COMMON HELPERS
 // =====================================================================
 
 var currentLang = "hi";
-
-// Remember the language the person chose last time.
-try {
-  var storedLang = localStorage.getItem("samajLang");
-  if (storedLang === "hi" || storedLang === "en") { currentLang = storedLang; }
-} catch (e) {}
 
 var DAY_NAMES = {
   hi: ["इतवार", "सोमवार", "मंगलवार", "बुधवार", "जुमेरात", "जुम्मा", "शनिवार"],
@@ -640,13 +557,8 @@ function isPhone() {
   return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
-// #####################################################################
-// PART A — KHABAR INTEQAL (death notice)
-// #####################################################################
-
 // =====================================================================
-// A1.  SCREEN TEXT AND DROPDOWN LISTS
-// Every label the person sees, in Hindi and English, and the dropdown choices.
+// KHABAR INTEQAL — form text in Hindi and English
 // =====================================================================
 
 var DT = {
@@ -745,11 +657,11 @@ var DT = {
     janazaPh: "Example: Madina Masjid",
     qabristanLabel: "Qabristan",
     qabristanPh: "Example: Gausiya Qabristan",
-    addZiyarat: "Also add Ziyarat details",
+    addZiyarat: "Add Ziyarat Details",
     secZiyarat: "Ziyarat",
     placeLabel: "Place",
     ziyaratPlacePh: "Example: Modasa Jumma Masjid / At Home",
-    addFateha: "Also add Fateha details",
+    addFateha: "Add Fateha Details",
     secFateha: "Fateha",
     fatehaPlacePh: "Example: At Home",
     secMore: "More details",
@@ -778,7 +690,7 @@ var DT = {
     doneComputer: "✅ Card copied! Now in WhatsApp:\n1. Choose your group\n2. Click in the message box and press Ctrl+V — the card will appear\n3. Press Send",
     doneComputerDownload: "Card downloaded. In WhatsApp choose the group, attach the card with 📎 and Send.",
     doneShared: "Please check once that it reached the group in WhatsApp.",
-    shareFailed: "WhatsApp could not be opened. Please try again."
+    shareFailed: "WhatsApp could not be opened."
   }
 };
 
@@ -868,7 +780,7 @@ function applyDeathLanguage() {
 }
 
 // =====================================================================
-// A2.  READING THE FORM
+// KHABAR INTEQAL — reading the form and building the sentences
 // =====================================================================
 
 function readDeathData() {
@@ -910,11 +822,6 @@ function readDeathData() {
     groupLine: readInput("d_group")
   };
 }
-
-// =====================================================================
-// A3.  WORDS AND SENTENCES
-// Used by both the WhatsApp message and the card image.
-// =====================================================================
 
 // Words used on the card and in the message
 var WORDS = {
@@ -1010,10 +917,7 @@ function cityLine(data) {
   return joinFilled([data.city, data.state], ", ");
 }
 
-// =====================================================================
-// A4.  WHATSAPP TEXT MESSAGE (card-style) AND ITS PREVIEW
-// =====================================================================
-
+// ---------------- Card-style WhatsApp text (no image) ----------------
 // WhatsApp text cannot have colours or side borders, so the "card" look is made
 // with a framed heading, quote lines ("> " shows a bar on the left) and emoji icons.
 function label(hindiText, englishText) {
@@ -1021,21 +925,28 @@ function label(hindiText, englishText) {
 }
 
 // WhatsApp formatting used here (all of it works in normal chats and groups):
-//   *bold*   _italic_   "> " at line start = bar on the left
+//   *bold*   _italic_   `grey box`   "> " at line start = bar on the left
 // Background colours and side borders are not possible in WhatsApp text.
 
-//var FRAME_TOP = "┏━━━━━━━━━━━━━━━━━━━┓";
-var FRAME_TOP = "⚫⚫⚫⚫⚫⚫⚫⚫";
-//var FRAME_BOTTOM = "┗━━━━━━━━━━━━━━━━━━━┛";
-var FRAME_BOTTOM = "⚫⚫⚫⚫⚫⚫⚫⚫";
+var FRAME_TOP = "┏━━━━━━━━━━━━━━━━━━━┓";
+var FRAME_BOTTOM = "┗━━━━━━━━━━━━━━━━━━━┛";
 var FOOTER_LINE = "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄";
 
-// One row of the message: "> *Label:* value". Empty values are skipped.
-// The value is plain text (no grey box), so phone numbers stay tappable.
+// A value inside a light grey box.
+function chip(value) {
+  return "`" + String(value).replace(/`/g, "'").replace(/\s+/g, " ").trim() + "`";
+}
+
+// "> 📅 *Label*  `value`" — one row of the card. Empty values are skipped.
 function rowLine(icon, name, value) {
   if (!value) { return ""; }
-  var iconPart = SHOW_ROW_ICONS ? icon + " " : "";
-  return "> " + iconPart + "*" + name + ":* " + String(value).replace(/\s+/g, " ").trim();
+  return "> " + icon + " *" + name + "*  " + chip(value);
+}
+
+// Row without the grey box, so phone numbers stay tappable.
+function plainRowLine(icon, name, value) {
+  if (!value) { return ""; }
+  return "> " + icon + " *" + name + "*  " + value;
 }
 
 function framedHeading(lines, headingText) {
@@ -1066,11 +977,20 @@ function pushSection(lines, heading, rows) {
 
 function buildStyledText(data) {
   var lines = [];
-  framedHeading(lines, "🌙 *" + word("title")[data.kind] + "* 🌙");
+  //dots = "⚫⚫";
+  let dots = "⚫⚫";
+  if (data.kind === "inteqal") {
+      dots = "⚫⚫⚫";
+  } else if (data.kind === "ziyarat") {
+      dots = "🔳🔳🔳";
+  } else if (data.kind === "fateha") {
+      dots = "⬛⬛⬛";
+  }
+  framedHeading(lines, dots + "  " + word("title")[data.kind] + "  " + dots);
   lines.push("_إِنَّا لِلَّٰهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ_");
   lines.push("_" + word("duaFull") + "_");
   lines.push("");
-  lines.push("🤍 *" + marhoomWord(data) + " " + (data.name || "—") + "*" + (data.urf ? " _(" + data.urf + ")_" : ""));
+  lines.push("⚫ *" + marhoomWord(data) + " " + (data.name || "—") + "*" + (data.urf ? " _(" + data.urf + ")_" : ""));
 
   pushSection(lines, "", [
     rowLine("👤", label("उम्र", "Age"), data.age ? data.age + " " + word("years") : ""),
@@ -1088,10 +1008,10 @@ function buildStyledText(data) {
       rowLine("📍", label("क़ब्रस्तान", "Qabristan"), data.qabristan)
     ]);
     if (data.addZiyarat) {
-      pushSection(lines, sectionHeading("📿", word("ziyarat")), [
+      pushSection(lines, sectionHeading("🕌", word("ziyarat")), 
         rowLine("📅", label("वक़्त", "Time"), eventTiming(data.ziyaratDate, data.ziyaratWhen, data.ziyaratTime)),
         rowLine("📍", label("जगह", "Place"), data.ziyaratPlace)
-      ]);
+      );
     }
     if (data.addFateha) {
       pushSection(lines, sectionHeading("🤲", word("fateha")), [
@@ -1105,7 +1025,7 @@ function buildStyledText(data) {
     ]);
   } else {
     var isZiyarat = data.kind === "ziyarat";
-    pushSection(lines, sectionHeading(isZiyarat ? "📿" : "🤲", eventName(data.kind)), [
+    pushSection(lines, sectionHeading(isZiyarat ? "🕌" : "🤲", eventName(data.kind)), [
       rowLine("📅", label("वक़्त", "Time"), eventTiming(isZiyarat ? data.ziyaratDate : data.fatehaDate,
                                                        isZiyarat ? data.ziyaratWhen : data.fatehaWhen,
                                                        isZiyarat ? data.ziyaratTime : data.fatehaTime)),
@@ -1136,6 +1056,7 @@ function whatsAppLineToHtml(line) {
   var isQuote = line.indexOf("> ") === 0;
   if (isQuote) { line = line.substring(2); }
   var html = escapeHtml(line);
+  html = html.replace(/`([^`]+)`/g, '<code class="chip">$1</code>');
   html = html.replace(/\*([^*]+)\*/g, "<b>$1</b>");
   html = html.replace(/(^|\s)_([^_]+)_/g, "$1<i>$2</i>");
   if (isQuote) { return '<span class="q">' + html + "</span>"; }
@@ -1156,9 +1077,9 @@ function messageForMode(data) {
   return buildStyledText(data);
 }
 
+
 // =====================================================================
-// A5.  CARD IMAGE (1) — colours, fonts, text and drawing tools
-// The picture card is drawn on a canvas. This part has the basics and drawCard().
+// KHABAR INTEQAL — card drawing (canvas)
 // =====================================================================
 
 var CARD_W = 1080;
@@ -1656,9 +1577,266 @@ function renderCard() {
 }
 
 // =====================================================================
-// A6.  CARD IMAGE (2) — icons, details box and labels
-// Small drawings used by drawCard() above.
+// KHABAR INTEQAL — page behaviour
 // =====================================================================
+
+var sendMode = "styled";
+var renderPending = false;
+
+function updateDeath() {
+  var data = readDeathData();
+  var textBox = getById("deathText");
+  textBox.classList.add("wa");
+  showWhatsAppPreview(textBox, messageForMode(data));
+  getById("d_dayShow").textContent = data.date ? "(" + dayNameOf(data.date) + ")" : "";
+  if (sendMode === "card" && !renderPending) {
+    renderPending = true;
+    requestAnimationFrame(function () {
+      renderPending = false;
+      renderCard();
+    });
+  }
+}
+
+// Show / hide sections depending on the notice type.
+function applyDeathKind() {
+  var kind = readInput("d_kind") || "inteqal";
+  var isInteqal = kind === "inteqal";
+  getById("sec_tadfin").hidden = !isInteqal;
+  getById("sec_more").hidden = !isInteqal;
+  getById("g_family").hidden = !isInteqal;
+  getById("g_cause").hidden = !isInteqal;
+
+  getById("sec_ziyarat").hidden = !(isInteqal || kind === "ziyarat");
+  getById("sw_ziyarat").hidden = !isInteqal;
+  getById("h_ziyarat").hidden = isInteqal;
+  getById("body_ziyarat").hidden = isInteqal && !getById("d_addZiyarat").checked;
+
+  getById("sec_fateha").hidden = !(isInteqal || kind === "fateha");
+  getById("sw_fateha").hidden = !isInteqal;
+  getById("h_fateha").hidden = isInteqal;
+  getById("body_fateha").hidden = isInteqal && !getById("d_addFateha").checked;
+  updateDeath();
+}
+
+function showSendHelp() {
+  if (sendMode !== "card") { setDeathNote(dt("helpText")); return; }
+  setDeathNote(isPhone() ? dt("helpPhoneCard") : dt("helpComputerCard"));
+}
+
+function setSendMode(mode) {
+  sendMode = mode;
+  getById("modeCard").setAttribute("aria-pressed", mode === "card" ? "true" : "false");
+  getById("modeStyled").setAttribute("aria-pressed", mode === "styled" ? "true" : "false");
+  getById("cardPreview").hidden = mode !== "card";
+  getById("textDetails").open = mode === "styled";
+  showSendHelp();
+  updateDeath();
+}
+
+function findDeathMissing(data) {
+  var missing = [];
+  var marks = ["w_name", "w_city", "w_date", "w_tadfinDate", "w_ziyaratDate", "w_fatehaDate"];
+  for (var i = 0; i < marks.length; i++) { getById(marks[i]).classList.remove("bad"); }
+  if (!data.name) { missing.push(dt("missName")); getById("w_name").classList.add("bad"); }
+  if (!data.city) { missing.push(dt("missCity")); getById("w_city").classList.add("bad"); }
+  if (!data.date) { missing.push(dt("missDate")); getById("w_date").classList.add("bad"); }
+  if (data.kind === "inteqal" && !data.tadfinDate) { missing.push(dt("missTadfin")); getById("w_tadfinDate").classList.add("bad"); }
+  if (data.kind === "ziyarat" && !data.ziyaratDate) { missing.push(dt("missZiyarat")); getById("w_ziyaratDate").classList.add("bad"); }
+  if (data.kind === "fateha" && !data.fatehaDate) { missing.push(dt("missFateha")); getById("w_fatehaDate").classList.add("bad"); }
+  return missing;
+}
+
+function checkDeathForm() {
+  var data = readDeathData();
+  var missing = findDeathMissing(data);
+  var box = getById("deathErr");
+  if (missing.length > 0) {
+    box.textContent = dt("missing") + missing.join(", ");
+    box.hidden = false;
+    var firstBad = document.querySelector("#deathSection .field.bad input");
+    if (firstBad) { firstBad.focus(); }
+    return null;
+  }
+  box.hidden = true;
+  return data;
+}
+
+function setDeathNote(text, highlight) {
+  var note = getById("deathNote");
+  note.textContent = text;
+  if (highlight) { note.classList.add("guide"); } else { note.classList.remove("guide"); }
+}
+
+function cardFileName(data, extension) {
+  var kindWord = { inteqal: "khabar-inteqal", ziyarat: "ziyarat", fateha: "fateha" };
+  return kindWord[data.kind] + "-" + (data.date || todayIso()) + "." + extension;
+}
+
+// Turns the canvas picture into a file right away (no waiting),
+// so the phone still allows opening the share menu.
+function dataUrlToBlob(dataUrl) {
+  var parts = dataUrl.split(",");
+  var mimeType = parts[0].split(":")[1].split(";")[0];
+  var binary = atob(parts[1]);
+  var bytes = new Uint8Array(binary.length);
+  for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
+  return new Blob([bytes], { type: mimeType });
+}
+
+function downloadBlob(blob, fileName) {
+  var link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+// Short caption sent with the card, e.g. "*⚫ खबर इंतक़ाल ⚫* — मरहूम अब्दुल करीम"
+function shortCaption(data) {
+  return "*⚫ " + word("title")[data.kind] + " ⚫* — " + marhoomWord(data) + " " + fullName(data);
+}
+
+function openWhatsApp(messageText) {
+  window.open(whatsAppLink(messageText), "_blank");
+}
+
+// The short wa.me link breaks emoji (they arrive as a question-mark box), so the full
+// api.whatsapp.com link is used. The message is also copied as a backup.
+function whatsAppLink(messageText) {
+  var link = "https://api.whatsapp.com/send?text=" + encodeURIComponent(messageText);
+  if (SEND_TO_NUMBER) { link = link + "&phone=" + SEND_TO_NUMBER; }
+  return link;
+}
+
+function copyAsBackup(messageText) {
+  copyText(messageText, function () {}, function () {});
+}
+
+function sendDeathNotice() {
+  var data = checkDeathForm();
+  if (!data) { return; }
+  if (sendMode !== "card") {
+    var message = messageForMode(data);
+    copyAsBackup(message);
+    openWhatsApp(message);
+    setDeathNote(dt("helpText"), true);
+    return;
+  }
+
+  renderCard();
+  var canvas = getById("cardCanvas");
+
+  // Phone: share menu with the card picture and the message as caption.
+  if (isPhone()) {
+    var jpegBlob = dataUrlToBlob(canvas.toDataURL("image/jpeg", 0.93));
+    var file = new File([jpegBlob], cardFileName(data, "jpg"), { type: "image/jpeg" });
+    var shareData = { files: [file] };
+    if (navigator.canShare && navigator.canShare(shareData)) {
+      navigator.share(shareData).then(function () {
+        setDeathNote(dt("doneShared"));
+      }, function (error) {
+        if (error && error.name === "AbortError") { return; }
+        setDeathNote(dt("shareFailed"));
+      });
+      return;
+    }
+  }
+
+  // Computer: copy the card, then open WhatsApp with the message typed.
+  var pngBlob = dataUrlToBlob(canvas.toDataURL("image/png"));
+  try {
+    navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]).then(function () {
+      setDeathNote(dt("doneComputer"), true);
+    }, function () {
+      downloadBlob(pngBlob, cardFileName(data, "png"));
+      setDeathNote(dt("doneComputerDownload"), true);
+    });
+  } catch (e) {
+    downloadBlob(pngBlob, cardFileName(data, "png"));
+    setDeathNote(dt("doneComputerDownload"), true);
+  }
+  // Open WhatsApp with an empty message box, so only the pasted card is sent.
+  window.open("https://web.whatsapp.com/", "_blank");
+}
+
+function clearDeathForm() {
+  var inputs = document.querySelectorAll("#deathSection input, #deathSection textarea");
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].type === "checkbox") { continue; }
+    inputs[i].value = "";
+  }
+  getById("d_addZiyarat").checked = false;
+  getById("d_addFateha").checked = false;
+  getById("d_cause").value = "qaza";
+  getById("d_tadfinWhen").value = "";
+  getById("d_ziyaratWhen").value = "";
+  getById("d_fatehaWhen").value = "";
+  getById("d_date").value = todayIso();
+  getById("d_tadfinDate").value = todayIso();
+  getById("d_group").value = DEFAULT_GROUP_LINE;
+  getById("exampleBar").hidden = true;
+  applyDeathKind();
+}
+
+var EXAMPLE_TEXT = {
+  hi: {
+    name: "अब्दुल करीम", urf: "करीम भाई",
+    family: "मरहूम हाजी रहीम बख़्श जयपुर के खोखर, छावनी वालों के लड़के",
+    city: "इंदौर", address: "छावनी, जामा मस्जिद के पास",
+    janaza: "छावनी मस्जिद", qabristan: "लुनिया पुरा क़ब्रस्तान",
+    ziyaratPlace: "घर पर", jawai: "खंडवा", by: "हाजी मोहम्मद हुसैन - 90000 00000"
+  },
+  en: {
+    name: "Abdul Karim", urf: "Karim Bhai",
+    family: "son of Marhoom Haji Rahim Bakhsh Khokhar of Jaipur, Chhawni",
+    city: "Indore", address: "Chhawni, near Jama Masjid",
+    janaza: "Chhawni Masjid", qabristan: "Luniya Pura Qabristan",
+    ziyaratPlace: "at home", jawai: "Khandwa", by: "Haji Mohammad Hussain - 90000 00000"
+  }
+};
+
+function fillDeathExample() {
+  var today = todayIso();
+  var ex = EXAMPLE_TEXT[currentLang];
+  getById("d_kind").value = "inteqal";
+  getById("d_gender").value = "male";
+  getById("d_name").value = ex.name;
+  getById("d_urf").value = ex.urf;
+  getById("d_age").value = "78";
+  getById("d_family").value = ex.family;
+  getById("d_cause").value = "qaza";
+  getById("d_city").value = ex.city;
+  getById("d_state").value = "mp";
+  getById("d_date").value = today;
+  getById("d_address").value = ex.address;
+  getById("d_tadfinDate").value = addDaysIso(today, 1);
+  getById("d_tadfinWhen").value = "zohar";
+  getById("d_janaza").value = ex.janaza;
+  getById("d_qabristan").value = ex.qabristan;
+  getById("d_addZiyarat").checked = true;
+  getById("d_ziyaratDate").value = addDaysIso(today, 2);
+  getById("d_ziyaratTime").value = "09:30";
+  getById("d_ziyaratPlace").value = ex.ziyaratPlace;
+  getById("d_jawai").value = ex.jawai;
+  getById("d_by").value = ex.by;
+  getById("exampleBar").hidden = false;
+}
+
+getById("sendDeath").addEventListener("click", sendDeathNotice);
+getById("modeCard").addEventListener("click", function () { setSendMode("card"); });
+getById("modeStyled").addEventListener("click", function () { setSendMode("styled"); });
+getById("clearDeath").addEventListener("click", clearDeathForm);
+getById("d_kind").addEventListener("change", applyDeathKind);
+getById("d_addZiyarat").addEventListener("change", applyDeathKind);
+getById("d_addFateha").addEventListener("change", applyDeathKind);
+
+var deathInputs = document.querySelectorAll("#deathSection input, #deathSection select, #deathSection textarea");
+for (var di = 0; di < deathInputs.length; di++) {
+  deathInputs[di].addEventListener("input", updateDeath);
+  deathInputs[di].addEventListener("change", updateDeath);
+}
 
 function drawDivider(ctx, cx, y, halfLength) {
   ctx.strokeStyle = COL.gold;
@@ -1899,284 +2077,10 @@ function drawLabelValue(ctx, label, value, y) {
   return drawWrappedCentered(ctx, value, CENTER_X, y + 40, maxWidth, 40) + 4;
 }
 
-// =====================================================================
-// A7.  PAGE BEHAVIOUR
-// Show/hide sections, check required fields, update the preview.
-// =====================================================================
 
-var sendMode = "styled";
-var renderPending = false;
-
-function updateDeath() {
-  var data = readDeathData();
-  var textBox = getById("deathText");
-  textBox.classList.add("wa");
-  showWhatsAppPreview(textBox, messageForMode(data));
-  getById("d_dayShow").textContent = data.date ? "(" + dayNameOf(data.date) + ")" : "";
-  if (sendMode === "card" && !renderPending) {
-    renderPending = true;
-    requestAnimationFrame(function () {
-      renderPending = false;
-      renderCard();
-    });
-  }
-}
-
-// Show / hide sections depending on the notice type.
-function applyDeathKind() {
-  var kind = readInput("d_kind") || "inteqal";
-  var isInteqal = kind === "inteqal";
-  getById("sec_tadfin").hidden = !isInteqal;
-  getById("sec_more").hidden = !isInteqal;
-  getById("g_family").hidden = !isInteqal;
-  getById("g_cause").hidden = !isInteqal;
-
-  getById("sec_ziyarat").hidden = !(isInteqal || kind === "ziyarat");
-  getById("sw_ziyarat").hidden = !isInteqal;
-  getById("h_ziyarat").hidden = isInteqal;
-  getById("body_ziyarat").hidden = isInteqal && !getById("d_addZiyarat").checked;
-
-  getById("sec_fateha").hidden = !(isInteqal || kind === "fateha");
-  getById("sw_fateha").hidden = !isInteqal;
-  getById("h_fateha").hidden = isInteqal;
-  getById("body_fateha").hidden = isInteqal && !getById("d_addFateha").checked;
-  updateDeath();
-}
-
-function showSendHelp() {
-  if (sendMode !== "card") { setDeathNote(dt("helpText")); return; }
-  setDeathNote(isPhone() ? dt("helpPhoneCard") : dt("helpComputerCard"));
-}
-
-function setSendMode(mode) {
-  sendMode = mode;
-  getById("modeCard").setAttribute("aria-pressed", mode === "card" ? "true" : "false");
-  getById("modeStyled").setAttribute("aria-pressed", mode === "styled" ? "true" : "false");
-  getById("cardPreview").hidden = mode !== "card";
-  getById("textDetails").open = mode === "styled";
-  showSendHelp();
-  updateDeath();
-}
-
-function findDeathMissing(data) {
-  var missing = [];
-  var marks = ["w_name", "w_city", "w_date", "w_tadfinDate", "w_ziyaratDate", "w_fatehaDate"];
-  for (var i = 0; i < marks.length; i++) { getById(marks[i]).classList.remove("bad"); }
-  if (!data.name) { missing.push(dt("missName")); getById("w_name").classList.add("bad"); }
-  if (!data.city) { missing.push(dt("missCity")); getById("w_city").classList.add("bad"); }
-  if (!data.date) { missing.push(dt("missDate")); getById("w_date").classList.add("bad"); }
-  if (data.kind === "inteqal" && !data.tadfinDate) { missing.push(dt("missTadfin")); getById("w_tadfinDate").classList.add("bad"); }
-  if (data.kind === "ziyarat" && !data.ziyaratDate) { missing.push(dt("missZiyarat")); getById("w_ziyaratDate").classList.add("bad"); }
-  if (data.kind === "fateha" && !data.fatehaDate) { missing.push(dt("missFateha")); getById("w_fatehaDate").classList.add("bad"); }
-  return missing;
-}
-
-function checkDeathForm() {
-  var data = readDeathData();
-  var missing = findDeathMissing(data);
-  var box = getById("deathErr");
-  if (missing.length > 0) {
-    box.textContent = dt("missing") + missing.join(", ");
-    box.hidden = false;
-    var firstBad = document.querySelector("#deathSection .field.bad input");
-    if (firstBad) { firstBad.focus(); }
-    return null;
-  }
-  box.hidden = true;
-  return data;
-}
-
-function setDeathNote(text, highlight) {
-  var note = getById("deathNote");
-  note.textContent = text;
-  if (highlight) { note.classList.add("guide"); } else { note.classList.remove("guide"); }
-}
-
-function clearDeathForm() {
-  var inputs = document.querySelectorAll("#deathSection input, #deathSection textarea");
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].type === "checkbox") { continue; }
-    inputs[i].value = "";
-  }
-  getById("d_addZiyarat").checked = false;
-  getById("d_addFateha").checked = false;
-  getById("d_cause").value = "qaza";
-  getById("d_tadfinWhen").value = "";
-  getById("d_ziyaratWhen").value = "";
-  getById("d_fatehaWhen").value = "";
-  getById("d_date").value = todayIso();
-  getById("d_tadfinDate").value = todayIso();
-  getById("d_group").value = DEFAULT_GROUP_LINE;
-  getById("exampleBar").hidden = true;
-  applyDeathKind();
-}
 
 // =====================================================================
-// A8.  SENDING
-// WhatsApp link (text), share menu (phone), copy card (computer).
-// =====================================================================
-
-function cardFileName(data, extension) {
-  var kindWord = { inteqal: "khabar-inteqal", ziyarat: "ziyarat", fateha: "fateha" };
-  return kindWord[data.kind] + "-" + (data.date || todayIso()) + "." + extension;
-}
-
-// Turns the canvas picture into a file right away (no waiting),
-// so the phone still allows opening the share menu.
-function dataUrlToBlob(dataUrl) {
-  var parts = dataUrl.split(",");
-  var mimeType = parts[0].split(":")[1].split(";")[0];
-  var binary = atob(parts[1]);
-  var bytes = new Uint8Array(binary.length);
-  for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
-  return new Blob([bytes], { type: mimeType });
-}
-
-function downloadBlob(blob, fileName) {
-  var link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-}
-
-function openWhatsApp(messageText) {
-  window.open(whatsAppLink(messageText), "_blank");
-}
-
-// The short wa.me link breaks emoji (they arrive as a question-mark box), so the full
-// api.whatsapp.com link is used. The message is also copied as a backup.
-function whatsAppLink(messageText) {
-  var link = "https://api.whatsapp.com/send?text=" + encodeURIComponent(messageText);
-  if (SEND_TO_NUMBER) { link = link + "&phone=" + SEND_TO_NUMBER; }
-  return link;
-}
-
-function copyAsBackup(messageText) {
-  copyText(messageText, function () {}, function () {});
-}
-
-function sendDeathNotice() {
-  var data = checkDeathForm();
-  if (!data) { return; }
-  if (sendMode !== "card") {
-    var message = messageForMode(data);
-    copyAsBackup(message);
-    openWhatsApp(message);
-    setDeathNote(dt("helpText"), true);
-    return;
-  }
-
-  renderCard();
-  var canvas = getById("cardCanvas");
-
-  // Phone: share menu with the card picture and the message as caption.
-  if (isPhone()) {
-    var jpegBlob = dataUrlToBlob(canvas.toDataURL("image/jpeg", 0.93));
-    var file = new File([jpegBlob], cardFileName(data, "jpg"), { type: "image/jpeg" });
-    var shareData = { files: [file] };
-    if (navigator.canShare && navigator.canShare(shareData)) {
-      navigator.share(shareData).then(function () {
-        setDeathNote(dt("doneShared"));
-      }, function (error) {
-        if (error && error.name === "AbortError") { return; }
-        setDeathNote(dt("shareFailed"));
-      });
-      return;
-    }
-  }
-
-  // Computer: copy the card, then open WhatsApp with the message typed.
-  var pngBlob = dataUrlToBlob(canvas.toDataURL("image/png"));
-  try {
-    navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]).then(function () {
-      setDeathNote(dt("doneComputer"), true);
-    }, function () {
-      downloadBlob(pngBlob, cardFileName(data, "png"));
-      setDeathNote(dt("doneComputerDownload"), true);
-    });
-  } catch (e) {
-    downloadBlob(pngBlob, cardFileName(data, "png"));
-    setDeathNote(dt("doneComputerDownload"), true);
-  }
-  // Open WhatsApp with an empty message box, so only the pasted card is sent.
-  window.open("https://web.whatsapp.com/", "_blank");
-}
-
-// =====================================================================
-// A9.  EXAMPLE DATA
-// =====================================================================
-
-var EXAMPLE_TEXT = {
-  hi: {
-    name: "अब्दुल करीम", urf: "करीम भाई",
-    family: "मरहूम हाजी रहीम बख़्श जयपुर के खोखर, छावनी वालों के लड़के",
-    city: "इंदौर", address: "छावनी, जामा मस्जिद के पास",
-    janaza: "छावनी मस्जिद", qabristan: "लुनिया पुरा क़ब्रस्तान",
-    ziyaratPlace: "घर पर", jawai: "खंडवा", by: "हाजी मोहम्मद हुसैन - 90000 00000"
-  },
-  en: {
-    name: "Abdul Karim", urf: "Karim Bhai",
-    family: "son of Marhoom Haji Rahim Bakhsh Khokhar of Jaipur, Chhawni",
-    city: "Indore", address: "Chhawni, near Jama Masjid",
-    janaza: "Chhawni Masjid", qabristan: "Luniya Pura Qabristan",
-    ziyaratPlace: "at home", jawai: "Khandwa", by: "Haji Mohammad Hussain - 90000 00000"
-  }
-};
-
-function fillDeathExample() {
-  var today = todayIso();
-  var ex = EXAMPLE_TEXT[currentLang];
-  getById("d_kind").value = "inteqal";
-  getById("d_gender").value = "male";
-  getById("d_name").value = ex.name;
-  getById("d_urf").value = ex.urf;
-  getById("d_age").value = "78";
-  getById("d_family").value = ex.family;
-  getById("d_cause").value = "qaza";
-  getById("d_city").value = ex.city;
-  getById("d_state").value = "mp";
-  getById("d_date").value = today;
-  getById("d_address").value = ex.address;
-  getById("d_tadfinDate").value = addDaysIso(today, 1);
-  getById("d_tadfinWhen").value = "zohar";
-  getById("d_janaza").value = ex.janaza;
-  getById("d_qabristan").value = ex.qabristan;
-  getById("d_addZiyarat").checked = true;
-  getById("d_ziyaratDate").value = addDaysIso(today, 2);
-  getById("d_ziyaratTime").value = "09:30";
-  getById("d_ziyaratPlace").value = ex.ziyaratPlace;
-  getById("d_jawai").value = ex.jawai;
-  getById("d_by").value = ex.by;
-  getById("exampleBar").hidden = false;
-}
-
-// =====================================================================
-// A10.  BUTTONS AND INPUTS (Khabar Inteqal)
-// =====================================================================
-
-getById("sendDeath").addEventListener("click", sendDeathNotice);
-getById("modeCard").addEventListener("click", function () { setSendMode("card"); });
-getById("modeStyled").addEventListener("click", function () { setSendMode("styled"); });
-getById("clearDeath").addEventListener("click", clearDeathForm);
-getById("d_kind").addEventListener("change", applyDeathKind);
-getById("d_addZiyarat").addEventListener("change", applyDeathKind);
-getById("d_addFateha").addEventListener("change", applyDeathKind);
-
-var deathInputs = document.querySelectorAll("#deathSection input, #deathSection select, #deathSection textarea");
-for (var di = 0; di < deathInputs.length; di++) {
-  deathInputs[di].addEventListener("input", updateDeath);
-  deathInputs[di].addEventListener("change", updateDeath);
-}
-
-// #####################################################################
-// PART B — OTHER ANNOUNCEMENTS (shaadi, sagai, birth, meeting, blood, other)
-// #####################################################################
-
-// =====================================================================
-// B1.  TEXTS, TYPES AND FIELDS
-// Hindi/English texts, the list of announcement types and their fields.
+// OTHER ANNOUNCEMENTS (marriage, meeting, ...) — text message only
 // =====================================================================
 
 var UI = {
@@ -2227,7 +2131,7 @@ var TYPES = [
   {
     id: "marriage", icon: "💐",
     name: { hi: "शादी", en: "Marriage" },
-    header: { hi: "💐 *शादी मुबारक* 💐", en: "💐 *Marriage Announcement* 💐" },
+    header: { hi: "💐💐 *शादी मुबारक* 💐💐", en: "💐💐 *Marriage Announcement* 💐💐" },
     fields: [
       { key: "groom", hi: "दूल्हे का नाम", en: "Groom name", exHi: "अब्दुल रहमान", exEn: "Abdul Rehman", required: true, intro: true },
       { key: "bride", hi: "दुल्हन का नाम", en: "Bride name", exHi: "शबनम बानो", exEn: "Shabnam Bano", required: true, intro: true },
@@ -2241,7 +2145,7 @@ var TYPES = [
   {
     id: "engagement", icon: "💍",
     name: { hi: "सगाई", en: "Engagement" },
-    header: { hi: "💍 *सगाई मुबारक* 💍", en: "💍 *Engagement Announcement* 💍" },
+    header: { hi: "💍💍 *सगाई मुबारक* 💍💍", en: "💍💍 *Engagement Announcement* 💍💍" },
     fields: [
       { key: "groom", hi: "लड़के का नाम", en: "Boy's name", exHi: "अब्दुल रहमान", exEn: "Abdul Rehman", required: true, intro: true },
       { key: "bride", hi: "लड़की का नाम", en: "Girl's name", exHi: "शबनम बानो", exEn: "Shabnam Bano", required: true, intro: true },
@@ -2253,7 +2157,7 @@ var TYPES = [
   {
     id: "birth", icon: "👶",
     name: { hi: "खुशखबरी", en: "Birth" },
-    header: { hi: "🎉 *खुशखबरी* 🎉", en: "🎉 *Good News* 🎉" },
+    header: { hi: "🎉🎉 *खुशखबरी* 🎉🎉", en: "🎉🎉 *Good News* 🎉🎉" },
     fields: [
       { key: "parents", hi: "माता-पिता का नाम", en: "Parents' names", exHi: "सलीम भाई और रुखसाना", exEn: "Salim Bhai and Rukhsana", required: true, intro: true },
       { key: "baby", hi: "बेटा / बेटी", en: "Baby boy / baby girl", exHi: "बेटा", exEn: "baby boy", intro: true },
@@ -2263,7 +2167,7 @@ var TYPES = [
   {
     id: "meeting", icon: "📢",
     name: { hi: "मीटिंग", en: "Meeting" },
-    header: { hi: "📢 *मीटिंग सूचना* 📢", en: "📢 *Meeting Notice* 📢" },
+    header: { hi: "📢📢 *मीटिंग सूचना* 📢📢", en: "📢📢 *Meeting Announcement* 📢📢" },
     fields: [
       { key: "subject", hi: "विषय", en: "Subject", exHi: "जमात की सालाना मीटिंग", exEn: "Annual jamat meeting", required: true },
       { key: "date", hi: "तारीख", en: "Date", kind: "date", required: true },
@@ -2275,7 +2179,7 @@ var TYPES = [
   {
     id: "blood", icon: "🩸",
     name: { hi: "खून चाहिए", en: "Blood needed" },
-    header: { hi: "🩸 *अर्जेंट: खून की ज़रूरत* 🩸", en: "🩸 *URGENT: Blood Required* 🩸" },
+    header: { hi: "🩸🩸 *अर्जेंट: खून की ज़रूरत* 🩸🩸", en: "🩸🩸 *URGENT: Blood Required* 🩸🩸" },
     fields: [
       { key: "bloodGroup", hi: "ब्लड ग्रुप", en: "Blood group", exHi: "B+", exEn: "B+", required: true },
       { key: "units", hi: "कितनी यूनिट", en: "Units", exHi: "2", exEn: "2" },
@@ -2287,7 +2191,7 @@ var TYPES = [
   {
     id: "general", icon: "📝",
     name: { hi: "अन्य सूचना", en: "Other news" },
-    header: { hi: "📢 *सूचना* 📢", en: "📢 *Announcement* 📢" },
+    header: { hi: "📢📢 *सूचना* 📢📢", en: "📢📢 *Announcement* 📢📢" },
     fields: [
       { key: "subject", hi: "विषय", en: "Subject", exHi: "जमात खाने की मरम्मत", exEn: "Jamat Khana repair work", required: true },
       { key: "details", hi: "पूरी जानकारी", en: "Details", kind: "long", exHi: "इतवार को जमात खाना बंद रहेगा", exEn: "The hall will be closed on Sunday", required: true }
@@ -2298,10 +2202,10 @@ var TYPES = [
 var currentType = TYPES[0];
 var savedValues = {};
 
-// =====================================================================
-// B2.  BUILDING THE FORM AND THE MESSAGE
-// Draws the tiles and fields, builds the message, connects the buttons.
-// =====================================================================
+try {
+  var storedLang = localStorage.getItem("samajLang");
+  if (storedLang === "hi" || storedLang === "en") { currentLang = storedLang; }
+} catch (e) {}
 
 function text(key) { return UI[currentLang][key]; }
 
@@ -2461,7 +2365,12 @@ function buildMessage() {
     var value = readValue(field.key);
     if (!value) { return; }
     if (field.kind === "date") { value = dateWithDay(value); }
-    rows.push(rowLine(FIELD_ICONS[field.key] || "▫️", field[currentLang], value));
+    var icon = FIELD_ICONS[field.key] || "▫️";
+    if (field.kind === "tel") {
+      rows.push(plainRowLine(icon, field[currentLang], value));
+    } else {
+      rows.push(rowLine(icon, field[currentLang], value));
+    }
   });
   pushSection(lines, "", rows);
 
@@ -2531,14 +2440,10 @@ getById("langEn").addEventListener("click", function () { changeLanguage("en"); 
 getById("f_extra").addEventListener("input", updatePreview);
 getById("f_sender").addEventListener("input", updatePreview);
 
-// #####################################################################
-// PART C — START
-// #####################################################################
+// =====================================================================
+// START
+// =====================================================================
 
-// =====================================================================
-// C.  START
-// Runs once when the page opens.
-// =====================================================================
 
 applyDeathLanguage();
 getById("d_group").value = DEFAULT_GROUP_LINE;
