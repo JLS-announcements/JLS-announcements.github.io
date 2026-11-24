@@ -11,7 +11,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&family=Noto+Serif+Devanagari:wght@400;600;700&family=Amiri:wght@400;700&display=swap">
 <style>
-/* Layout: one phone-first column — language switch, type tiles, form sections, card preview, one send button */
+/* ==================================================================== */
+/* STYLES — CONTENTS
+     1. Colours, light theme          7. Cards and form fields
+     2. Colours, dark theme           8. Buttons and notes
+     3. Page basics                   9. Card image preview
+     4. Headings and switches        10. WhatsApp look (overrides the base
+     5. Message preview bubble           styles above): app bar, spacing,
+     6. Step labels and tiles            tiles, bubbles, send button
+   The page is one phone-first column. */
+/* ==================================================================== */
+/* ================================================================== */
+/* 1.  COLOURS, LIGHT THEME — change colours here */
+/* ================================================================== */
 :root {
   --bg: #efe7dc;
   --card: #ffffff;
@@ -36,6 +48,9 @@
   --send-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3.4 20.4 21 12 3.4 3.6 3.4 10.1 15 12 3.4 13.9z'/%3E%3C/svg%3E");
   --font: "Mukta", "Nirmala UI", "Noto Sans Devanagari", system-ui, sans-serif;
 }
+/* ================================================================== */
+/* 2.  COLOURS, DARK THEME — used when the phone is in dark mode */
+/* ================================================================== */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0b141a; --card: #202c33; --fg: #e9edef; --muted: #8696a0; --line: #2a3942; --accent: #00a884; --accent-ink: #0b141a; --marigold: #e8b23a; --tile-on: #10352a; --bubble: #005c4b; --bubble-ink: #e9edef; --error: #f2958c; --header: #202c33; --header-ink: #e9edef; --input: #2a3942; --chip: #182229; --chip-ink: #8696a0; --notice: #182229; --notice-ink: #ffd279; --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(233,237,239,0.05)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20a13 13 0 1 0 11 20a10 10 0 1 1 -11 -20z'/%3E%3Cpath d='M108 26l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z'/%3E%3Ccircle cx='76' cy='80' r='7'/%3E%3Cpath d='M18 112c7-9 16-9 23 0'/%3E%3Cpath d='M104 104h18M113 95v18'/%3E%3Cpath d='M62 36l7 7M69 36l-7 7'/%3E%3Cpath d='M128 66a8 8 0 1 0 7 12a6 6 0 1 1 -7 -12z'/%3E%3Ccircle cx='132' cy='136' r='2'/%3E%3Ccircle cx='58' cy='136' r='2'/%3E%3Ccircle cx='12' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
@@ -46,6 +61,9 @@
   --bg: #0b141a; --card: #202c33; --fg: #e9edef; --muted: #8696a0; --line: #2a3942; --accent: #00a884; --accent-ink: #0b141a; --marigold: #e8b23a; --tile-on: #10352a; --bubble: #005c4b; --bubble-ink: #e9edef; --error: #f2958c; --header: #202c33; --header-ink: #e9edef; --input: #2a3942; --chip: #182229; --chip-ink: #8696a0; --notice: #182229; --notice-ink: #ffd279; --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Cg fill='none' stroke='rgba(233,237,239,0.05)' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M34 20a13 13 0 1 0 11 20a10 10 0 1 1 -11 -20z'/%3E%3Cpath d='M108 26l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z'/%3E%3Ccircle cx='76' cy='80' r='7'/%3E%3Cpath d='M18 112c7-9 16-9 23 0'/%3E%3Cpath d='M104 104h18M113 95v18'/%3E%3Cpath d='M62 36l7 7M69 36l-7 7'/%3E%3Cpath d='M128 66a8 8 0 1 0 7 12a6 6 0 1 1 -7 -12z'/%3E%3Ccircle cx='132' cy='136' r='2'/%3E%3Ccircle cx='58' cy='136' r='2'/%3E%3Ccircle cx='12' cy='60' r='2'/%3E%3C/g%3E%3C/svg%3E");
   color-scheme: dark;
 }
+/* ================================================================== */
+/* 3.  PAGE BASICS */
+/* ================================================================== */
 [hidden] { display: none !important; }
 body {
   margin: 0;
@@ -56,7 +74,9 @@ body {
 }
 .wrap { max-width: 600px; margin: 0 auto; display: grid; gap: 18px; }
 .stack { display: grid; gap: 18px; }
-.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+/* ================================================================== */
+/* 4.  HEADINGS, LANGUAGE SWITCH, TWO-BUTTON SWITCH */
+/* ================================================================== */
 h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wrap: balance; }
 .sub { color: var(--muted); margin: 4px 0 0; font-size: 0.95rem; }
 .lang, .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--card); }
@@ -65,14 +85,21 @@ h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wra
 .seg { display: grid; grid-template-columns: 1fr 1fr; border-radius: 12px; }
 
 .seg button { line-height: 1.2; }
+
+/* ================================================================== */
+/* 5.  MESSAGE PREVIEW BUBBLE — quote bar on the left of each row */
+/* ================================================================== */
 .bubble .q { display: block; border-left: 4px solid #8a9a92; padding-left: 10px; margin: 2px 0; }
 .bubble.wa { white-space: normal; font-size: 0.95rem; line-height: 1.5; overflow-x: auto; }
 .bubble.wa .ln { overflow-wrap: normal; white-space: pre; }
 .bubble.wa .q { overflow-wrap: anywhere; }
 .bubble.wa .ln { display: block; min-height: 1.4em; }
-.bubble .chip { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.88em; background: rgba(0,0,0,0.08); border-radius: 5px; padding: 1px 6px; }
 .bubble .q { border-left-color: #25a35f; }
 .seg button { padding: 10px 12px; }
+
+/* ================================================================== */
+/* 6.  STEP LABELS AND TYPE TILES */
+/* ================================================================== */
 .step { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--marigold); margin-bottom: 8px; }
 .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .tile {
@@ -83,6 +110,9 @@ h1 { font-size: 1.6rem; font-weight: 800; margin: 0; line-height: 1.15; text-wra
 .tile .ic { font-size: 1.5rem; line-height: 1; }
 .tile[aria-pressed="true"] { border-color: var(--marigold); background: var(--tile-on); }
 .tile:focus-visible, .btn:focus-visible, .lang button:focus-visible, .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* ================================================================== */
+/* 7.  CARDS AND FORM FIELDS */
+/* ================================================================== */
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 14px; }
 .card h2 { font-size: 1.05rem; font-weight: 800; margin: 0; }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -105,6 +135,10 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
   background: var(--bubble); color: var(--bubble-ink); border-radius: 12px 12px 12px 3px;
   padding: 12px 14px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.98rem; min-height: 60px;
 }
+
+/* ================================================================== */
+/* 8.  BUTTONS AND NOTES */
+/* ================================================================== */
 .btn {
   font: inherit; font-weight: 800; font-size: 1.1rem; border-radius: 12px; padding: 14px 18px;
   min-height: 56px; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center;
@@ -113,18 +147,24 @@ input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); ou
 .btn-primary { background: var(--accent); color: var(--accent-ink); }
 .btn-ghost { background: transparent; color: var(--accent); }
 .btn-small { min-height: 40px; padding: 8px 14px; font-size: 0.95rem; width: auto; }
-.actions { display: grid; gap: 10px; }
 .note { color: var(--muted); font-size: 0.9rem; white-space: pre-line; }
 .note.guide { background: var(--tile-on); border: 1.5px solid var(--marigold); border-radius: 12px; padding: 14px 16px; color: var(--fg); font-size: 1.05rem; font-weight: 600; line-height: 1.6; }
 .example-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
   background: var(--tile-on); border: 1px solid var(--marigold); border-radius: 12px; padding: 10px 14px; font-weight: 600; }
+
+/* ================================================================== */
+/* 9.  CARD IMAGE PREVIEW */
+/* ================================================================== */
 .card-preview { display: grid; justify-items: center; }
 .card-preview canvas { width: 100%; max-width: 440px; height: auto; border-radius: 10px; box-shadow: 0 6px 24px rgba(0,0,0,0.18); }
 details summary { cursor: pointer; font-weight: 600; color: var(--accent); }
 details .bubble { margin-top: 10px; }
 @media (max-width: 380px) { .tiles { grid-template-columns: repeat(2, 1fr); } }
 
-/* ---------- WhatsApp-style look ---------- */
+/* ================================================================== */
+/* 10.  WHATSAPP LOOK — this part overrides the base styles above */
+/* ================================================================== */
+/* 10a. App bar at the top, page background */
 body {
   padding-left: 0; padding-right: 0; padding-block: 0 48px;
   background-color: var(--bg); background-image: var(--pattern); background-size: 150px 150px;
@@ -143,6 +183,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .appbar .lang { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); flex: none; }
 .appbar .lang button { color: var(--header-ink); padding: 4px 10px; font-size: 0.85rem; }
 .appbar .lang button[aria-pressed="true"] { background: var(--header-ink); color: var(--header); }
+
+/* 10b. Spacing, step labels, cards, fields, tiles */
 .wrap {
   gap: 14px; padding-block: 16px 0;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
@@ -168,6 +210,8 @@ input, textarea, select { background: var(--input); border: 1px solid transparen
   box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); font-size: 0.92rem; font-weight: 500; justify-content: center; text-align: center;
 }
 .note.guide { background: var(--notice); color: var(--notice-ink); border: 0; }
+
+/* 10c. Chat bubbles with the small tail, time and ticks */
 .bubble, .card-preview {
   position: relative; background: var(--bubble); color: var(--bubble-ink);
   border-radius: 10px 0 10px 10px; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); margin-right: 8px;
@@ -184,6 +228,8 @@ details summary { color: var(--accent); }
 .card { grid-template-columns: minmax(0, 1fr); }
 details { min-width: 0; }
 .bubble.wa { max-width: 100%; box-sizing: border-box; }
+
+/* 10d. Round send button with the paper-plane icon */
 .btn-primary { border-radius: 28px; gap: 10px; box-shadow: 0 2px 6px rgba(0, 128, 105, 0.3); }
 .btn-primary::after {
   content: ""; flex: none; width: 22px; height: 22px; background: currentColor;
@@ -276,6 +322,10 @@ details { min-width: 0; }
           <label for="d_state" data-t="stateLabel"></label>
           <select id="d_state"></select>
         </div>
+      </div>
+      <div class="field" id="g_district">
+        <label for="d_district"><span data-t="districtLabel"></span> <span class="opt" data-t="optional"></span></label>
+        <select id="d_district"></select>
       </div>
       <div class="field" id="w_date">
         <label for="d_date"><span data-t="dateLabel"></span> <span class="req">*</span> <span class="opt" id="d_dayShow"></span></label>
@@ -409,7 +459,148 @@ details { min-width: 0; }
     </section>
   </div>
 
-  <p class="note" style="text-align:center">Version 15 · emoji fix</p>
+  <p class="note" style="text-align:center">Version 17 · districts, shaadi form</p>
+
+  <!-- ===================== SHAADI (marriage notice) ===================== -->
+  <div id="marriageSection" class="stack" hidden>
+
+    <div class="card">
+      <h2 data-t="secBasic"></h2>
+      <label class="switch"><input type="checkbox" id="m_bismillah" checked> <span data-t="bismillahLabel"></span></label>
+      <div class="grid2">
+        <div class="field" id="w_m_date">
+          <label for="m_date"><span data-t="dateLabel"></span> <span class="req">*</span> <span class="opt" id="m_dayShow"></span></label>
+          <input id="m_date" type="date">
+        </div>
+        <div class="field">
+          <label for="m_nikahTime"><span data-t="nikahTimeLabel"></span> <span class="opt" data-t="optional"></span></label>
+          <input id="m_nikahTime" type="time">
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="field" id="w_m_city">
+          <label for="m_city"><span data-t="cityLabel"></span> <span class="req">*</span></label>
+          <input id="m_city" data-ph="cityPh">
+        </div>
+        <div class="field">
+          <label for="m_state" data-t="stateLabel"></label>
+          <select id="m_state"></select>
+        </div>
+      </div>
+      <div class="field" id="g_m_district">
+        <label for="m_district"><span data-t="districtLabel"></span> <span class="opt" data-t="optional"></span></label>
+        <select id="m_district"></select>
+      </div>
+      <div class="field">
+        <label for="m_nikahPlace"><span data-t="nikahPlaceLabel"></span> <span class="opt" data-t="optional"></span></label>
+        <input id="m_nikahPlace" data-ph="nikahPlacePh">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-t="secVenue"></h2>
+      <div class="field">
+        <label for="m_venue"><span data-t="venueLabel"></span> <span class="opt" data-t="optional"></span></label>
+        <input id="m_venue" data-ph="venuePh">
+      </div>
+      <div class="field">
+        <label for="m_address"><span data-t="addressLabel"></span> <span class="opt" data-t="optional"></span></label>
+        <input id="m_address" data-ph="addressPh">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-t="secBride"></h2>
+      <div class="field" id="w_m_bride">
+        <label for="m_bride"><span data-t="brideLabel"></span> <span class="req">*</span></label>
+        <input id="m_bride" data-ph="bridePh">
+      </div>
+      <div class="field">
+        <label for="m_brideFamily"><span data-t="brideFamilyLabel"></span> <span class="opt" data-t="optional"></span></label>
+        <input id="m_brideFamily" data-ph="brideFamilyPh">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 data-t="secGroom"></h2>
+      <div class="field" id="w_m_groom">
+        <label for="m_groom"><span data-t="groomLabel"></span> <span class="req">*</span></label>
+        <input id="m_groom" data-ph="groomPh">
+      </div>
+      <div class="field">
+        <label for="m_groomFamily"><span data-t="groomFamilyLabel"></span> <span class="opt" data-t="optional"></span></label>
+        <input id="m_groomFamily" data-ph="groomFamilyPh">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span data-t="secExtra"></span> <span class="opt" data-t="optional"></span></h2>
+      <div class="field">
+        <label for="m_bigBhatthi" data-t="bigBhatthiLabel"></label>
+        <input id="m_bigBhatthi" data-ph="bigBhatthiPh">
+      </div>
+      <div class="field">
+        <label for="m_bhatthi" data-t="bhatthiLabel"></label>
+        <input id="m_bhatthi" data-ph="bhatthiPh">
+      </div>
+      <div class="field">
+        <label for="m_baratFrom" data-t="baratFromLabel"></label>
+        <input id="m_baratFrom" data-ph="baratFromPh">
+      </div>
+      <div class="grid2">
+        <div class="field">
+          <label for="m_baratDate" data-t="baratDateLabel"></label>
+          <input id="m_baratDate" type="date">
+        </div>
+        <div class="field">
+          <label for="m_baratTime" data-t="baratTimeLabel"></label>
+          <input id="m_baratTime" type="time">
+        </div>
+      </div>
+      <div class="field">
+        <label for="m_peravani" data-t="peravaniLabel"></label>
+        <input id="m_peravani" data-ph="peravaniPh">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span data-t="secPeople"></span> <span class="opt" data-t="optional"></span></h2>
+      <div class="field">
+        <label for="m_arakin"><span data-t="arakinLabel"></span> <span class="opt" data-t="linesHint"></span></label>
+        <textarea id="m_arakin" data-ph="arakinPh"></textarea>
+      </div>
+      <div class="field">
+        <label for="m_muntazir"><span data-t="muntazirLabel"></span> <span class="opt" data-t="linesHint"></span></label>
+        <textarea id="m_muntazir" data-ph="muntazirPh"></textarea>
+      </div>
+      <div class="field">
+        <label for="m_familyName" data-t="familyNameLabel"></label>
+        <input id="m_familyName" data-ph="familyNamePh">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span data-t="secPanchayat"></span> <span class="opt" data-t="optional"></span></h2>
+      <div class="field">
+        <label for="m_group" data-t="groupLabel"></label>
+        <input id="m_group">
+      </div>
+      <div class="field">
+        <label for="m_panchayat"><span data-t="panchayatLabel"></span> <span class="opt" data-t="linesHint"></span></label>
+        <textarea id="m_panchayat" data-ph="panchayatPh"></textarea>
+      </div>
+    </div>
+
+    <section>
+      <div class="step" data-t="stepSend"></div>
+      <div class="card">
+        <div class="bubble" id="marriageText"></div>
+        <div class="err" id="marriageErr" hidden></div>
+        <button class="btn btn-primary" type="button" id="sendMarriage" data-t="sendBtn"></button>
+        <div class="note" id="marriageNote"></div>
+      </div>
+    </section>
+  </div>
 
   <!-- ===================== OTHER ANNOUNCEMENTS ===================== -->
   <div id="genericSection" class="stack" hidden>
@@ -442,7 +633,37 @@ details { min-width: 0; }
 
 <script>
 // =====================================================================
-// SETTINGS
+// CONTENTS OF THIS SCRIPT
+//
+//   1.  Settings ................ the few values you may want to change
+//   2.  Common helpers .......... dates, times, copy, phone check
+//   3.  Shared lists ............ states and districts (Gujarat, MP, Rajasthan)
+//
+//   PART A — KHABAR INTEQAL (death notice: inteqal / ziyarat / fateha)
+//   A1  Screen text ............. Hindi + English labels, dropdown lists
+//   A2  Reading the form ........ collects what the person filled in
+//   A3  Words and sentences ..... marhoom, age, family, burial lines
+//   A4  WhatsApp text message ... the card-style message and its preview
+//   A5  Card image (1) .......... colours, fonts, text and drawing tools
+//   A6  Card image (2) .......... icons, details box, labels
+//   A7  Page behaviour .......... show/hide sections, checks, messages
+//   A8  Sending ................. WhatsApp link, share menu, copy card
+//   A9  Example data ............ filled in when FILL_EXAMPLE is true
+//   A10 Buttons and inputs ...... connects clicks to the functions above
+//
+//   PART B — SHAADI (marriage notice)
+//   B1  Marriage form ........... texts, reading, message, sending
+//
+//   PART C — OTHER ANNOUNCEMENTS (sagai, birth, meeting, blood, other)
+//   C1  Texts, types and fields
+//   C2  Building the form and the message
+//
+//   PART D — START .............. runs when the page opens
+// =====================================================================
+
+// =====================================================================
+// 1.  SETTINGS
+// Only change the values in this section.
 // =====================================================================
 
 // Leave empty: WhatsApp asks which chat/group to send to.
@@ -457,11 +678,22 @@ var DEFAULT_GROUP_LINE = "";
 // true = show an example announcement when the page opens.
 var FILL_EXAMPLE = false;
 
+// false = rows in the WhatsApp message have no small icon (only the main emoji
+// in the headings stay). Set true to show an icon in front of every row again.
+var SHOW_ROW_ICONS = false;
+
 // =====================================================================
-// COMMON HELPERS
+// 2.  COMMON HELPERS
+// Small tools used everywhere: language, dates, times, copy to clipboard.
 // =====================================================================
 
 var currentLang = "hi";
+
+// Remember the language the person chose last time.
+try {
+  var storedLang = localStorage.getItem("samajLang");
+  if (storedLang === "hi" || storedLang === "en") { currentLang = storedLang; }
+} catch (e) {}
 
 var DAY_NAMES = {
   hi: ["इतवार", "सोमवार", "मंगलवार", "बुधवार", "जुमेरात", "जुम्मा", "शनिवार"],
@@ -476,6 +708,16 @@ function readInput(id) {
   var element = getById(id);
   if (!element) { return ""; }
   return element.value.trim();
+}
+
+// Every non-empty line of a text box, as a list.
+function readLines(id) {
+  var rawLines = readInput(id).split("\n");
+  var lines = [];
+  for (var i = 0; i < rawLines.length; i++) {
+    if (rawLines[i].trim() !== "") { lines.push(rawLines[i].trim()); }
+  }
+  return lines;
 }
 
 function isoFromDate(d) {
@@ -558,7 +800,206 @@ function isPhone() {
 }
 
 // =====================================================================
-// KHABAR INTEQAL — form text in Hindi and English
+// 3.  SHARED LISTS — states and districts
+// Used by the Khabar Inteqal form and the Marriage form.
+// =====================================================================
+
+// States shown in the dropdown: value, Hindi text, English text.
+// A state that also has a district list below shows a District dropdown.
+var STATE_OPTIONS = [
+  ["gujarat", "गुजरात", "Gujarat"],
+  ["rajasthan", "राजस्थान", "Rajasthan"],
+  ["mp", "मध्य प्रदेश", "Madhya Pradesh"],
+  ["maharashtra", "महाराष्ट्र", "Maharashtra"],
+  ["up", "उत्तर प्रदेश", "Uttar Pradesh"],
+  //["delhi", "दिल्ली", "Delhi"],
+  ["karnataka", "कर्नाटक", "Karnataka"],
+  ["telangana", "तेलंगाना", "Telangana"],
+  //["", "— न लिखें —", "— do not mention —"]
+];
+
+// Districts by state (same keys as the states above): value, Hindi text, English text.
+// To add a district or another state, add one line here — nothing else needs to change.
+var DISTRICTS = {
+  gujarat: [
+    ["Ahmedabad", "अहमदाबाद", "Ahmedabad"],
+    ["Amreli", "अमरेली", "Amreli"],
+    ["Anand", "आनंद", "Anand"],
+    ["Aravalli", "अरवल्ली", "Aravalli"],
+    ["Banaskantha", "बनासकांठा", "Banaskantha"],
+    ["Bharuch", "भरुच", "Bharuch"],
+    ["Bhavnagar", "भावनगर", "Bhavnagar"],
+    ["Botad", "बोटाद", "Botad"],
+    ["Chhota Udepur", "छोटा उदेपुर", "Chhota Udepur"],
+    ["Dahod", "दाहोद", "Dahod"],
+    ["Dang", "दांग", "Dang"],
+    ["Devbhoomi Dwarka", "देवभूमि द्वारका", "Devbhoomi Dwarka"],
+    ["Gandhinagar", "गांधीनगर", "Gandhinagar"],
+    ["Gir Somnath", "गिर सोमनाथ", "Gir Somnath"],
+    ["Jamnagar", "जामनगर", "Jamnagar"],
+    ["Junagadh", "जूनागढ़", "Junagadh"],
+    ["Kachchh (Kutch)", "कच्छ", "Kachchh (Kutch)"],
+    ["Kheda", "खेड़ा", "Kheda"],
+    ["Mahisagar", "महिसागर", "Mahisagar"],
+    ["Mehsana", "मेहसाणा", "Mehsana"],
+    ["Morbi", "मोरबी", "Morbi"],
+    ["Narmada", "नर्मदा", "Narmada"],
+    ["Navsari", "नवसारी", "Navsari"],
+    ["Panchmahal", "पंचमहल", "Panchmahal"],
+    ["Patan", "पाटन", "Patan"],
+    ["Porbandar", "पोरबंदर", "Porbandar"],
+    ["Rajkot", "राजकोट", "Rajkot"],
+    ["Sabarkantha", "साबरकांठा", "Sabarkantha"],
+    ["Surat", "सूरत", "Surat"],
+    ["Surendranagar", "सुरेंद्रनगर", "Surendranagar"],
+    ["Tapi", "तापी", "Tapi"],
+    ["Vadodara", "वड़ोदरा", "Vadodara"],
+    ["Valsad", "वलसाड", "Valsad"]
+  ],
+  rajasthan: [
+    ["Ajmer", "अजमेर", "Ajmer"],
+    ["Alwar", "अलवर", "Alwar"],
+    ["Balotra", "बालोतरा", "Balotra"],
+    ["Banswara", "बांसवाड़ा", "Banswara"],
+    ["Baran", "बारां", "Baran"],
+    ["Barmer", "बाड़मेर", "Barmer"],
+    ["Beawar", "ब्यावर", "Beawar"],
+    ["Bharatpur", "भरतपुर", "Bharatpur"],
+    ["Bhilwara", "भीलवाड़ा", "Bhilwara"],
+    ["Bikaner", "बीकानेर", "Bikaner"],
+    ["Bundi", "बूंदी", "Bundi"],
+    ["Chittorgarh", "चित्तौरगढ़", "Chittorgarh"],
+    ["Churu", "चूरू", "Churu"],
+    ["Dausa", "दौसा", "Dausa"],
+    ["Deeg", "डीग", "Deeg"],
+    ["Dholpur", "धौलपुर", "Dholpur"],
+    ["Didwana-Kuchaman", "डीडवाना-कुचामन", "Didwana-Kuchaman"],
+    ["Dungarpur", "डूंगरपुर", "Dungarpur"],
+    ["Hanumangarh", "हनुमानगढ़", "Hanumangarh"],
+    ["Jaipur", "जयपुर", "Jaipur"],
+    ["Jaisalmer", "जैसलमेर", "Jaisalmer"],
+    ["Jalore", "जालोर", "Jalore"],
+    ["Jhalawar", "झालावाड़", "Jhalawar"],
+    ["Jhunjhunu", "झुंझुनू", "Jhunjhunu"],
+    ["Jodhpur", "जोधपुर", "Jodhpur"],
+    ["Karauli", "करौली", "Karauli"],
+    ["Khairthal-Tijara", "खैरथल-तिजारा", "Khairthal-Tijara"],
+    ["Kota", "कोटा", "Kota"],
+    ["Kotputli-Behror", "कोटपूतली-बहरोड़", "Kotputli-Behror"],
+    ["Nagaur", "नागौर", "Nagaur"],
+    ["Pali", "पाली", "Pali"],
+    ["Phalodi", "फलोदी", "Phalodi"],
+    ["Pratapgarh", "प्रतापगढ़", "Pratapgarh"],
+    ["Rajsamand", "राजसमंद", "Rajsamand"],
+    ["Salumbar", "सलूम्बर", "Salumbar"],
+    ["Sawai Madhopur", "सवाई माधोपुर", "Sawai Madhopur"],
+    ["Sikar", "सीकर", "Sikar"],
+    ["Sirohi", "सिरोही", "Sirohi"],
+    ["Sri Ganganagar", "श्री गंगानगर", "Sri Ganganagar"],
+    ["Tonk", "टोंक", "Tonk"],
+    ["Udaipur", "उदयपुर", "Udaipur"]
+  ],
+  mp: [
+    ["Agar Malwa", "आगर मालवा", "Agar Malwa"],
+    ["Alirajpur", "अलीराजपुर", "Alirajpur"],
+    ["Anuppur", "अनूपपुर", "Anuppur"],
+    ["Ashoknagar", "अशोकनगर", "Ashoknagar"],
+    ["Balaghat", "बालाघाट", "Balaghat"],
+    ["Barwani", "बड़वानी", "Barwani"],
+    ["Betul", "बैतूल", "Betul"],
+    ["Bhind", "भिंड", "Bhind"],
+    ["Bhopal", "भोपाल", "Bhopal"],
+    ["Burhanpur", "बुरहानपुर", "Burhanpur"],
+    ["Chhatarpur", "छतरपुर", "Chhatarpur"],
+    ["Chhindwara", "छिंदवाड़ा", "Chhindwara"],
+    ["Damoh", "दमोह", "Damoh"],
+    ["Datia", "दतिया", "Datia"],
+    ["Dewas", "देवास", "Dewas"],
+    ["Dhar", "धार", "Dhar"],
+    ["Dindori", "डिंडोरी", "Dindori"],
+    ["Guna", "गुना", "Guna"],
+    ["Gwalior", "ग्वालियर", "Gwalior"],
+    ["Harda", "हरदा", "Harda"],
+    ["Indore", "इंदौर", "Indore"],
+    ["Jabalpur", "जबलपुर", "Jabalpur"],
+    ["Jhabua", "झाबुआ", "Jhabua"],
+    ["Katni", "कटनी", "Katni"],
+    ["Khandwa", "खंडवा", "Khandwa"],
+    ["Khargone", "खरगोन", "Khargone"],
+    ["Maihar", "मैहर", "Maihar"],
+    ["Mandla", "मंडला", "Mandla"],
+    ["Mandsaur", "मंदसौर", "Mandsaur"],
+    ["Mauganj", "मऊगंज", "Mauganj"],
+    ["Morena", "मुरैना", "Morena"],
+    ["Narmadapuram", "नर्मदापुरम", "Narmadapuram"],
+    ["Narsinghpur", "नरसिंहपुर", "Narsinghpur"],
+    ["Neemuch", "नीमच", "Neemuch"],
+    ["Niwari", "निवाड़ी", "Niwari"],
+    ["Pandhurna", "पांढुर्ना", "Pandhurna"],
+    ["Panna", "पन्ना", "Panna"],
+    ["Raisen", "रायसेन", "Raisen"],
+    ["Rajgarh", "राजगढ़", "Rajgarh"],
+    ["Ratlam", "रतलाम", "Ratlam"],
+    ["Rewa", "रीवा", "Rewa"],
+    ["Sagar", "सागर", "Sagar"],
+    ["Satna", "सतना", "Satna"],
+    ["Sehore", "सीहोर", "Sehore"],
+    ["Seoni", "सिवनी", "Seoni"],
+    ["Shahdol", "शहडोल", "Shahdol"],
+    ["Shajapur", "शाजापुर", "Shajapur"],
+    ["Sheopur", "श्योपुर", "Sheopur"],
+    ["Shivpuri", "शिवपुरी", "Shivpuri"],
+    ["Sidhi", "सीधी", "Sidhi"],
+    ["Singrauli", "सिंगरौली", "Singrauli"],
+    ["Tikamgarh", "टीकमगढ़", "Tikamgarh"],
+    ["Ujjain", "उज्जैन", "Ujjain"],
+    ["Umaria", "उमरिया", "Umaria"],
+    ["Vidisha", "विदिशा", "Vidisha"]
+  ]
+};
+
+// Fills a District dropdown with the districts of one state.
+// The district that was already chosen stays chosen when the language changes.
+function fillDistrictSelect(select, stateKey) {
+  var keepValue = select.value;
+  var list = DISTRICTS[stateKey] || [];
+  select.innerHTML = "";
+  var none = document.createElement("option");
+  none.value = "";
+  none.textContent = currentLang === "en" ? "— Select district —" : "— ज़िला चुनें —";
+  select.appendChild(none);
+  var found = false;
+  for (var i = 0; i < list.length; i++) {
+    var option = document.createElement("option");
+    option.value = list[i][0];
+    option.textContent = currentLang === "en" ? list[i][2] : list[i][1];
+    select.appendChild(option);
+    if (list[i][0] === keepValue) { found = true; }
+  }
+  select.value = found ? keepValue : "";
+}
+
+// Refreshes the District dropdown after the state changed.
+// States without a district list hide the District field.
+function refreshDistricts(stateId, districtId, groupId) {
+  var stateKey = getById(stateId).value;
+  fillDistrictSelect(getById(districtId), stateKey);
+  getById(groupId).hidden = !DISTRICTS[stateKey];
+}
+
+// District name in the current language ("" when nothing is chosen).
+function districtText(stateKey, districtValue) {
+  return optionText(DISTRICTS[stateKey] || [], districtValue);
+}
+
+
+// #####################################################################
+// PART A — KHABAR INTEQAL (death notice)
+// #####################################################################
+
+// =====================================================================
+// A1.  SCREEN TEXT AND DROPDOWN LISTS
+// Every label the person sees, in Hindi and English, and the dropdown choices.
 // =====================================================================
 
 var DT = {
@@ -582,6 +1023,7 @@ var DT = {
     cityLabel: "शहर",
     cityPh: "उदाहरण: मोडासा",
     stateLabel: "राज्य",
+    districtLabel: "ज़िला",
     dateLabel: "तारीख",
     addressLabel: "पता",
     addressPh: "उदाहरण: शामियाना सोसायटी, मोडासा ",
@@ -647,6 +1089,7 @@ var DT = {
     cityLabel: "City",
     cityPh: "Example: Modasa",
     stateLabel: "State",
+    districtLabel: "District",
     dateLabel: "Date",
     addressLabel: "Address",
     addressPh: "Example: Shamiyana Society, Modasa",
@@ -715,17 +1158,6 @@ var CAUSE_OPTIONS = [
   ["hadsa", "हादसे की वजह से", "Due to an accident"],
   //["none", "— न लिखें —", "— do not mention —"]
 ];
-var STATE_OPTIONS = [
-  ["gujarat", "गुजरात", "Gujarat"],
-  ["rajasthan", "राजस्थान", "Rajasthan"],
-  ["mp", "मध्य प्रदेश", "Madhya Pradesh"],
-  ["maharashtra", "महाराष्ट्र", "Maharashtra"],
-  ["up", "उत्तर प्रदेश", "Uttar Pradesh"],
-  //["delhi", "दिल्ली", "Delhi"],
-  ["karnataka", "कर्नाटक", "Karnataka"],
-  ["telangana", "तेलंगाना", "Telangana"],
-  //["", "— न लिखें —", "— do not mention —"]
-];
 var WHEN_OPTIONS = [
   ["", "— चुनें —", "— choose —"],
   ["fajr", "फ़ज्र बाद", "After Fajr"],
@@ -772,6 +1204,7 @@ function applyDeathLanguage() {
   fillSelect(getById("d_gender"), GENDER_OPTIONS);
   fillSelect(getById("d_cause"), CAUSE_OPTIONS);
   fillSelect(getById("d_state"), STATE_OPTIONS);
+  refreshDistricts("d_state", "d_district", "g_district");
   var whenSelects = document.querySelectorAll(".when-select");
   for (var w = 0; w < whenSelects.length; w++) {
     fillSelect(whenSelects[w], WHEN_OPTIONS);
@@ -780,15 +1213,10 @@ function applyDeathLanguage() {
 }
 
 // =====================================================================
-// KHABAR INTEQAL — reading the form and building the sentences
+// A2.  READING THE FORM
 // =====================================================================
 
 function readDeathData() {
-  var byLines = [];
-  var rawBy = readInput("d_by").split("\n");
-  for (var i = 0; i < rawBy.length; i++) {
-    if (rawBy[i].trim() !== "") { byLines.push(rawBy[i].trim()); }
-  }
   return {
     kind: readInput("d_kind") || "inteqal",
     female: readInput("d_gender") === "female",
@@ -799,6 +1227,7 @@ function readDeathData() {
     cause: optionText(CAUSE_OPTIONS, readInput("d_cause")),
     city: readInput("d_city"),
     state: optionText(STATE_OPTIONS, readInput("d_state")),
+    district: districtText(readInput("d_state"), readInput("d_district")),
     date: readInput("d_date"),
     address: readInput("d_address"),
     tadfinDate: readInput("d_tadfinDate"),
@@ -818,10 +1247,15 @@ function readDeathData() {
     fatehaPlace: readInput("d_fatehaPlace"),
     jawai: readInput("d_jawai"),
     pihar: readInput("d_pihar"),
-    by: byLines,
+    by: readLines("d_by"),
     groupLine: readInput("d_group")
   };
 }
+
+// =====================================================================
+// A3.  WORDS AND SENTENCES
+// Used by both the WhatsApp message and the card image.
+// =====================================================================
 
 // Words used on the card and in the message
 var WORDS = {
@@ -913,11 +1347,17 @@ function eventSentence(data, kind, boldName) {
   return joinFilled([marhoomWord(data), namePart, "की", eventName(kind), dateWithDay(dateIso), when, place ? place + " में" : "", "होगी। इन शा अल्लाह।"], " ");
 }
 
+// "Idar, Sabarkantha, Gujarat" — the district is skipped when it is the same as the city.
 function cityLine(data) {
-  return joinFilled([data.city, data.state], ", ");
+  var district = data.district;
+  if (district && data.city && district.toLowerCase() === data.city.toLowerCase()) { district = ""; }
+  return joinFilled([data.city, district, data.state], ", ");
 }
 
-// ---------------- Card-style WhatsApp text (no image) ----------------
+// =====================================================================
+// A4.  WHATSAPP TEXT MESSAGE (card-style) AND ITS PREVIEW
+// =====================================================================
+
 // WhatsApp text cannot have colours or side borders, so the "card" look is made
 // with a framed heading, quote lines ("> " shows a bar on the left) and emoji icons.
 function label(hindiText, englishText) {
@@ -925,28 +1365,19 @@ function label(hindiText, englishText) {
 }
 
 // WhatsApp formatting used here (all of it works in normal chats and groups):
-//   *bold*   _italic_   `grey box`   "> " at line start = bar on the left
+//   *bold*   _italic_   "> " at line start = bar on the left
 // Background colours and side borders are not possible in WhatsApp text.
 
 var FRAME_TOP = "┏━━━━━━━━━━━━━━━━━━━┓";
 var FRAME_BOTTOM = "┗━━━━━━━━━━━━━━━━━━━┛";
 var FOOTER_LINE = "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄";
 
-// A value inside a light grey box.
-function chip(value) {
-  return "`" + String(value).replace(/`/g, "'").replace(/\s+/g, " ").trim() + "`";
-}
-
-// "> 📅 *Label*  `value`" — one row of the card. Empty values are skipped.
+// One row of the message: "> *Label:* value". Empty values are skipped.
+// The value is plain text (no grey box), so phone numbers stay tappable.
 function rowLine(icon, name, value) {
   if (!value) { return ""; }
-  return "> " + icon + " *" + name + "*  " + chip(value);
-}
-
-// Row without the grey box, so phone numbers stay tappable.
-function plainRowLine(icon, name, value) {
-  if (!value) { return ""; }
-  return "> " + icon + " *" + name + "*  " + value;
+  var iconPart = SHOW_ROW_ICONS ? icon + " " : "";
+  return "> " + iconPart + "*" + name + ":* " + String(value).replace(/\s+/g, " ").trim();
 }
 
 function framedHeading(lines, headingText) {
@@ -1008,10 +1439,10 @@ function buildStyledText(data) {
       rowLine("📍", label("क़ब्रस्तान", "Qabristan"), data.qabristan)
     ]);
     if (data.addZiyarat) {
-      pushSection(lines, sectionHeading("🕌", word("ziyarat")), 
+      pushSection(lines, sectionHeading("🕌", word("ziyarat")), [
         rowLine("📅", label("वक़्त", "Time"), eventTiming(data.ziyaratDate, data.ziyaratWhen, data.ziyaratTime)),
         rowLine("📍", label("जगह", "Place"), data.ziyaratPlace)
-      );
+      ]);
     }
     if (data.addFateha) {
       pushSection(lines, sectionHeading("🤲", word("fateha")), [
@@ -1056,7 +1487,6 @@ function whatsAppLineToHtml(line) {
   var isQuote = line.indexOf("> ") === 0;
   if (isQuote) { line = line.substring(2); }
   var html = escapeHtml(line);
-  html = html.replace(/`([^`]+)`/g, '<code class="chip">$1</code>');
   html = html.replace(/\*([^*]+)\*/g, "<b>$1</b>");
   html = html.replace(/(^|\s)_([^_]+)_/g, "$1<i>$2</i>");
   if (isQuote) { return '<span class="q">' + html + "</span>"; }
@@ -1077,9 +1507,9 @@ function messageForMode(data) {
   return buildStyledText(data);
 }
 
-
 // =====================================================================
-// KHABAR INTEQAL — card drawing (canvas)
+// A5.  CARD IMAGE (1) — colours, fonts, text and drawing tools
+// The picture card is drawn on a canvas. This part has the basics and drawCard().
 // =====================================================================
 
 var CARD_W = 1080;
@@ -1577,266 +2007,9 @@ function renderCard() {
 }
 
 // =====================================================================
-// KHABAR INTEQAL — page behaviour
+// A6.  CARD IMAGE (2) — icons, details box and labels
+// Small drawings used by drawCard() above.
 // =====================================================================
-
-var sendMode = "styled";
-var renderPending = false;
-
-function updateDeath() {
-  var data = readDeathData();
-  var textBox = getById("deathText");
-  textBox.classList.add("wa");
-  showWhatsAppPreview(textBox, messageForMode(data));
-  getById("d_dayShow").textContent = data.date ? "(" + dayNameOf(data.date) + ")" : "";
-  if (sendMode === "card" && !renderPending) {
-    renderPending = true;
-    requestAnimationFrame(function () {
-      renderPending = false;
-      renderCard();
-    });
-  }
-}
-
-// Show / hide sections depending on the notice type.
-function applyDeathKind() {
-  var kind = readInput("d_kind") || "inteqal";
-  var isInteqal = kind === "inteqal";
-  getById("sec_tadfin").hidden = !isInteqal;
-  getById("sec_more").hidden = !isInteqal;
-  getById("g_family").hidden = !isInteqal;
-  getById("g_cause").hidden = !isInteqal;
-
-  getById("sec_ziyarat").hidden = !(isInteqal || kind === "ziyarat");
-  getById("sw_ziyarat").hidden = !isInteqal;
-  getById("h_ziyarat").hidden = isInteqal;
-  getById("body_ziyarat").hidden = isInteqal && !getById("d_addZiyarat").checked;
-
-  getById("sec_fateha").hidden = !(isInteqal || kind === "fateha");
-  getById("sw_fateha").hidden = !isInteqal;
-  getById("h_fateha").hidden = isInteqal;
-  getById("body_fateha").hidden = isInteqal && !getById("d_addFateha").checked;
-  updateDeath();
-}
-
-function showSendHelp() {
-  if (sendMode !== "card") { setDeathNote(dt("helpText")); return; }
-  setDeathNote(isPhone() ? dt("helpPhoneCard") : dt("helpComputerCard"));
-}
-
-function setSendMode(mode) {
-  sendMode = mode;
-  getById("modeCard").setAttribute("aria-pressed", mode === "card" ? "true" : "false");
-  getById("modeStyled").setAttribute("aria-pressed", mode === "styled" ? "true" : "false");
-  getById("cardPreview").hidden = mode !== "card";
-  getById("textDetails").open = mode === "styled";
-  showSendHelp();
-  updateDeath();
-}
-
-function findDeathMissing(data) {
-  var missing = [];
-  var marks = ["w_name", "w_city", "w_date", "w_tadfinDate", "w_ziyaratDate", "w_fatehaDate"];
-  for (var i = 0; i < marks.length; i++) { getById(marks[i]).classList.remove("bad"); }
-  if (!data.name) { missing.push(dt("missName")); getById("w_name").classList.add("bad"); }
-  if (!data.city) { missing.push(dt("missCity")); getById("w_city").classList.add("bad"); }
-  if (!data.date) { missing.push(dt("missDate")); getById("w_date").classList.add("bad"); }
-  if (data.kind === "inteqal" && !data.tadfinDate) { missing.push(dt("missTadfin")); getById("w_tadfinDate").classList.add("bad"); }
-  if (data.kind === "ziyarat" && !data.ziyaratDate) { missing.push(dt("missZiyarat")); getById("w_ziyaratDate").classList.add("bad"); }
-  if (data.kind === "fateha" && !data.fatehaDate) { missing.push(dt("missFateha")); getById("w_fatehaDate").classList.add("bad"); }
-  return missing;
-}
-
-function checkDeathForm() {
-  var data = readDeathData();
-  var missing = findDeathMissing(data);
-  var box = getById("deathErr");
-  if (missing.length > 0) {
-    box.textContent = dt("missing") + missing.join(", ");
-    box.hidden = false;
-    var firstBad = document.querySelector("#deathSection .field.bad input");
-    if (firstBad) { firstBad.focus(); }
-    return null;
-  }
-  box.hidden = true;
-  return data;
-}
-
-function setDeathNote(text, highlight) {
-  var note = getById("deathNote");
-  note.textContent = text;
-  if (highlight) { note.classList.add("guide"); } else { note.classList.remove("guide"); }
-}
-
-function cardFileName(data, extension) {
-  var kindWord = { inteqal: "khabar-inteqal", ziyarat: "ziyarat", fateha: "fateha" };
-  return kindWord[data.kind] + "-" + (data.date || todayIso()) + "." + extension;
-}
-
-// Turns the canvas picture into a file right away (no waiting),
-// so the phone still allows opening the share menu.
-function dataUrlToBlob(dataUrl) {
-  var parts = dataUrl.split(",");
-  var mimeType = parts[0].split(":")[1].split(";")[0];
-  var binary = atob(parts[1]);
-  var bytes = new Uint8Array(binary.length);
-  for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
-  return new Blob([bytes], { type: mimeType });
-}
-
-function downloadBlob(blob, fileName) {
-  var link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-}
-
-// Short caption sent with the card, e.g. "*⚫ खबर इंतक़ाल ⚫* — मरहूम अब्दुल करीम"
-function shortCaption(data) {
-  return "*⚫ " + word("title")[data.kind] + " ⚫* — " + marhoomWord(data) + " " + fullName(data);
-}
-
-function openWhatsApp(messageText) {
-  window.open(whatsAppLink(messageText), "_blank");
-}
-
-// The short wa.me link breaks emoji (they arrive as a question-mark box), so the full
-// api.whatsapp.com link is used. The message is also copied as a backup.
-function whatsAppLink(messageText) {
-  var link = "https://api.whatsapp.com/send?text=" + encodeURIComponent(messageText);
-  if (SEND_TO_NUMBER) { link = link + "&phone=" + SEND_TO_NUMBER; }
-  return link;
-}
-
-function copyAsBackup(messageText) {
-  copyText(messageText, function () {}, function () {});
-}
-
-function sendDeathNotice() {
-  var data = checkDeathForm();
-  if (!data) { return; }
-  if (sendMode !== "card") {
-    var message = messageForMode(data);
-    copyAsBackup(message);
-    openWhatsApp(message);
-    setDeathNote(dt("helpText"), true);
-    return;
-  }
-
-  renderCard();
-  var canvas = getById("cardCanvas");
-
-  // Phone: share menu with the card picture and the message as caption.
-  if (isPhone()) {
-    var jpegBlob = dataUrlToBlob(canvas.toDataURL("image/jpeg", 0.93));
-    var file = new File([jpegBlob], cardFileName(data, "jpg"), { type: "image/jpeg" });
-    var shareData = { files: [file] };
-    if (navigator.canShare && navigator.canShare(shareData)) {
-      navigator.share(shareData).then(function () {
-        setDeathNote(dt("doneShared"));
-      }, function (error) {
-        if (error && error.name === "AbortError") { return; }
-        setDeathNote(dt("shareFailed"));
-      });
-      return;
-    }
-  }
-
-  // Computer: copy the card, then open WhatsApp with the message typed.
-  var pngBlob = dataUrlToBlob(canvas.toDataURL("image/png"));
-  try {
-    navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]).then(function () {
-      setDeathNote(dt("doneComputer"), true);
-    }, function () {
-      downloadBlob(pngBlob, cardFileName(data, "png"));
-      setDeathNote(dt("doneComputerDownload"), true);
-    });
-  } catch (e) {
-    downloadBlob(pngBlob, cardFileName(data, "png"));
-    setDeathNote(dt("doneComputerDownload"), true);
-  }
-  // Open WhatsApp with an empty message box, so only the pasted card is sent.
-  window.open("https://web.whatsapp.com/", "_blank");
-}
-
-function clearDeathForm() {
-  var inputs = document.querySelectorAll("#deathSection input, #deathSection textarea");
-  for (var i = 0; i < inputs.length; i++) {
-    if (inputs[i].type === "checkbox") { continue; }
-    inputs[i].value = "";
-  }
-  getById("d_addZiyarat").checked = false;
-  getById("d_addFateha").checked = false;
-  getById("d_cause").value = "qaza";
-  getById("d_tadfinWhen").value = "";
-  getById("d_ziyaratWhen").value = "";
-  getById("d_fatehaWhen").value = "";
-  getById("d_date").value = todayIso();
-  getById("d_tadfinDate").value = todayIso();
-  getById("d_group").value = DEFAULT_GROUP_LINE;
-  getById("exampleBar").hidden = true;
-  applyDeathKind();
-}
-
-var EXAMPLE_TEXT = {
-  hi: {
-    name: "अब्दुल करीम", urf: "करीम भाई",
-    family: "मरहूम हाजी रहीम बख़्श जयपुर के खोखर, छावनी वालों के लड़के",
-    city: "इंदौर", address: "छावनी, जामा मस्जिद के पास",
-    janaza: "छावनी मस्जिद", qabristan: "लुनिया पुरा क़ब्रस्तान",
-    ziyaratPlace: "घर पर", jawai: "खंडवा", by: "हाजी मोहम्मद हुसैन - 90000 00000"
-  },
-  en: {
-    name: "Abdul Karim", urf: "Karim Bhai",
-    family: "son of Marhoom Haji Rahim Bakhsh Khokhar of Jaipur, Chhawni",
-    city: "Indore", address: "Chhawni, near Jama Masjid",
-    janaza: "Chhawni Masjid", qabristan: "Luniya Pura Qabristan",
-    ziyaratPlace: "at home", jawai: "Khandwa", by: "Haji Mohammad Hussain - 90000 00000"
-  }
-};
-
-function fillDeathExample() {
-  var today = todayIso();
-  var ex = EXAMPLE_TEXT[currentLang];
-  getById("d_kind").value = "inteqal";
-  getById("d_gender").value = "male";
-  getById("d_name").value = ex.name;
-  getById("d_urf").value = ex.urf;
-  getById("d_age").value = "78";
-  getById("d_family").value = ex.family;
-  getById("d_cause").value = "qaza";
-  getById("d_city").value = ex.city;
-  getById("d_state").value = "mp";
-  getById("d_date").value = today;
-  getById("d_address").value = ex.address;
-  getById("d_tadfinDate").value = addDaysIso(today, 1);
-  getById("d_tadfinWhen").value = "zohar";
-  getById("d_janaza").value = ex.janaza;
-  getById("d_qabristan").value = ex.qabristan;
-  getById("d_addZiyarat").checked = true;
-  getById("d_ziyaratDate").value = addDaysIso(today, 2);
-  getById("d_ziyaratTime").value = "09:30";
-  getById("d_ziyaratPlace").value = ex.ziyaratPlace;
-  getById("d_jawai").value = ex.jawai;
-  getById("d_by").value = ex.by;
-  getById("exampleBar").hidden = false;
-}
-
-getById("sendDeath").addEventListener("click", sendDeathNotice);
-getById("modeCard").addEventListener("click", function () { setSendMode("card"); });
-getById("modeStyled").addEventListener("click", function () { setSendMode("styled"); });
-getById("clearDeath").addEventListener("click", clearDeathForm);
-getById("d_kind").addEventListener("change", applyDeathKind);
-getById("d_addZiyarat").addEventListener("change", applyDeathKind);
-getById("d_addFateha").addEventListener("change", applyDeathKind);
-
-var deathInputs = document.querySelectorAll("#deathSection input, #deathSection select, #deathSection textarea");
-for (var di = 0; di < deathInputs.length; di++) {
-  deathInputs[di].addEventListener("input", updateDeath);
-  deathInputs[di].addEventListener("change", updateDeath);
-}
 
 function drawDivider(ctx, cx, y, halfLength) {
   ctx.strokeStyle = COL.gold;
@@ -2077,10 +2250,660 @@ function drawLabelValue(ctx, label, value, y) {
   return drawWrappedCentered(ctx, value, CENTER_X, y + 40, maxWidth, 40) + 4;
 }
 
+// =====================================================================
+// A7.  PAGE BEHAVIOUR
+// Show/hide sections, check required fields, update the preview.
+// =====================================================================
 
+var sendMode = "styled";
+var renderPending = false;
+
+function updateDeath() {
+  var data = readDeathData();
+  var textBox = getById("deathText");
+  textBox.classList.add("wa");
+  showWhatsAppPreview(textBox, messageForMode(data));
+  getById("d_dayShow").textContent = data.date ? "(" + dayNameOf(data.date) + ")" : "";
+  if (sendMode === "card" && !renderPending) {
+    renderPending = true;
+    requestAnimationFrame(function () {
+      renderPending = false;
+      renderCard();
+    });
+  }
+}
+
+// Show / hide sections depending on the notice type.
+function applyDeathKind() {
+  var kind = readInput("d_kind") || "inteqal";
+  var isInteqal = kind === "inteqal";
+  getById("sec_tadfin").hidden = !isInteqal;
+  getById("sec_more").hidden = !isInteqal;
+  getById("g_family").hidden = !isInteqal;
+  getById("g_cause").hidden = !isInteqal;
+
+  getById("sec_ziyarat").hidden = !(isInteqal || kind === "ziyarat");
+  getById("sw_ziyarat").hidden = !isInteqal;
+  getById("h_ziyarat").hidden = isInteqal;
+  getById("body_ziyarat").hidden = isInteqal && !getById("d_addZiyarat").checked;
+
+  getById("sec_fateha").hidden = !(isInteqal || kind === "fateha");
+  getById("sw_fateha").hidden = !isInteqal;
+  getById("h_fateha").hidden = isInteqal;
+  getById("body_fateha").hidden = isInteqal && !getById("d_addFateha").checked;
+  updateDeath();
+}
+
+function showSendHelp() {
+  if (sendMode !== "card") { setDeathNote(dt("helpText")); return; }
+  setDeathNote(isPhone() ? dt("helpPhoneCard") : dt("helpComputerCard"));
+}
+
+function setSendMode(mode) {
+  sendMode = mode;
+  getById("modeCard").setAttribute("aria-pressed", mode === "card" ? "true" : "false");
+  getById("modeStyled").setAttribute("aria-pressed", mode === "styled" ? "true" : "false");
+  getById("cardPreview").hidden = mode !== "card";
+  getById("textDetails").open = mode === "styled";
+  showSendHelp();
+  updateDeath();
+}
+
+function findDeathMissing(data) {
+  var missing = [];
+  var marks = ["w_name", "w_city", "w_date", "w_tadfinDate", "w_ziyaratDate", "w_fatehaDate"];
+  for (var i = 0; i < marks.length; i++) { getById(marks[i]).classList.remove("bad"); }
+  if (!data.name) { missing.push(dt("missName")); getById("w_name").classList.add("bad"); }
+  if (!data.city) { missing.push(dt("missCity")); getById("w_city").classList.add("bad"); }
+  if (!data.date) { missing.push(dt("missDate")); getById("w_date").classList.add("bad"); }
+  if (data.kind === "inteqal" && !data.tadfinDate) { missing.push(dt("missTadfin")); getById("w_tadfinDate").classList.add("bad"); }
+  if (data.kind === "ziyarat" && !data.ziyaratDate) { missing.push(dt("missZiyarat")); getById("w_ziyaratDate").classList.add("bad"); }
+  if (data.kind === "fateha" && !data.fatehaDate) { missing.push(dt("missFateha")); getById("w_fatehaDate").classList.add("bad"); }
+  return missing;
+}
+
+function checkDeathForm() {
+  var data = readDeathData();
+  var missing = findDeathMissing(data);
+  var box = getById("deathErr");
+  if (missing.length > 0) {
+    box.textContent = dt("missing") + missing.join(", ");
+    box.hidden = false;
+    var firstBad = document.querySelector("#deathSection .field.bad input");
+    if (firstBad) { firstBad.focus(); }
+    return null;
+  }
+  box.hidden = true;
+  return data;
+}
+
+function setDeathNote(text, highlight) {
+  var note = getById("deathNote");
+  note.textContent = text;
+  if (highlight) { note.classList.add("guide"); } else { note.classList.remove("guide"); }
+}
+
+function clearDeathForm() {
+  var inputs = document.querySelectorAll("#deathSection input, #deathSection textarea");
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].type === "checkbox") { continue; }
+    inputs[i].value = "";
+  }
+  getById("d_addZiyarat").checked = false;
+  getById("d_addFateha").checked = false;
+  getById("d_cause").value = "qaza";
+  getById("d_district").value = "";
+  getById("d_tadfinWhen").value = "";
+  getById("d_ziyaratWhen").value = "";
+  getById("d_fatehaWhen").value = "";
+  getById("d_date").value = todayIso();
+  getById("d_tadfinDate").value = todayIso();
+  getById("d_group").value = DEFAULT_GROUP_LINE;
+  getById("exampleBar").hidden = true;
+  applyDeathKind();
+}
 
 // =====================================================================
-// OTHER ANNOUNCEMENTS (marriage, meeting, ...) — text message only
+// A8.  SENDING
+// WhatsApp link (text), share menu (phone), copy card (computer).
+// =====================================================================
+
+function cardFileName(data, extension) {
+  var kindWord = { inteqal: "khabar-inteqal", ziyarat: "ziyarat", fateha: "fateha" };
+  return kindWord[data.kind] + "-" + (data.date || todayIso()) + "." + extension;
+}
+
+// Turns the canvas picture into a file right away (no waiting),
+// so the phone still allows opening the share menu.
+function dataUrlToBlob(dataUrl) {
+  var parts = dataUrl.split(",");
+  var mimeType = parts[0].split(":")[1].split(";")[0];
+  var binary = atob(parts[1]);
+  var bytes = new Uint8Array(binary.length);
+  for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
+  return new Blob([bytes], { type: mimeType });
+}
+
+function downloadBlob(blob, fileName) {
+  var link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+function openWhatsApp(messageText) {
+  window.open(whatsAppLink(messageText), "_blank");
+}
+
+// The short wa.me link breaks emoji (they arrive as a question-mark box), so the full
+// api.whatsapp.com link is used. The message is also copied as a backup.
+function whatsAppLink(messageText) {
+  var link = "https://api.whatsapp.com/send?text=" + encodeURIComponent(messageText);
+  if (SEND_TO_NUMBER) { link = link + "&phone=" + SEND_TO_NUMBER; }
+  return link;
+}
+
+function copyAsBackup(messageText) {
+  copyText(messageText, function () {}, function () {});
+}
+
+function sendDeathNotice() {
+  var data = checkDeathForm();
+  if (!data) { return; }
+  if (sendMode !== "card") {
+    var message = messageForMode(data);
+    copyAsBackup(message);
+    openWhatsApp(message);
+    setDeathNote(dt("helpText"), true);
+    return;
+  }
+
+  renderCard();
+  var canvas = getById("cardCanvas");
+
+  // Phone: share menu with the card picture and the message as caption.
+  if (isPhone()) {
+    var jpegBlob = dataUrlToBlob(canvas.toDataURL("image/jpeg", 0.93));
+    var file = new File([jpegBlob], cardFileName(data, "jpg"), { type: "image/jpeg" });
+    var shareData = { files: [file] };
+    if (navigator.canShare && navigator.canShare(shareData)) {
+      navigator.share(shareData).then(function () {
+        setDeathNote(dt("doneShared"));
+      }, function (error) {
+        if (error && error.name === "AbortError") { return; }
+        setDeathNote(dt("shareFailed"));
+      });
+      return;
+    }
+  }
+
+  // Computer: copy the card, then open WhatsApp with the message typed.
+  var pngBlob = dataUrlToBlob(canvas.toDataURL("image/png"));
+  try {
+    navigator.clipboard.write([new ClipboardItem({ "image/png": pngBlob })]).then(function () {
+      setDeathNote(dt("doneComputer"), true);
+    }, function () {
+      downloadBlob(pngBlob, cardFileName(data, "png"));
+      setDeathNote(dt("doneComputerDownload"), true);
+    });
+  } catch (e) {
+    downloadBlob(pngBlob, cardFileName(data, "png"));
+    setDeathNote(dt("doneComputerDownload"), true);
+  }
+  // Open WhatsApp with an empty message box, so only the pasted card is sent.
+  window.open("https://web.whatsapp.com/", "_blank");
+}
+
+// =====================================================================
+// A9.  EXAMPLE DATA
+// =====================================================================
+
+var EXAMPLE_TEXT = {
+  hi: {
+    name: "अब्दुल करीम", urf: "करीम भाई",
+    family: "मरहूम हाजी रहीम बख़्श जयपुर के खोखर, छावनी वालों के लड़के",
+    city: "इंदौर", address: "छावनी, जामा मस्जिद के पास",
+    janaza: "छावनी मस्जिद", qabristan: "लुनिया पुरा क़ब्रस्तान",
+    ziyaratPlace: "घर पर", jawai: "खंडवा", by: "हाजी मोहम्मद हुसैन - 90000 00000"
+  },
+  en: {
+    name: "Abdul Karim", urf: "Karim Bhai",
+    family: "son of Marhoom Haji Rahim Bakhsh Khokhar of Jaipur, Chhawni",
+    city: "Indore", address: "Chhawni, near Jama Masjid",
+    janaza: "Chhawni Masjid", qabristan: "Luniya Pura Qabristan",
+    ziyaratPlace: "at home", jawai: "Khandwa", by: "Haji Mohammad Hussain - 90000 00000"
+  }
+};
+
+function fillDeathExample() {
+  var today = todayIso();
+  var ex = EXAMPLE_TEXT[currentLang];
+  getById("d_kind").value = "inteqal";
+  getById("d_gender").value = "male";
+  getById("d_name").value = ex.name;
+  getById("d_urf").value = ex.urf;
+  getById("d_age").value = "78";
+  getById("d_family").value = ex.family;
+  getById("d_cause").value = "qaza";
+  getById("d_city").value = ex.city;
+  getById("d_state").value = "mp";
+  refreshDistricts("d_state", "d_district", "g_district");
+  getById("d_district").value = "Indore";
+  getById("d_date").value = today;
+  getById("d_address").value = ex.address;
+  getById("d_tadfinDate").value = addDaysIso(today, 1);
+  getById("d_tadfinWhen").value = "zohar";
+  getById("d_janaza").value = ex.janaza;
+  getById("d_qabristan").value = ex.qabristan;
+  getById("d_addZiyarat").checked = true;
+  getById("d_ziyaratDate").value = addDaysIso(today, 2);
+  getById("d_ziyaratTime").value = "09:30";
+  getById("d_ziyaratPlace").value = ex.ziyaratPlace;
+  getById("d_jawai").value = ex.jawai;
+  getById("d_by").value = ex.by;
+  getById("exampleBar").hidden = false;
+}
+
+// =====================================================================
+// A10.  BUTTONS AND INPUTS (Khabar Inteqal)
+// =====================================================================
+
+getById("sendDeath").addEventListener("click", sendDeathNotice);
+getById("modeCard").addEventListener("click", function () { setSendMode("card"); });
+getById("modeStyled").addEventListener("click", function () { setSendMode("styled"); });
+getById("clearDeath").addEventListener("click", clearDeathForm);
+getById("d_kind").addEventListener("change", applyDeathKind);
+getById("d_addZiyarat").addEventListener("change", applyDeathKind);
+getById("d_addFateha").addEventListener("change", applyDeathKind);
+
+// The district list depends on the state, so it is refreshed before the preview.
+getById("d_state").addEventListener("change", function () {
+  refreshDistricts("d_state", "d_district", "g_district");
+});
+
+var deathInputs = document.querySelectorAll("#deathSection input, #deathSection select, #deathSection textarea");
+for (var di = 0; di < deathInputs.length; di++) {
+  deathInputs[di].addEventListener("input", updateDeath);
+  deathInputs[di].addEventListener("change", updateDeath);
+}
+
+// #####################################################################
+// PART B — SHAADI (marriage notice)
+// #####################################################################
+
+// =====================================================================
+// B1.  MARRIAGE FORM — texts, message and sending
+// Its own form with dropdowns; it builds the card-style WhatsApp message.
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// Screen text (Hindi and English)
+// ---------------------------------------------------------------------
+
+var MT = {
+  hi: {
+    secBasic: "शादी की जानकारी",
+    bismillahLabel: "ऊपर बिस्मिल्लाह और सलाम लिखें",
+    dateLabel: "शादी की तारीख",
+    nikahTimeLabel: "निकाह का वक़्त",
+    cityLabel: "शहर",
+    cityPh: "उदाहरण: मोडासा",
+    stateLabel: "राज्य",
+    districtLabel: "ज़िला",
+    nikahPlaceLabel: "निकाह कहाँ होगा",
+    nikahPlacePh: "उदाहरण: मोडासा",
+    optional: "(वैकल्पिक)",
+    linesHint: "(हर लाइन में एक: नाम - नंबर)",
+
+    secVenue: "शादी मुकाम",
+    venueLabel: "मुकाम का नाम",
+    venuePh: "उदाहरण: नूरे मोहम्मदी सोसायटी कॉलेज",
+    addressLabel: "पता",
+    addressPh: "उदाहरण: चौकड़ी बालापीर रोड, मोडासा",
+
+    secBride: "दुल्हन",
+    brideLabel: "दुल्हन का नाम",
+    bridePh: "उदाहरण: अनीका",
+    brideFamilyLabel: "दुल्हन का परिवार",
+    brideFamilyPh: "उदाहरण: मरहूम इस्लाम जी कड़ी वाले सामोद के तगाला की पोती, अय्यूब जी की लड़की",
+
+    secGroom: "दूल्हा",
+    groomLabel: "दूल्हे का नाम",
+    groomPh: "उदाहरण: मोहम्मद जावेद",
+    groomFamilyLabel: "दूल्हे का परिवार",
+    groomFamilyPh: "उदाहरण: पुंसरी, मरहूम रोशन जी के पोते, मरहूम इशहाक जी उर्फ़ कालू जी के लड़के",
+
+    secExtra: "भत्थी, बारात और पेरावनी",
+    bigBhatthiLabel: "बड़ी भत्थी",
+    bigBhatthiPh: "उदाहरण: खेड़ब्रह्मा, गुजरात — आलम जी किशनपुरा के अगवान",
+    bhatthiLabel: "भत्थी",
+    bhatthiPh: "उदाहरण: मोडासा, गुजरात — आसिफ जी खेतड़ी के अगवान",
+    baratFromLabel: "बारात कहाँ से आएगी",
+    baratFromPh: "उदाहरण: पुंसरी",
+    baratDateLabel: "बारात की तारीख",
+    baratTimeLabel: "बारात का वक़्त",
+    peravaniLabel: "पेरावनी",
+    peravaniPh: "उदाहरण: धनसुरा मारोठ के कालूत के",
+
+    secPeople: "अराकिन और मुन्तज़िर",
+    arakinLabel: "अराकिन",
+    arakinPh: "बाबूभाई समोद के तगाले, मोडासा - 63567 74060\nहाजी हारूनभाई - 99240 07493",
+    muntazirLabel: "आपकी आमद के मुन्तज़िर",
+    muntazirPh: "अय्यूबभाई कड़ी वाले समोद के तगाले - 63568 15274",
+    familyNameLabel: "समस्त ... परिवार",
+    familyNamePh: "उदाहरण: तगाला",
+
+    secPanchayat: "पंचायत",
+    groupLabel: "ग्रुप / पंचायत का नाम",
+    panchayatLabel: "पंचायत के नाम और नंबर",
+    panchayatPh: "सलीमभाई खेतड़ी अगवान, मोडासा - 94281 35986",
+
+    stepSend: "भेजें",
+    sendBtn: "WhatsApp पर भेजें",
+    missing: "ये जानकारी भरें: ",
+    missDate: "शादी की तारीख",
+    missCity: "शहर",
+    missBride: "दुल्हन का नाम",
+    missGroom: "दूल्हे का नाम"
+  },
+  en: {
+    secBasic: "Marriage details",
+    bismillahLabel: "Write Bismillah and Salaam at the top",
+    dateLabel: "Wedding date",
+    nikahTimeLabel: "Nikah time",
+    cityLabel: "City",
+    cityPh: "Example: Modasa",
+    stateLabel: "State",
+    districtLabel: "District",
+    nikahPlaceLabel: "Where is the Nikah",
+    nikahPlacePh: "Example: Modasa",
+    optional: "(optional)",
+    linesHint: "(one per line: name - number)",
+
+    secVenue: "Venue",
+    venueLabel: "Venue name",
+    venuePh: "Example: Noor-e-Mohammadi Society College",
+    addressLabel: "Address",
+    addressPh: "Example: Chowkdi Balapir Road, Modasa",
+
+    secBride: "Bride",
+    brideLabel: "Bride name",
+    bridePh: "Example: Anika",
+    brideFamilyLabel: "Bride's family",
+    brideFamilyPh: "Example: Granddaughter of Marhoom Islamji Kadi wale Samod ke Tagala, daughter of Ayyubji",
+
+    secGroom: "Groom",
+    groomLabel: "Groom name",
+    groomPh: "Example: Mohammad Javed",
+    groomFamilyLabel: "Groom's family",
+    groomFamilyPh: "Example: Punsari, grandson of Marhoom Roshanji, son of Marhoom Ishaqji alias Kaluji",
+
+    secExtra: "Bhatthi, Barat and Peravani",
+    bigBhatthiLabel: "Bari Bhatthi",
+    bigBhatthiPh: "Example: Khedbrahma, Gujarat — Alamji, Agwan of Kishanpura",
+    bhatthiLabel: "Bhatthi",
+    bhatthiPh: "Example: Modasa, Gujarat — Asifji, Agwan of Khetdi",
+    baratFromLabel: "Barat comes from",
+    baratFromPh: "Example: Punsari",
+    baratDateLabel: "Barat date",
+    baratTimeLabel: "Barat time",
+    peravaniLabel: "Peravani",
+    peravaniPh: "Example: Kalut of Dhansura Marot",
+
+    secPeople: "Arakin and Muntazir",
+    arakinLabel: "Arakin",
+    arakinPh: "Babubhai Samod ke Tagale, Modasa - 63567 74060\nHaji Harunbhai - 99240 07493",
+    muntazirLabel: "Waiting for your presence (Muntazir)",
+    muntazirPh: "Ayyubbhai Kadi wale Samod ke Tagale - 63568 15274",
+    familyNameLabel: "All ... family",
+    familyNamePh: "Example: Tagala",
+
+    secPanchayat: "Panchayat",
+    groupLabel: "Group / Panchayat name",
+    panchayatLabel: "Panchayat names and numbers",
+    panchayatPh: "Salimbhai Khetdi Agwan, Modasa - 94281 35986",
+
+    stepSend: "Send",
+    sendBtn: "Send on WhatsApp",
+    missing: "Please fill: ",
+    missDate: "Wedding date",
+    missCity: "City",
+    missBride: "Bride name",
+    missGroom: "Groom name"
+  }
+};
+
+function mt(key) {
+  return MT[currentLang][key];
+}
+
+// Words used inside the WhatsApp message
+var MW = {
+  hi: {
+    title: "शादी मुबारक",
+    bismillah: "बिस्मिल्लाह हिर्रहमा निर्रहीम",
+    salam: "अस्सलामु अलैकुम",
+    venue: "शादी मुकाम", bride: "दुल्हन", groom: "दूल्हा",
+    bhatthi: "भत्थी", barat: "बारात", peravani: "पेरावनी",
+    arakin: "अराकिन", muntazir: "आपकी आमद के मुन्तज़िर"
+  },
+  en: {
+    title: "Marriage Announcement",
+    bismillah: "Bismillah hir-Rahman nir-Raheem",
+    salam: "Assalamu Alaikum",
+    venue: "Venue", bride: "Bride", groom: "Groom",
+    bhatthi: "Bhatthi", barat: "Barat", peravani: "Peravani",
+    arakin: "Arakin", muntazir: "Waiting for your presence"
+  }
+};
+
+function mw(key) {
+  return MW[currentLang][key];
+}
+
+// Fills every label and placeholder of the marriage form in the current language.
+function applyMarriageLanguage() {
+  var labelled = document.querySelectorAll("#marriageSection [data-t]");
+  for (var i = 0; i < labelled.length; i++) {
+    labelled[i].textContent = mt(labelled[i].getAttribute("data-t"));
+  }
+  var withPlaceholder = document.querySelectorAll("#marriageSection [data-ph]");
+  for (var k = 0; k < withPlaceholder.length; k++) {
+    withPlaceholder[k].placeholder = mt(withPlaceholder[k].getAttribute("data-ph"));
+  }
+  fillSelect(getById("m_state"), STATE_OPTIONS);
+  refreshDistricts("m_state", "m_district", "g_m_district");
+}
+
+// ---------------------------------------------------------------------
+// Reading the form
+// ---------------------------------------------------------------------
+
+function readMarriageData() {
+  var stateKey = readInput("m_state");
+  return {
+    bismillah: getById("m_bismillah").checked,
+    date: readInput("m_date"),
+    nikahTime: readInput("m_nikahTime"),
+    nikahPlace: readInput("m_nikahPlace"),
+    city: readInput("m_city"),
+    state: optionText(STATE_OPTIONS, stateKey),
+    district: districtText(stateKey, readInput("m_district")),
+    venue: readInput("m_venue"),
+    address: readInput("m_address"),
+    bride: readInput("m_bride"),
+    brideFamily: readInput("m_brideFamily"),
+    groom: readInput("m_groom"),
+    groomFamily: readInput("m_groomFamily"),
+    bigBhatthi: readInput("m_bigBhatthi"),
+    bhatthi: readInput("m_bhatthi"),
+    baratFrom: readInput("m_baratFrom"),
+    baratDate: readInput("m_baratDate"),
+    baratTime: readInput("m_baratTime"),
+    peravani: readInput("m_peravani"),
+    arakin: readLines("m_arakin"),
+    muntazir: readLines("m_muntazir"),
+    familyName: readInput("m_familyName"),
+    group: readInput("m_group"),
+    panchayat: readLines("m_panchayat")
+  };
+}
+
+// ---------------------------------------------------------------------
+// Building the WhatsApp message
+// ---------------------------------------------------------------------
+
+// "Anika हमराह Mohammad Javed की शादी 29/11/2026, रविवार को होगी। इन शा अल्लाह।"
+function marriageSentence(data) {
+  if (!data.bride || !data.groom) { return ""; }
+  var when = dateWithDay(data.date);
+  if (currentLang === "en") {
+    return "Marriage of *" + data.bride + "* with *" + data.groom + "* will be held" + (when ? " on *" + when + "*" : "") + ". In sha Allah.";
+  }
+  return "*" + data.bride + "* हमराह *" + data.groom + "* की शादी" + (when ? " *" + when + "* को" : "") + " होगी। इन शा अल्लाह।";
+}
+
+// "मोडासा में सुबह 10:00 बजे" / "10:00 AM, at Modasa"
+function nikahText(data) {
+  if (!data.nikahTime && !data.nikahPlace) { return ""; }
+  if (currentLang === "en") {
+    return joinFilled([timeInWords(data.nikahTime), data.nikahPlace ? "at " + data.nikahPlace : ""], ", ");
+  }
+  return joinFilled([data.nikahPlace ? data.nikahPlace + " में" : "", timeInWords(data.nikahTime)], " ");
+}
+
+function pushListSection(lines, heading, items) {
+  if (items.length === 0) { return; }
+  lines.push("");
+  lines.push(heading);
+  for (var i = 0; i < items.length; i++) { lines.push("> " + items[i]); }
+}
+
+function buildMarriageText(data) {
+  var lines = [];
+  framedHeading(lines, "💐💐  " + mw("title") + "  💐💐");
+  if (data.bismillah) {
+    lines.push("_" + mw("bismillah") + "_");
+    lines.push("_" + mw("salam") + "_");
+  }
+  var sentence = marriageSentence(data);
+  if (sentence) { lines.push(""); lines.push(sentence); }
+
+  // The date is already in the sentence above, so it is only a row when there is no sentence.
+  pushSection(lines, "", [
+    sentence ? "" : rowLine("📅", label("तारीख", "Date"), dateWithDay(data.date)),
+    rowLine("📍", label("शहर", "City"), data.city ? cityLine(data) : ""),
+    rowLine("🕌", label("निकाह", "Nikah"), nikahText(data))
+  ]);
+
+  pushSection(lines, sectionHeading("📍", mw("venue")), [
+    rowLine("🏛", label("नाम", "Name"), data.venue),
+    rowLine("🏠", label("पता", "Address"), data.address)
+  ]);
+  pushSection(lines, sectionHeading("👰", mw("bride")), [
+    rowLine("👰", label("नाम", "Name"), data.bride),
+    rowLine("👪", label("परिवार", "Family"), data.brideFamily)
+  ]);
+  pushSection(lines, sectionHeading("🤵", mw("groom")), [
+    rowLine("🤵", label("नाम", "Name"), data.groom),
+    rowLine("👪", label("परिवार", "Family"), data.groomFamily)
+  ]);
+  pushSection(lines, sectionHeading("🍽", mw("bhatthi")), [
+    rowLine("🍽", label("बड़ी भत्थी", "Bari Bhatthi"), data.bigBhatthi),
+    rowLine("🍽", label("भत्थी", "Bhatthi"), data.bhatthi)
+  ]);
+  pushSection(lines, sectionHeading("🎊", mw("barat")), [
+    rowLine("📍", label("कहाँ से", "From"), data.baratFrom),
+    rowLine("📅", label("वक़्त", "Time"), eventTiming(data.baratDate, "", data.baratTime))
+  ]);
+  if (data.peravani) {
+    pushListSection(lines, sectionHeading("🎁", mw("peravani")), [data.peravani]);
+  }
+  pushListSection(lines, sectionHeading("📞", mw("arakin")), data.arakin);
+  pushListSection(lines, sectionHeading("🌷", mw("muntazir")), data.muntazir);
+
+  if (data.familyName) {
+    lines.push("");
+    lines.push("_" + (currentLang === "en" ? "All " + data.familyName + " family" : "समस्त " + data.familyName + " परिवार") + "_");
+  }
+  if (data.group || data.panchayat.length > 0) {
+    lines.push(FOOTER_LINE);
+    if (data.group) { lines.push("_" + data.group + "_"); }
+    for (var i = 0; i < data.panchayat.length; i++) { lines.push("> " + data.panchayat[i]); }
+  }
+  return lines.join("\n");
+}
+
+// ---------------------------------------------------------------------
+// Page behaviour and sending
+// ---------------------------------------------------------------------
+
+function updateMarriage() {
+  var data = readMarriageData();
+  var box = getById("marriageText");
+  box.classList.add("wa");
+  showWhatsAppPreview(box, buildMarriageText(data));
+  getById("m_dayShow").textContent = data.date ? "(" + dayNameOf(data.date) + ")" : "";
+}
+
+function findMarriageMissing(data) {
+  var missing = [];
+  var marks = ["w_m_date", "w_m_city", "w_m_bride", "w_m_groom"];
+  for (var i = 0; i < marks.length; i++) { getById(marks[i]).classList.remove("bad"); }
+  if (!data.date) { missing.push(mt("missDate")); getById("w_m_date").classList.add("bad"); }
+  if (!data.city) { missing.push(mt("missCity")); getById("w_m_city").classList.add("bad"); }
+  if (!data.bride) { missing.push(mt("missBride")); getById("w_m_bride").classList.add("bad"); }
+  if (!data.groom) { missing.push(mt("missGroom")); getById("w_m_groom").classList.add("bad"); }
+  return missing;
+}
+
+function sendMarriageNotice() {
+  var data = readMarriageData();
+  var missing = findMarriageMissing(data);
+  var errorBox = getById("marriageErr");
+  if (missing.length > 0) {
+    errorBox.textContent = mt("missing") + missing.join(", ");
+    errorBox.hidden = false;
+    var firstBad = document.querySelector("#marriageSection .field.bad input");
+    if (firstBad) { firstBad.focus(); }
+    return;
+  }
+  errorBox.hidden = true;
+  var message = buildMarriageText(data);
+  copyAsBackup(message);
+  openWhatsApp(message);
+  var note = getById("marriageNote");
+  note.textContent = dt("helpText");
+  note.classList.add("guide");
+}
+
+// ---------------------------------------------------------------------
+// Buttons and inputs
+// ---------------------------------------------------------------------
+
+getById("sendMarriage").addEventListener("click", sendMarriageNotice);
+
+// The district list depends on the state, so it is refreshed before the preview.
+getById("m_state").addEventListener("change", function () {
+  refreshDistricts("m_state", "m_district", "g_m_district");
+});
+
+var marriageInputs = document.querySelectorAll("#marriageSection input, #marriageSection select, #marriageSection textarea");
+for (var mi = 0; mi < marriageInputs.length; mi++) {
+  marriageInputs[mi].addEventListener("input", updateMarriage);
+  marriageInputs[mi].addEventListener("change", updateMarriage);
+}
+
+
+// #####################################################################
+// PART C — OTHER ANNOUNCEMENTS (sagai, birth, meeting, blood, other)
+// #####################################################################
+
+// =====================================================================
+// C1.  TEXTS, TYPES AND FIELDS
+// Hindi/English texts, the list of announcement types and their fields.
 // =====================================================================
 
 var UI = {
@@ -2127,21 +2950,8 @@ var UI = {
 };
 
 var TYPES = [
-  { id: "inteqal", icon: "⚫", name: { hi: "खबर इंतक़ाल", en: "Khabar Inteqal" }, special: true },
-  {
-    id: "marriage", icon: "💐",
-    name: { hi: "शादी", en: "Marriage" },
-    header: { hi: "💐💐 *शादी मुबारक* 💐💐", en: "💐💐 *Marriage Announcement* 💐💐" },
-    fields: [
-      { key: "groom", hi: "दूल्हे का नाम", en: "Groom name", exHi: "अब्दुल रहमान", exEn: "Abdul Rehman", required: true, intro: true },
-      { key: "bride", hi: "दुल्हन का नाम", en: "Bride name", exHi: "शबनम बानो", exEn: "Shabnam Bano", required: true, intro: true },
-      { key: "groomFamily", hi: "दूल्हे का परिवार", en: "Groom's family", exHi: "हाजी अनवर भाई के लड़के", exEn: "S/o Haji Anwar Bhai" },
-      { key: "brideFamily", hi: "दुल्हन का परिवार", en: "Bride's family", exHi: "सलीम भाई की लड़की", exEn: "D/o Salim Bhai" },
-      { key: "date", hi: "तारीख", en: "Date", kind: "date", required: true },
-      { key: "venue", hi: "स्थान", en: "Venue", exHi: "जमात खाना, वडोदरा", exEn: "Jamat Khana, Vadodara" },
-      { key: "contact", hi: "संपर्क नंबर", en: "Contact number", kind: "tel", exHi: "98XXX XXXXX", exEn: "98XXX XXXXX" }
-    ]
-  },
+  { id: "inteqal", icon: "⚫", name: { hi: "खबर इंतक़ाल", en: "Khabar Inteqal" }, special: "death" },
+  { id: "marriage", icon: "💐", name: { hi: "शादी", en: "Marriage" }, special: "marriage" },
   {
     id: "engagement", icon: "💍",
     name: { hi: "सगाई", en: "Engagement" },
@@ -2202,10 +3012,10 @@ var TYPES = [
 var currentType = TYPES[0];
 var savedValues = {};
 
-try {
-  var storedLang = localStorage.getItem("samajLang");
-  if (storedLang === "hi" || storedLang === "en") { currentLang = storedLang; }
-} catch (e) {}
+// =====================================================================
+// C2.  BUILDING THE FORM AND THE MESSAGE
+// Draws the tiles and fields, builds the message, connects the buttons.
+// =====================================================================
 
 function text(key) { return UI[currentLang][key]; }
 
@@ -2298,13 +3108,15 @@ function drawFields() {
 function chooseType(type) {
   rememberValues();
   currentType = type;
-  getById("deathSection").hidden = !type.special;
+  getById("deathSection").hidden = type.special !== "death";
+  getById("marriageSection").hidden = type.special !== "marriage";
   getById("genericSection").hidden = !!type.special;
   drawTiles();
   drawFields();
   hideError();
   updatePreview();
-  if (type.special) { updateDeath(); }
+  if (type.special === "death") { updateDeath(); }
+  if (type.special === "marriage") { updateMarriage(); }
 }
 
 function changeLanguage(lang) {
@@ -2313,11 +3125,13 @@ function changeLanguage(lang) {
   try { localStorage.setItem("samajLang", lang); } catch (e) {}
   drawStaticText();
   applyDeathLanguage();
+  applyMarriageLanguage();
   if (!getById("exampleBar").hidden) { fillDeathExample(); applyDeathKind(); }
   drawTiles();
   drawFields();
   updatePreview();
   updateDeath();
+  updateMarriage();
 }
 
 function readValue(key) {
@@ -2328,7 +3142,7 @@ function readValue(key) {
 
 function introLine(type) {
   var hi = currentLang === "hi";
-  if (type.id === "marriage" || type.id === "engagement") {
+  if (type.id === "engagement") {
     var groom = readValue("groom");
     var bride = readValue("bride");
     if (groom && bride) { return hi ? "*" + groom + "* संग *" + bride + "*" : "*" + groom + "* & *" + bride + "*"; }
@@ -2365,12 +3179,7 @@ function buildMessage() {
     var value = readValue(field.key);
     if (!value) { return; }
     if (field.kind === "date") { value = dateWithDay(value); }
-    var icon = FIELD_ICONS[field.key] || "▫️";
-    if (field.kind === "tel") {
-      rows.push(plainRowLine(icon, field[currentLang], value));
-    } else {
-      rows.push(rowLine(icon, field[currentLang], value));
-    }
+    rows.push(rowLine(FIELD_ICONS[field.key] || "▫️", field[currentLang], value));
   });
   pushSection(lines, "", rows);
 
@@ -2440,19 +3249,26 @@ getById("langEn").addEventListener("click", function () { changeLanguage("en"); 
 getById("f_extra").addEventListener("input", updatePreview);
 getById("f_sender").addEventListener("input", updatePreview);
 
-// =====================================================================
-// START
-// =====================================================================
+// #####################################################################
+// PART D — START
+// #####################################################################
 
+// =====================================================================
+// D.  START
+// Runs once when the page opens.
+// =====================================================================
 
 applyDeathLanguage();
 getById("d_group").value = DEFAULT_GROUP_LINE;
+getById("m_group").value = DEFAULT_GROUP_LINE;
+getById("m_date").value = todayIso();
 getById("d_date").value = todayIso();
 getById("d_tadfinDate").value = todayIso();
 if (FILL_EXAMPLE) { fillDeathExample(); }
 
 drawStaticText();
 applyDeathLanguage();
+applyMarriageLanguage();
 drawTiles();
 chooseType(TYPES[0]);
 applyDeathKind();
